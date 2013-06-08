@@ -23,6 +23,7 @@
 		D2F5F6571763CEB4006E586C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F5F6561763CEB4006E586C /* SecondViewController.m */; };
 		D2F5F6591763CEB4006E586C /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F6581763CEB4006E586C /* second.png */; };
 		D2F5F65B1763CEB4006E586C /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F65A1763CEB4006E586C /* second@2x.png */; };
+		D2F5F6631763D07F006E586C /* Organization.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F5F6621763D07F006E586C /* Organization.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		D2F5F6561763CEB4006E586C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		D2F5F6581763CEB4006E586C /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		D2F5F65A1763CEB4006E586C /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		D2F5F6611763D07F006E586C /* Organization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organization.h; sourceTree = "<group>"; };
+		D2F5F6621763D07F006E586C /* Organization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organization.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 				D2F5F6581763CEB4006E586C /* second.png */,
 				D2F5F65A1763CEB4006E586C /* second@2x.png */,
 				D2F5F63A1763CEB4006E586C /* Supporting Files */,
+				D2F5F6611763D07F006E586C /* Organization.h */,
+				D2F5F6621763D07F006E586C /* Organization.m */,
 			);
 			path = Snaptivist;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 				D2F5F6441763CEB4006E586C /* AppDelegate.m in Sources */,
 				D2F5F6501763CEB4006E586C /* FirstViewController.m in Sources */,
 				D2F5F6571763CEB4006E586C /* SecondViewController.m in Sources */,
+				D2F5F6631763D07F006E586C /* Organization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +293,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Snaptivist/Snaptivist-Prefix.pch";
 				INFOPLIST_FILE = "Snaptivist/Snaptivist-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -298,6 +305,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Snaptivist/Snaptivist-Prefix.pch";
 				INFOPLIST_FILE = "Snaptivist/Snaptivist-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -10,4 +10,7 @@
 
 @interface FirstViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UILabel  *organization_name;
+
+
 @end
