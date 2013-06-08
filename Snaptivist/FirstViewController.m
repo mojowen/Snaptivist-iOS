@@ -34,5 +34,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)goToSecond:(id)sender {
+    [((UITabBarController *)(self.parentViewController)) setSelectedIndex:1];
+}
 
 @end
