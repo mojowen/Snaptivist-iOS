@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Signup.h"
 
 @interface SecondViewController : UIViewController
+
+@property Signup *first_signup;
+
+@property (nonatomic, retain) IBOutlet UITextField  *name;
+@property (nonatomic, retain) IBOutlet UITextField  *email;
+
+@property (nonatomic, retain) IBOutlet UITextView *info;
 
 @end

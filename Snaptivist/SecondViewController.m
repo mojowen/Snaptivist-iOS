@@ -14,16 +14,27 @@
 
 @implementation SecondViewController
 
+@synthesize first_signup,info,name,email;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.first_signup = [[Signup alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)goToThird:(id)sender {
+//    [((UITabBarController *)(self.parentViewController)) setSelectedIndex:2];
+    [name resignFirstResponder];
+    [email resignFirstResponder];
+
+    info.text = [NSString stringWithFormat:@"%@ %@",name.text,email.text];
+    // Ok so have got a method that needs to advanced 
 }
 
 @end
