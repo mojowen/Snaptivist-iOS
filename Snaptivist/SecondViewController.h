@@ -11,11 +11,13 @@
 
 @interface SecondViewController : UIViewController
 
-@property Signup *first_signup;
+@property(nonatomic, retain) Signup *first_signup;
 
-@property (nonatomic, retain) IBOutlet UITextField  *name;
-@property (nonatomic, retain) IBOutlet UITextField  *email;
+@property (nonatomic, retain) IBOutlet UITextField  *first_name;
+@property (nonatomic, retain) IBOutlet UITextField  *last_name;
 
 @property (nonatomic, retain) IBOutlet UITextView *info;
+
+-(IBAction)nextStep:(id)sender;
 
 @end
