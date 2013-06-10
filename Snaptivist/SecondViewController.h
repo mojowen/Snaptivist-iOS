@@ -11,8 +11,6 @@
 
 @interface SecondViewController : UIViewController
 
-@property(nonatomic, retain) Signup *first_signup;
-
 @property (nonatomic, retain) IBOutlet UITextField  *first_name;
 @property (nonatomic, retain) IBOutlet UITextField  *last_name;
 

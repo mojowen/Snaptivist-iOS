@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import "AppDelegate.h"
 
 @interface SecondViewController ()
 
@@ -14,7 +15,7 @@
 
 @implementation SecondViewController
 
-@synthesize first_signup,info,first_name,last_name;
+@synthesize info,first_name,last_name;
 
 - (void)viewDidLoad
 {
@@ -28,21 +29,30 @@
 }
 - (IBAction)nextStep:(id)sender {
         
+    NSManagedObjectContext *context = [[self appDelegate] managedObjectContext];
+
+    Signup *first_signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
+
     [first_name resignFirstResponder];
     [last_name resignFirstResponder];
 
     info.text = [NSString stringWithFormat:@"%@ %@",first_name.text,last_name.text];
     
-    self.first_signup.firstName = first_name.text;
-    self.first_signup.lastName = last_name.text;
+    first_signup.firstName = first_name.text;
+    first_signup.lastName = last_name.text;
     
     NSError *error = nil;
-
-    if( [first_signup.managedObjectContext save:&error]) {
-        NSLog(@"Saved!!!!");
-    } else{
-        NSLog(@"The save wasn't successful: %@", error);
+    if ([context save:&error]) {
+        NSLog(@"The save was successful!");
+    } else {
+        NSLog(@"The save wasn't successful: %@", [error userInfo]);
     }
+    
+}
+
+#pragma mark - Private methods
+- (AppDelegate *)appDelegate {
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
 @end
