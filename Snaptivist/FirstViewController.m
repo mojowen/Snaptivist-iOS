@@ -7,7 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "Organization.h"
 
 @interface FirstViewController ()
 
@@ -20,13 +19,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    // Do any additional setup after loading the view, typically from a nib.
-    Organization *the_organization = [[Organization alloc] init];
-    the_organization.name = @"The Ally Coalition";
-
-    organization_name.text = the_organization.name;
-    
 }
 
 - (void)didReceiveMemoryWarning

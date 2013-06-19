@@ -138,7 +138,7 @@
     
     // Grab the Label entity
     Signup *signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
-    signup.firstName = @"Diplomat Records";
+
     
     NSError *error = nil;
     if ([context save:&error]) {
