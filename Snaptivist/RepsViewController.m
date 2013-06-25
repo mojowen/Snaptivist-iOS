@@ -14,7 +14,7 @@
 
 @implementation RepsViewController
 
-@synthesize context,signup;
+@synthesize context,signup,repImage0, repImage1,repImage2,repName0,repName1,repName2;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,8 +31,29 @@
     context = parent.context;
     signup = parent.signup;
     
-    [self fetchReps:signup.zip];
+    NSArray *reps = [self fetchReps:signup.zip];
 
+    Rep *rep0 = [reps objectAtIndex:0];
+    NSString *repImagePath = [rep0.bioguide stringByAppendingString:@".jpg"];
+    [repImage0 setImage: [UIImage imageNamed:repImagePath] ];
+    [repName0 setText: rep0.name];
+    
+    Rep *rep1 = [reps objectAtIndex:1];
+    repImagePath = [rep1.bioguide stringByAppendingString:@".jpg"];
+    [repImage1 setImage: [UIImage imageNamed:repImagePath] ];
+    [repName1 setText: rep1.name];
+    
+    if( [reps count] > 2 ) {
+
+        Rep *rep2 = [reps objectAtIndex:2];
+        repImagePath = [rep2.bioguide stringByAppendingString:@".jpg"];
+        [repImage2 setImage: [UIImage imageNamed:repImagePath] ];
+        [repName2 setText: rep2.name];
+    } else {
+        repName2.hidden = YES;
+        repImage2.hidden = YES;
+    }
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -82,8 +103,6 @@
     [request setPredicate:predicate];
     
     array = [self.context executeFetchRequest:request error:&error];
-
-    NSLog(@"reps are %@",array);
     
     return array;
 
