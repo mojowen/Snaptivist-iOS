@@ -226,18 +226,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="A000022.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="lf7-HP-kfg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="A000022.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="lf7-HP-kfg">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="223" id="8pj-xo-2mo"/>
                                     <constraint firstAttribute="width" constant="182" id="J57-P8-NfL"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="A000210.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="f56-5Q-742">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="A000210.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="f56-5Q-742">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="182" id="eDi-ri-h6f"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="A000357.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nOc-Ym-quH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="A000357.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nOc-Ym-quH">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="182" id="fMN-z2-6vY"/>
                                 </constraints>
