@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Signup.h"
+#import "SnaptivistTabs.h"
 
 @interface SecondViewController : UIViewController
 

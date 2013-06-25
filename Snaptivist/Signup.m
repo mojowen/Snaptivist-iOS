@@ -15,5 +15,7 @@
 @dynamic lastName;
 @dynamic email;
 @dynamic twitter;
+@dynamic zip;
+@dynamic friends;
 
 @end

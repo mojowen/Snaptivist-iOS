@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "Signup.h"
-
+#import "Zip.h"
+#import "Rep.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self loadZips];
+    [self loadReps];
+    // Do something here to signify loading is done
     return YES;
 }
 
@@ -132,22 +136,92 @@
 
 #pragma mark - Private methods
 
--(void)create
+-(void)loadZips
 {
     NSManagedObjectContext *context = [self managedObjectContext];
     
-    // Grab the Label entity
-    Signup *signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
-
+    // Construct a fetch request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Zip"
+                                              inManagedObjectContext:context];
     
+    [fetchRequest setEntity:entity];
     NSError *error = nil;
-    if ([context save:&error]) {
-        NSLog(@"The save was successful!");
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+
+    if( [fetchedObjects count] < 1 ) {
+        NSLog(@"Saving zips");
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"zipDistrict" ofType:@"txt"];
+        
+        NSString *fh = [NSString stringWithContentsOfFile:filePath encoding:NSUnicodeStringEncoding error:NULL];
+        NSArray *rows = [fh componentsSeparatedByString:@"\r"];
+        
+        
+        for (NSString *line in rows) {
+            NSArray* columns = [line componentsSeparatedByString:@"\t"];
+            Zip *zip = [NSEntityDescription insertNewObjectForEntityForName:@"Zip" inManagedObjectContext:context];
+            
+            zip.zip_code = [columns objectAtIndex:0];
+            zip.state = [columns objectAtIndex:1];
+            zip.bioguide = [columns objectAtIndex:2];
+        }
+
+        NSError *error = nil;
+        if ([context save:&error]) {
+            NSLog(@"The save was successful!");
+        } else {
+            NSLog(@"The save wasn't successful: %@", [error userInfo]);
+        }
     } else {
-        NSLog(@"The save wasn't successful: %@", [error userInfo]);
+        NSLog(@"Loaded zips already");
     }
 }
 
 
+-(void)loadReps
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    // Construct a fetch request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Rep"
+                                              inManagedObjectContext:context];
+    
+    [fetchRequest setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if( [fetchedObjects count] < 1 ) {
+        NSLog(@"Saving reps");
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"reps" ofType:@"txt"];
+        
+        NSString *fh = [NSString stringWithContentsOfFile:filePath encoding:NSUnicodeStringEncoding error:NULL];
+        NSArray *rows = [fh componentsSeparatedByString:@"\n"];
+        
+        // look up version to see if we can remove the db
+        
+        for (NSString *line in rows) {
+            NSArray* columns = [line componentsSeparatedByString:@"\t"];
+            Rep *rep = [NSEntityDescription insertNewObjectForEntityForName:@"Rep" inManagedObjectContext:context];
+            
+            rep.state = [columns objectAtIndex:1];
+            rep.district = [columns objectAtIndex:2];
+            rep.name = [columns objectAtIndex:3];
+            rep.bioguide = [columns objectAtIndex:4];
+            rep.twitter_screen_name = [columns objectAtIndex:5];
+            rep.state_name = [columns objectAtIndex:7];
+            rep.chamber = [columns objectAtIndex:8];
+        }
+        
+        NSError *error = nil;
+        if ([context save:&error]) {
+            NSLog(@"The save was successful!");
+        } else {
+            NSLog(@"The save wasn't successful: %@", [error userInfo]);
+        }
+    } else {
+        NSLog(@"Loaded reps already");
+    }
+}
 
 @end

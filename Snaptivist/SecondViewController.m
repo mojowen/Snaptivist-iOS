@@ -7,7 +7,6 @@
 //
 
 #import "SecondViewController.h"
-#import "AppDelegate.h"
 
 @interface SecondViewController ()
 
@@ -21,10 +20,9 @@
 {
     
     stage = @"first";
-    context = [[self appDelegate] managedObjectContext];
-
-    // Am going to need to move this object up - probably to tabs object
-    signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
+    SnaptivistTabs *parent = [self tabController];
+    context = parent.context;
+    signup = parent.signup;
 
     [super viewDidLoad];
 }
@@ -111,17 +109,16 @@
             NSLog(@"The save wasn't successful: %@", [error userInfo]);
         }
 
-        [((UITabBarController *)(self.parentViewController)) setSelectedIndex:2];
+        [[self tabController] setSelectedIndex:2];
 
-        
     }
     
     
 }
 
 #pragma mark - Private methods
-- (AppDelegate *)appDelegate {
-    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+-(SnaptivistTabs *)tabController {
+    return ((SnaptivistTabs *)(self.parentViewController));
 }
 
 @end

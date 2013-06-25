@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "Signup.h"
 
 @interface SnaptivistTabs : UITabBarController
+
+@property (nonatomic, retain) Signup *signup;
+@property (nonatomic, retain) NSManagedObjectContext *context;
 
 @end

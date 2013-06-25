@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="11G63b" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Rep" representedClassName="Rep" syncable="YES">
+        <attribute name="bioguide" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chamber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="district" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitter_screen_name" optional="YES" attributeType="String" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="bioguide"/>
+            </compoundIndex>
+            <compoundIndex>
+                <index value="state"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
     <entity name="Signup" representedClassName="Signup" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,7 +25,24 @@
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Zip" representedClassName="Zips" syncable="YES">
+        <attribute name="bioguide" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip_code" optional="YES" attributeType="String" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="zip_code"/>
+                <index value="bioguide"/>
+            </compoundIndex>
+            <compoundIndex>
+                <index value="zip_code"/>
+                <index value="state"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
     <elements>
         <element name="Signup" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Zip" positionX="376" positionY="162" width="128" height="90"/>
+        <element name="Rep" positionX="349" positionY="306" width="128" height="150"/>
     </elements>
 </model>
