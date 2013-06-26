@@ -838,10 +838,10 @@
 		D2F5F6481763CEB4006E586C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F6471763CEB4006E586C /* Default@2x.png */; };
 		D2F5F64A1763CEB4006E586C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F6491763CEB4006E586C /* Default-568h@2x.png */; };
 		D2F5F64D1763CEB4006E586C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F64B1763CEB4006E586C /* MainStoryboard.storyboard */; };
-		D2F5F6501763CEB4006E586C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F5F64F1763CEB4006E586C /* FirstViewController.m */; };
+		D2F5F6501763CEB4006E586C /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F5F64F1763CEB4006E586C /* PhotosViewController.m */; };
 		D2F5F6521763CEB4006E586C /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F6511763CEB4006E586C /* first.png */; };
 		D2F5F6541763CEB4006E586C /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F6531763CEB4006E586C /* first@2x.png */; };
-		D2F5F6571763CEB4006E586C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F5F6561763CEB4006E586C /* SecondViewController.m */; };
+		D2F5F6571763CEB4006E586C /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F5F6561763CEB4006E586C /* FormViewController.m */; };
 		D2F5F6591763CEB4006E586C /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F6581763CEB4006E586C /* second.png */; };
 		D2F5F65B1763CEB4006E586C /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F5F65A1763CEB4006E586C /* second@2x.png */; };
 /* End PBXBuildFile section */
@@ -1688,12 +1688,12 @@
 		D2F5F6471763CEB4006E586C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D2F5F6491763CEB4006E586C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D2F5F64C1763CEB4006E586C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		D2F5F64E1763CEB4006E586C /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		D2F5F64F1763CEB4006E586C /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		D2F5F64E1763CEB4006E586C /* PhotosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
+		D2F5F64F1763CEB4006E586C /* PhotosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
 		D2F5F6511763CEB4006E586C /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		D2F5F6531763CEB4006E586C /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		D2F5F6551763CEB4006E586C /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		D2F5F6561763CEB4006E586C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		D2F5F6551763CEB4006E586C /* FormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
+		D2F5F6561763CEB4006E586C /* FormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
 		D2F5F6581763CEB4006E586C /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		D2F5F65A1763CEB4006E586C /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1733,12 +1733,12 @@
 			children = (
 				D26EDE531763E40700A67306 /* SnaptivistTabs.h */,
 				D26EDE541763E40700A67306 /* SnaptivistTabs.m */,
-				D2F5F64E1763CEB4006E586C /* FirstViewController.h */,
-				D2F5F64F1763CEB4006E586C /* FirstViewController.m */,
+				D2F5F64E1763CEB4006E586C /* PhotosViewController.h */,
+				D2F5F64F1763CEB4006E586C /* PhotosViewController.m */,
 				D2F5F6511763CEB4006E586C /* first.png */,
 				D2F5F6531763CEB4006E586C /* first@2x.png */,
-				D2F5F6551763CEB4006E586C /* SecondViewController.h */,
-				D2F5F6561763CEB4006E586C /* SecondViewController.m */,
+				D2F5F6551763CEB4006E586C /* FormViewController.h */,
+				D2F5F6561763CEB4006E586C /* FormViewController.m */,
 				D2F5F6581763CEB4006E586C /* second.png */,
 				D2F5F65A1763CEB4006E586C /* second@2x.png */,
 				D2AA676017790626004D2385 /* RepsViewController.h */,
@@ -3543,8 +3543,8 @@
 			files = (
 				D2F5F6401763CEB4006E586C /* main.m in Sources */,
 				D2F5F6441763CEB4006E586C /* AppDelegate.m in Sources */,
-				D2F5F6501763CEB4006E586C /* FirstViewController.m in Sources */,
-				D2F5F6571763CEB4006E586C /* SecondViewController.m in Sources */,
+				D2F5F6501763CEB4006E586C /* PhotosViewController.m in Sources */,
+				D2F5F6571763CEB4006E586C /* FormViewController.m in Sources */,
 				D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */,
 				D26EDE5B17640BAE00A67306 /* Snaptivist.xcdatamodeld in Sources */,
 				D26EDE601764159E00A67306 /* Signup.m in Sources */,

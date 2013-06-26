@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Scott Duncombe. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "PhotosViewController.h"
 
-@interface FirstViewController ()
+@interface PhotosViewController ()
 
 @end
 
-@implementation FirstViewController
+@implementation PhotosViewController
 
 @synthesize organization_name;
 
@@ -26,8 +26,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)goToSecond:(id)sender {
-    [((UITabBarController *)(self.parentViewController)) setSelectedIndex:1];
+- (IBAction)goToForm:(id)sender {
+    SnaptivistTabs *parent = [self tabController];
+    [parent goToForm];
 }
 
+#pragma mark - Private methods
+-(SnaptivistTabs *)tabController {
+    return ((SnaptivistTabs *)(self.parentViewController));
+}
 @end

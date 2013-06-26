@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Scott Duncombe. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "FormViewController.h"
 
-@interface SecondViewController ()
+@interface FormViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation FormViewController
 
 @synthesize nextButton,context,stage,signup,header,first_name,last_name,email,twitter,zip,addFriends,friends,yourFriends;
 
@@ -104,15 +104,15 @@
 
         NSError *error = nil;
         if ([context save:&error]) {
-            NSLog(@"The save was successful!");
+            NSLog(@"The signup save was successful!");
         } else {
-            NSLog(@"The save wasn't successful: %@", [error userInfo]);
+            NSLog(@"The signup save wasn't successful: %@", [error userInfo]);
         }
 
-        [[self tabController] setSelectedIndex:2];
+        [[self tabController] goToReps];
 
     }
-    
+
     
 }
 

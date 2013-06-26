@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SnaptivistTabs.h"
 
-@interface FirstViewController : UIViewController
+@interface PhotosViewController : UIViewController
 
 @property (nonatomic, retain) IBOutlet UILabel  *organization_name;
 
+- (IBAction)goToForm:(id)sender;
 
 @end

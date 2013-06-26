@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SnaptivistTabs.h"
 
-@interface SecondViewController : UIViewController
+@interface FormViewController : UIViewController
 
 @property (nonatomic, retain) IBOutlet UIButton *nextButton;
 @property (nonatomic, retain) NSString *stage;
