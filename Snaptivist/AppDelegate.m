@@ -19,8 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self loadZips];
-    [self loadReps];
+    //[self loadZips];
+    //[self loadReps];
     // Do something here to signify loading is done
     return YES;
 }

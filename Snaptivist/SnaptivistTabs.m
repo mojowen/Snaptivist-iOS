@@ -13,18 +13,18 @@
 @synthesize context,signup,reps,photosViewController,formViewController,finishedViewController,repsViewController;
 
 -(void)viewDidLoad {
-    
+
     context = [[self appDelegate] managedObjectContext];
 
     signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
-    
+
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard"
                                                   bundle:nil];
     photosViewController = [sb instantiateViewControllerWithIdentifier:@"PhotosViewController"];
     formViewController = [sb instantiateViewControllerWithIdentifier:@"FormViewController"];
     repsViewController = [sb instantiateViewControllerWithIdentifier:@"RepsViewController"];
     finishedViewController = [sb instantiateViewControllerWithIdentifier:@"FinishedViewController"];
-    
+
     [self addChildViewController:photosViewController];
     [self addChildViewController:formViewController];
     [self addChildViewController:repsViewController];
@@ -33,6 +33,7 @@
     [self goToPhoto];
 
     [super viewDidLoad];
+
 }
 // Commands for changing tabs - includes validation logic for moving between sections
 -(void)goToPhoto {
@@ -72,7 +73,7 @@
     if( [self.view.subviews count] > 0 ) {
         [[self.view.subviews objectAtIndex:0] removeFromSuperview];
     }
-    
+
     [self.view addSubview:viewController.view];
 
     viewController.view.frame = self.view.frame;
