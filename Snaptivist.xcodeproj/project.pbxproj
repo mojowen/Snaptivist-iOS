@@ -7,14 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FA5CCB0177A42BC00578BA9 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA5CCAF177A42BC00578BA9 /* splash.png */; };
-		4FA5CCB4177A44A900578BA9 /* button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA5CCB3177A44A900578BA9 /* button_normal.png */; };
-		4FA5CCB6177A45E700578BA9 /* cog.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA5CCB5177A45E700578BA9 /* cog.png */; };
-		4FA5CCBD177A509300578BA9 /* Archive.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4FA5CCBC177A509300578BA9 /* Archive.otf */; };
 		4FA5CCC1177A517A00578BA9 /* UICustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */; };
-		4FA5CCC3177A638B00578BA9 /* Trade Gothic LT Bold Condensed No. 20.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FA5CCC2177A638B00578BA9 /* Trade Gothic LT Bold Condensed No. 20.ttf */; };
-		4FB61707177A65D100365361 /* Franchise-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FB61706177A65D100365361 /* Franchise-Bold.ttf */; };
-		4FB61709177A6EF700365361 /* tab-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB61708177A6EF700365361 /* tab-bar.png */; };
 		A0A332A75F5146DC860D3BAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C85B09C1C4E61B7A32826 /* libPods.a */; };
 		D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE541763E40700A67306 /* SnaptivistTabs.m */; };
 		D26EDE5B17640BAE00A67306 /* Snaptivist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5917640BAE00A67306 /* Snaptivist.xcdatamodeld */; };
@@ -857,15 +850,8 @@
 /* Begin PBXFileReference section */
 		0047FA4EBF9548A49647DBA1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		3D4C85B09C1C4E61B7A32826 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FA5CCAF177A42BC00578BA9 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = ../../../Desktop/TAC/tac_assets/splash.png; sourceTree = "<group>"; };
-		4FA5CCB3177A44A900578BA9 /* button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_normal.png; path = ../../../Desktop/TAC/tac_assets/button_normal.png; sourceTree = "<group>"; };
-		4FA5CCB5177A45E700578BA9 /* cog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cog.png; path = ../../../Desktop/TAC/tac_assets/cog.png; sourceTree = "<group>"; };
-		4FA5CCBC177A509300578BA9 /* Archive.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Archive.otf; path = ../../../Desktop/TAC/tac_assets/Archive.otf; sourceTree = "<group>"; };
 		4FA5CCBF177A517A00578BA9 /* UICustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomLabel.h; sourceTree = "<group>"; };
 		4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomLabel.m; sourceTree = "<group>"; };
-		4FA5CCC2177A638B00578BA9 /* Trade Gothic LT Bold Condensed No. 20.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Trade Gothic LT Bold Condensed No. 20.ttf"; path = "../../../Desktop/TAC/tac_assets/Trade Gothic LT Bold Condensed No. 20.ttf"; sourceTree = "<group>"; };
-		4FB61706177A65D100365361 /* Franchise-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Franchise-Bold.ttf"; path = "../../../Desktop/TAC/tac_assets/Franchise-Bold.ttf"; sourceTree = "<group>"; };
-		4FB61708177A6EF700365361 /* tab-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar.png"; path = "../../../Desktop/TAC/tac_assets/tab-bar.png"; sourceTree = "<group>"; };
 		D26EDE531763E40700A67306 /* SnaptivistTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaptivistTabs.h; sourceTree = "<group>"; };
 		D26EDE541763E40700A67306 /* SnaptivistTabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaptivistTabs.m; sourceTree = "<group>"; };
 		D26EDE5A17640BAE00A67306 /* Snaptivist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Snaptivist.xcdatamodel; sourceTree = "<group>"; };
@@ -1731,27 +1717,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4FA5CCAE177A42AC00578BA9 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				4FB61708177A6EF700365361 /* tab-bar.png */,
-				4FA5CCB5177A45E700578BA9 /* cog.png */,
-				4FA5CCB3177A44A900578BA9 /* button_normal.png */,
-				4FA5CCAF177A42BC00578BA9 /* splash.png */,
-			);
-			name = images;
-			sourceTree = "<group>";
-		};
-		4FA5CCB7177A474200578BA9 /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				4FB61706177A65D100365361 /* Franchise-Bold.ttf */,
-				4FA5CCC2177A638B00578BA9 /* Trade Gothic LT Bold Condensed No. 20.ttf */,
-				4FA5CCBC177A509300578BA9 /* Archive.otf */,
-			);
-			name = fonts;
-			sourceTree = "<group>";
-		};
 		4FA5CCBE177A514300578BA9 /* ViewSubclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -2659,8 +2624,6 @@
 		D2F5F63A1763CEB4006E586C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4FA5CCB7177A474200578BA9 /* fonts */,
-				4FA5CCAE177A42AC00578BA9 /* images */,
 				D2D19384177A347D00B82248 /* photos */,
 				D2D19380177A347600B82248 /* reps.txt */,
 				D2D19381177A347600B82248 /* zipDistrict.txt */,
@@ -3550,13 +3513,6 @@
 				D2D199D8177A34A000B82248 /* Y000063.jpg in Resources */,
 				D2D199D9177A34A000B82248 /* Y000064.jpg in Resources */,
 				D2D199DA177A34A000B82248 /* Y000065.jpg in Resources */,
-				4FA5CCB0177A42BC00578BA9 /* splash.png in Resources */,
-				4FA5CCB4177A44A900578BA9 /* button_normal.png in Resources */,
-				4FA5CCB6177A45E700578BA9 /* cog.png in Resources */,
-				4FA5CCBD177A509300578BA9 /* Archive.otf in Resources */,
-				4FA5CCC3177A638B00578BA9 /* Trade Gothic LT Bold Condensed No. 20.ttf in Resources */,
-				4FB61707177A65D100365361 /* Franchise-Bold.ttf in Resources */,
-				4FB61709177A6EF700365361 /* tab-bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
