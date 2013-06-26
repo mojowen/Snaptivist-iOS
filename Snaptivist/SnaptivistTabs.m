@@ -18,8 +18,9 @@
 
     // Am going to need to move this object up - probably to tabs object
     signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
-
+    
     [super viewDidLoad];
+    
 }
 
 #pragma mark - Private methods
