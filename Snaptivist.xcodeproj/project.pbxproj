@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F67DD02177B651000787169 /* wilma.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD01177B651000787169 /* wilma.ttf */; };
+		4F67DD06177B690200787169 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD05177B690200787169 /* app_icon.png */; };
+		4F67DD08177B692200787169 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD07177B692200787169 /* app_icon.png */; };
+		4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD09177B698400787169 /* app_icon@2x.png */; };
 		4FA5CCC1177A517A00578BA9 /* UICustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */; };
 		A0A332A75F5146DC860D3BAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C85B09C1C4E61B7A32826 /* libPods.a */; };
 		D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE541763E40700A67306 /* SnaptivistTabs.m */; };
@@ -850,6 +854,10 @@
 /* Begin PBXFileReference section */
 		0047FA4EBF9548A49647DBA1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		3D4C85B09C1C4E61B7A32826 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F67DD01177B651000787169 /* wilma.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wilma.ttf; sourceTree = "<group>"; };
+		4F67DD05177B690200787169 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		4F67DD07177B692200787169 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		4F67DD09177B698400787169 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
 		4FA5CCBF177A517A00578BA9 /* UICustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomLabel.h; sourceTree = "<group>"; };
 		4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomLabel.m; sourceTree = "<group>"; };
 		D26EDE531763E40700A67306 /* SnaptivistTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaptivistTabs.h; sourceTree = "<group>"; };
@@ -1717,6 +1725,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F67DD00177B64F400787169 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4F67DD01177B651000787169 /* wilma.ttf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		4F67DD04177B68F200787169 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				4F67DD05177B690200787169 /* app_icon.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		4FA5CCBE177A514300578BA9 /* ViewSubclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -2580,6 +2604,8 @@
 		D2F5F6271763CEB4006E586C = {
 			isa = PBXGroup;
 			children = (
+				4F67DD09177B698400787169 /* app_icon@2x.png */,
+				4F67DD07177B692200787169 /* app_icon.png */,
 				D2F5F6391763CEB4006E586C /* Snaptivist */,
 				D2F5F6321763CEB4006E586C /* Frameworks */,
 				D2F5F6311763CEB4006E586C /* Products */,
@@ -2624,6 +2650,8 @@
 		D2F5F63A1763CEB4006E586C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4F67DD04177B68F200787169 /* images */,
+				4F67DD00177B64F400787169 /* fonts */,
 				D2D19384177A347D00B82248 /* photos */,
 				D2D19380177A347600B82248 /* reps.txt */,
 				D2D19381177A347600B82248 /* zipDistrict.txt */,
@@ -3513,6 +3541,10 @@
 				D2D199D8177A34A000B82248 /* Y000063.jpg in Resources */,
 				D2D199D9177A34A000B82248 /* Y000064.jpg in Resources */,
 				D2D199DA177A34A000B82248 /* Y000065.jpg in Resources */,
+				4F67DD02177B651000787169 /* wilma.ttf in Resources */,
+				4F67DD06177B690200787169 /* app_icon.png in Resources */,
+				4F67DD08177B692200787169 /* app_icon.png in Resources */,
+				4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
