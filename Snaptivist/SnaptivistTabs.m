@@ -75,7 +75,7 @@
     }
 
     [self.view addSubview:viewController.view];
-
+    [self.view sendSubviewToBack:viewController.view];
     viewController.view.frame = self.view.frame;
 }
 

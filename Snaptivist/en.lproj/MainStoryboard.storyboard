@@ -451,20 +451,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4qK-uA-GLP">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxC-fn-1iH">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="193" id="vfu-ec-YgS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reps">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <segue destination="Wvp-TD-DkA" kind="embed" id="gRU-jL-L4A"/>
+                                    <action selector="goToRepsAction:" destination="T7h-mP-Z3W" eventType="touchUpInside" id="ZNm-m0-OeG"/>
                                 </connections>
-                            </containerView>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l70-6H-P7X">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="193" id="ALF-h2-toS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Finish">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToFinishedAction:" destination="T7h-mP-Z3W" eventType="touchUpInside" id="uSr-xM-g9g"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QI4-bk-JiK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="193" id="R9m-rE-t4S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToFormAction:" destination="T7h-mP-Z3W" eventType="touchUpInside" id="8V3-60-h8K"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYj-6J-Gel">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="193" id="3fK-gD-QiE"/>
+                                    <constraint firstAttribute="width" constant="219" id="pEe-Vz-BGV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Photos">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToPhotoAction:" destination="T7h-mP-Z3W" eventType="touchUpInside" id="G2L-Hs-eSg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="4qK-uA-GLP" firstAttribute="trailing" secondItem="js6-nw-y6e" secondAttribute="trailing" type="default" id="1lJ-57-QqA"/>
-                            <constraint firstItem="4qK-uA-GLP" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="iAa-7V-HM0"/>
-                            <constraint firstItem="4qK-uA-GLP" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" type="default" id="twd-m9-FAj"/>
-                            <constraint firstItem="4qK-uA-GLP" firstAttribute="bottom" secondItem="js6-nw-y6e" secondAttribute="bottom" type="default" id="vgq-gc-S2l"/>
+                            <constraint firstItem="QI4-bk-JiK" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" constant="191" id="3zn-ma-UGF"/>
+                            <constraint firstItem="l70-6H-P7X" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="6Nt-aZ-IAK"/>
+                            <constraint firstItem="hxC-fn-1iH" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" constant="383" type="user" id="7iB-hZ-j9T"/>
+                            <constraint firstItem="l70-6H-P7X" firstAttribute="trailing" secondItem="hxC-fn-1iH" secondAttribute="trailing" type="default" id="HRa-Qh-00q"/>
+                            <constraint firstItem="iYj-6J-Gel" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="K7I-n8-uQF"/>
+                            <constraint firstItem="iYj-6J-Gel" firstAttribute="trailing" secondItem="QI4-bk-JiK" secondAttribute="trailing" type="default" id="MxY-Xi-CCS"/>
+                            <constraint firstItem="iYj-6J-Gel" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" type="default" id="eTo-fO-nT5"/>
+                            <constraint firstItem="QI4-bk-JiK" firstAttribute="trailing" secondItem="hxC-fn-1iH" secondAttribute="trailing" type="default" id="hhz-rY-VjE"/>
+                            <constraint firstItem="l70-6H-P7X" firstAttribute="bottom" secondItem="js6-nw-y6e" secondAttribute="bottom" type="default" id="jtC-aj-aaT"/>
+                            <constraint firstItem="QI4-bk-JiK" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="mlP-rA-cAb"/>
+                            <constraint firstItem="hxC-fn-1iH" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="yeB-Zh-Bue"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
@@ -487,10 +553,9 @@
             <objects>
                 <viewController id="Wvp-TD-DkA" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ha5-3d-jIo">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
                 </viewController>
