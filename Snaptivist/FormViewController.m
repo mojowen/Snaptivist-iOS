@@ -61,59 +61,102 @@
 }
 
 - (IBAction)nextStep:(id)sender {
-    
+    NSMutableArray *errors = [[NSMutableArray alloc] init];
+    self.errorMessage.hidden = NO;
+    self.errorMessage.text = @"";
+
     if( [stage isEqualToString:@"first"] ) {
         [first_name resignFirstResponder];
         [last_name resignFirstResponder];
         
-        signup.firstName = first_name.text;
-        signup.lastName = last_name.text;
+        if( [first_name.text length] == 0 ) {
+            NSString *error = @"first name";
+            [errors addObject:error];
+        }
+        if( [last_name.text length] == 0 ) {
+            NSString *error = @"last name";
+            [errors addObject:error];
+        }
         
-        first_name.hidden = YES;
-        last_name.hidden = YES;
-
-        email.hidden = NO;
-        twitter.hidden = NO;
-
-        stage = @"second";
+        if( [errors count] == 0 ) {
+            signup.firstName = first_name.text;
+            signup.lastName = last_name.text;
+            
+            first_name.hidden = YES;
+            last_name.hidden = YES;
+            
+            email.hidden = NO;
+            twitter.hidden = NO;
+            
+            stage = @"second";
+        } else {
+            self.errorMessage.hidden = NO;
+            self.errorMessage.text = [NSString stringWithFormat:@"you need to enter your %@",
+                                      [errors componentsJoinedByString:@" and "] ];
+        }
     } else if( [stage isEqualToString:@"second"] ) {
         [email resignFirstResponder];
         [twitter resignFirstResponder];
         
-        signup.email = email.text;
-        signup.twitter = twitter.text;
+        if( [email.text length] == 0 ) {
+            NSString *error = @"email";
+            [errors addObject:error];
+        }
         
-        email.hidden = YES;
-        twitter.hidden = YES;
+        if( [errors count] == 0 ) {
 
-        zip.hidden = NO;
-        addFriends.hidden = NO;
+            signup.email = email.text;
+            signup.twitter = twitter.text;
+            
+            email.hidden = YES;
+            twitter.hidden = YES;
 
-        [nextButton setTitle:@"Done" forState: UIControlStateNormal];
+            zip.hidden = NO;
+            addFriends.hidden = NO;
 
-        stage = @"third";
+            [nextButton setTitle:@"Done" forState: UIControlStateNormal];
+
+            stage = @"third";
+        } else {
+            self.errorMessage.hidden = NO;
+            self.errorMessage.text = [NSString stringWithFormat:@"you need to enter your %@",
+                                      [errors componentsJoinedByString:@" and "] ];
+        }
     } else {
         [zip resignFirstResponder];
-        signup.zip = zip.text;
         
-        [friends resignFirstResponder];
-        
-        [signup.friends stringByAppendingString:friends.text ];
-        [signup.friends stringByAppendingString:@"," ];
-        
-
-        NSError *error = nil;
-        if ([context save:&error]) {
-            NSLog(@"The signup save was successful!");
-        } else {
-            NSLog(@"The signup save wasn't successful: %@", [error userInfo]);
+        if( [zip.text length] < 5 ) {
+            NSString *error = @"zip code";
+            [errors addObject:error];
         }
 
-        [[self tabController] goToReps];
+        if( [errors count] == 0 ) {
+            signup.zip = zip.text;
+            
+            [friends resignFirstResponder];
+            
+            [signup.friends stringByAppendingString:friends.text ];
+            [signup.friends stringByAppendingString:@"," ];
+            
+
+            NSError *error = nil;
+            if ([context save:&error]) {
+                NSLog(@"The signup save was successful!");
+            } else {
+                NSLog(@"The signup save wasn't successful: %@", [error userInfo]);
+            }
+
+            [[self tabController] goToReps];
+
+        } else {
+            self.errorMessage.hidden = NO;
+            self.errorMessage.text = [NSString stringWithFormat:@"you need to enter your %@",
+                                      [errors componentsJoinedByString:@" and "] ];
+        }
 
     }
 
-    
+
 }
 
 #pragma mark - Private methods

@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) IBOutlet UILabel *header;
 
+@property (nonatomic, retain) IBOutlet UILabel *errorMessage;
 
 // Stage 1
 @property (nonatomic, retain) IBOutlet UITextField  *first_name;
