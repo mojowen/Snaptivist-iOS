@@ -65,6 +65,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(IBAction)finish:(id)sender {
+    [[self tabController] goToFinished];
+}
 
 #pragma mark - Private methods
 -(SnaptivistTabs *)tabController {
