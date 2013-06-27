@@ -19,9 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // [self loadZips];
-    // [self loadReps];
-
+    [self loadZips];
+    [self loadReps];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
