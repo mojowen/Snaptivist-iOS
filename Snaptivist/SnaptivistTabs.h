@@ -41,9 +41,4 @@
 -(void)goToReps;
 -(void)goToFinished;
 
--(IBAction)goToPhotoAction:(id)sender;
--(IBAction)goToFormAction:(id)sender;
--(IBAction)goToRepsAction:(id)sender;
--(IBAction)goToFinishedAction:(id)sender;
-
 @end
