@@ -24,6 +24,7 @@
     //[self loadReps];
     [self sendRequest];
     // Do something here to signify loading is done
+    [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
 }
 

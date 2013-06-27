@@ -22,7 +22,8 @@
     stage = @"first";
     SnaptivistTabs *parent = [self tabController];
     context = parent.context;
-    signup = parent.signup;    
+    signup = parent.signup;
+        
     [super viewDidLoad];
 }
 

@@ -30,7 +30,7 @@
     [self addChildViewController:repsViewController];
     [self addChildViewController:finishedViewController];
 
-    [self goToPhoto];
+//    [self goToPhoto];
 
     [super viewDidLoad];
 
