@@ -10,6 +10,7 @@
 #import "Signup.h"
 #import "Zip.h"
 #import "Rep.h"
+#import <RestKit/RestKit.h>
 
 @implementation AppDelegate
 
@@ -21,6 +22,7 @@
 {
     //[self loadZips];
     //[self loadReps];
+    [self sendRequest];
     // Do something here to signify loading is done
     return YES;
 }
@@ -54,6 +56,30 @@
 }
 
 #pragma mark - Core Data stack
+
+-(void)sendRequest {
+    NSString *latLon = @"hey";
+    
+    NSDictionary *queryParams;
+    queryParams = [NSDictionary dictionaryWithObjectsAndKeys:latLon, @"save",nil];
+
+
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://localhost:5050"]];
+
+    [objectManager.HTTPClient setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+
+    [objectManager.HTTPClient
+        getPath:@"/"
+        parameters:queryParams
+        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+        }
+        failure:^(AFHTTPRequestOperation *operation, id responseObject) {
+        }
+     ];
+}
+
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
