@@ -10,12 +10,15 @@
 
 @implementation SnaptivistTabs
 
-@synthesize context,signup,reps,photosViewController,formViewController,finishedViewController,repsViewController;
+@synthesize context,signup,reps,photosViewController,formViewController,finishedViewController,repsViewController,activeImage,inactiveImage,activeButton;
 
 -(void)viewDidLoad {
 
     context = [[self appDelegate] managedObjectContext];
-
+    
+    activeImage = [UIImage imageNamed:@"sidenav_active.png"];
+    inactiveImage = [UIImage imageNamed:@"sidenav_inactive.png"];
+    
     signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
 
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard"
@@ -30,7 +33,7 @@
     [self addChildViewController:repsViewController];
     [self addChildViewController:finishedViewController];
 
-//    [self goToPhoto];
+    activeButton = self.photosButton;
 
     [super viewDidLoad];
 
@@ -38,17 +41,21 @@
 // Commands for changing tabs - includes validation logic for moving between sections
 -(void)goToPhoto {
     [self setChildFrame:photosViewController];
+    [self setButton:self.photosButton];
 }
 -(void)goToForm {
     [self setChildFrame:formViewController];
+    [self setButton:self.formButton];
 }
 -(void)goToReps {
-    if( ! [signup.zip isEqual:@""] ) {
+    if( [signup.zip length] > 4 ) {
         [self setChildFrame:repsViewController];
+        [self setButton:self.repsButton];
     }
 }
 -(void)goToFinished {
     [self setChildFrame:finishedViewController];
+    [self setButton:self.finishedButton];
 }
 // Exposed actions for buttons
 -(IBAction)goToPhotoAction:(id)sender {
@@ -78,5 +85,10 @@
     [self.view sendSubviewToBack:viewController.view];
     viewController.view.frame = self.view.frame;
 }
+-(void)setButton:(UIButton *) button {
 
+    [activeButton setImage:inactiveImage forState:UIControlStateNormal];
+    [button setImage:activeImage forState:UIControlStateNormal];
+    activeButton = button;
+}
 @end

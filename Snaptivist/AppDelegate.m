@@ -20,10 +20,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //[self loadZips];
-    //[self loadReps];
-    [self sendRequest];
-    // Do something here to signify loading is done
+    // [self loadZips];
+    // [self loadReps];
+
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
 }
