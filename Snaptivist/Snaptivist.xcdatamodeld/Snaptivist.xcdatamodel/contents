@@ -18,7 +18,7 @@
         </compoundIndexes>
     </entity>
     <entity name="Signup" representedClassName="Signup" syncable="YES">
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friends" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
