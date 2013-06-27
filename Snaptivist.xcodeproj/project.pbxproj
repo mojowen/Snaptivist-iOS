@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F67DD02177B651000787169 /* wilma.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD01177B651000787169 /* wilma.ttf */; };
-		4F67DD06177B690200787169 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD05177B690200787169 /* app_icon.png */; };
+		4F5A0204177BC0C100D193EA /* button_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F5A0203177BC0C100D193EA /* button_camera.png */; };
 		4F67DD08177B692200787169 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD07177B692200787169 /* app_icon.png */; };
 		4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD09177B698400787169 /* app_icon@2x.png */; };
+		4F67DD0E177BA9E500787169 /* wilma.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD0D177BA9E500787169 /* wilma.otf */; };
+		4F67DD1C177BB7C700787169 /* button_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD18177BB7C700787169 /* button_camera@2x.png */; };
+		4F67DD1D177BB7C700787169 /* sidenav_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD19177BB7C700787169 /* sidenav_active@2x.png */; };
+		4F67DD1E177BB7C700787169 /* sidenav_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD1A177BB7C700787169 /* sidenav_inactive@2x.png */; };
+		4F67DD20177BBF9900787169 /* bg_view1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD1F177BBF9900787169 /* bg_view1.png */; };
 		4FA5CCC1177A517A00578BA9 /* UICustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */; };
 		A0A332A75F5146DC860D3BAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C85B09C1C4E61B7A32826 /* libPods.a */; };
 		D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE541763E40700A67306 /* SnaptivistTabs.m */; };
@@ -854,10 +858,14 @@
 /* Begin PBXFileReference section */
 		0047FA4EBF9548A49647DBA1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		3D4C85B09C1C4E61B7A32826 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F67DD01177B651000787169 /* wilma.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wilma.ttf; sourceTree = "<group>"; };
-		4F67DD05177B690200787169 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		4F5A0203177BC0C100D193EA /* button_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_camera.png; sourceTree = "<group>"; };
 		4F67DD07177B692200787169 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
 		4F67DD09177B698400787169 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
+		4F67DD0D177BA9E500787169 /* wilma.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wilma.otf; sourceTree = "<group>"; };
+		4F67DD18177BB7C700787169 /* button_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_camera@2x.png"; sourceTree = "<group>"; };
+		4F67DD19177BB7C700787169 /* sidenav_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidenav_active@2x.png"; sourceTree = "<group>"; };
+		4F67DD1A177BB7C700787169 /* sidenav_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidenav_inactive@2x.png"; sourceTree = "<group>"; };
+		4F67DD1F177BBF9900787169 /* bg_view1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_view1.png; sourceTree = "<group>"; };
 		4FA5CCBF177A517A00578BA9 /* UICustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomLabel.h; sourceTree = "<group>"; };
 		4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomLabel.m; sourceTree = "<group>"; };
 		D26EDE531763E40700A67306 /* SnaptivistTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaptivistTabs.h; sourceTree = "<group>"; };
@@ -1728,7 +1736,7 @@
 		4F67DD00177B64F400787169 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				4F67DD01177B651000787169 /* wilma.ttf */,
+				4F67DD0D177BA9E500787169 /* wilma.otf */,
 			);
 			name = fonts;
 			sourceTree = "<group>";
@@ -1736,7 +1744,11 @@
 		4F67DD04177B68F200787169 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				4F67DD05177B690200787169 /* app_icon.png */,
+				4F5A0203177BC0C100D193EA /* button_camera.png */,
+				4F67DD1F177BBF9900787169 /* bg_view1.png */,
+				4F67DD18177BB7C700787169 /* button_camera@2x.png */,
+				4F67DD19177BB7C700787169 /* sidenav_active@2x.png */,
+				4F67DD1A177BB7C700787169 /* sidenav_inactive@2x.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -3541,10 +3553,14 @@
 				D2D199D8177A34A000B82248 /* Y000063.jpg in Resources */,
 				D2D199D9177A34A000B82248 /* Y000064.jpg in Resources */,
 				D2D199DA177A34A000B82248 /* Y000065.jpg in Resources */,
-				4F67DD02177B651000787169 /* wilma.ttf in Resources */,
-				4F67DD06177B690200787169 /* app_icon.png in Resources */,
 				4F67DD08177B692200787169 /* app_icon.png in Resources */,
 				4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */,
+				4F67DD0E177BA9E500787169 /* wilma.otf in Resources */,
+				4F67DD1C177BB7C700787169 /* button_camera@2x.png in Resources */,
+				4F67DD1D177BB7C700787169 /* sidenav_active@2x.png in Resources */,
+				4F67DD1E177BB7C700787169 /* sidenav_inactive@2x.png in Resources */,
+				4F67DD20177BBF9900787169 /* bg_view1.png in Resources */,
+				4F5A0204177BC0C100D193EA /* button_camera.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,7 +39,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>wilma.ttf</string>
+		<string>wilma.otf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>

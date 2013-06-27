@@ -22,7 +22,7 @@
 
 // Setting custom font for UICustomLabel
 - (void)awakeFromNib {
-    self.font = [UIFont fontWithName: @"Wilma" size:self.font.pointSize];
+    self.font = [UIFont fontWithName: @"Wilma-Base" size:self.font.pointSize];
 }
 
 /*
