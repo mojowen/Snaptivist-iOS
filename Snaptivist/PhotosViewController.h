@@ -29,11 +29,15 @@
 @property (nonatomic,retain) IBOutlet UIButton *pic4;
 @property (nonatomic,retain) IBOutlet UIButton *pic5;
 
+@property (nonatomic,retain) NSArray *savedPhotos;
+@property (nonatomic) int photoNumber;
 
 - (IBAction)goToForm:(id)sender;
 - (IBAction)launchCamera:(id)sender;
-- (IBAction)relaunchCamera:(id)sender;
 - (IBAction)takePhotos:(id)sender;
+
+- (IBAction)relaunchCamera:(id)sender;
+- (IBAction)setPhoto:(id)sender;
 
 - (IBAction)selectPic1:(id)sender;
 - (IBAction)selectPic2:(id)sender;

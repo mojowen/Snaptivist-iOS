@@ -847,6 +847,7 @@
 		D202A317177C224E004D547B /* FinishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A316177C224E004D547B /* FinishViewController.m */; };
 		D202A31D177FC220004D547B /* reps.txt in Resources */ = {isa = PBXBuildFile; fileRef = D202A31B177FC220004D547B /* reps.txt */; };
 		D202A31E177FC220004D547B /* zipDistrict.txt in Resources */ = {isa = PBXBuildFile; fileRef = D202A31C177FC220004D547B /* zipDistrict.txt */; };
+		D202A3201780D472004D547B /* no_camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D202A31F1780D470004D547B /* no_camera.jpg */; };
 		D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE541763E40700A67306 /* SnaptivistTabs.m */; };
 		D26EDE5B17640BAE00A67306 /* Snaptivist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5917640BAE00A67306 /* Snaptivist.xcdatamodeld */; };
 		D26EDE601764159E00A67306 /* Signup.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5F1764159E00A67306 /* Signup.m */; };
@@ -1714,6 +1715,7 @@
 		D202A316177C224E004D547B /* FinishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishViewController.m; sourceTree = "<group>"; };
 		D202A31B177FC220004D547B /* reps.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reps.txt; sourceTree = "<group>"; };
 		D202A31C177FC220004D547B /* zipDistrict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zipDistrict.txt; sourceTree = "<group>"; };
+		D202A31F1780D470004D547B /* no_camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = no_camera.jpg; sourceTree = "<group>"; };
 		D26EDE531763E40700A67306 /* SnaptivistTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaptivistTabs.h; sourceTree = "<group>"; };
 		D26EDE541763E40700A67306 /* SnaptivistTabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaptivistTabs.m; sourceTree = "<group>"; };
 		D26EDE5A17640BAE00A67306 /* Snaptivist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Snaptivist.xcdatamodel; sourceTree = "<group>"; };
@@ -1765,6 +1767,7 @@
 		4F1CF67C177BF6C300D1B979 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D202A31F1780D470004D547B /* no_camera.jpg */,
 				4F1CF699177BF76000D1B979 /* settings_bg.png */,
 				4F1CF69A177BF76000D1B979 /* settings_bg@2x.png */,
 				4F1CF67D177BF6E200D1B979 /* bg_view1.png */,
@@ -3616,6 +3619,7 @@
 				4F1CF69C177BF76000D1B979 /* settings_bg@2x.png in Resources */,
 				D202A31D177FC220004D547B /* reps.txt in Resources */,
 				D202A31E177FC220004D547B /* zipDistrict.txt in Resources */,
+				D202A3201780D472004D547B /* no_camera.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
