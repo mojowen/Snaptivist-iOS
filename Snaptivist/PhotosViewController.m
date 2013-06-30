@@ -14,8 +14,6 @@
 
 @implementation PhotosViewController
 
-@synthesize organization_name;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,6 +27,14 @@
 - (IBAction)goToForm:(id)sender {
     SnaptivistTabs *parent = [self tabController];
     [parent goToForm];
+}
+- (IBAction)launchCamera:(id)sender {
+    self.background.hidden = YES;
+    self.launchCamera.hidden = YES;
+    self.noPhoto.hidden = YES;
+    
+    self.camera.hidden = NO;
+    self.takePhoto.hidden = NO;
 }
 
 #pragma mark - Private methods
