@@ -845,6 +845,8 @@
 		A0A332A75F5146DC860D3BAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C85B09C1C4E61B7A32826 /* libPods.a */; };
 		D202A314177C139A004D547B /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A313177C139A004D547B /* Settings.m */; };
 		D202A317177C224E004D547B /* FinishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A316177C224E004D547B /* FinishViewController.m */; };
+		D202A31D177FC220004D547B /* reps.txt in Resources */ = {isa = PBXBuildFile; fileRef = D202A31B177FC220004D547B /* reps.txt */; };
+		D202A31E177FC220004D547B /* zipDistrict.txt in Resources */ = {isa = PBXBuildFile; fileRef = D202A31C177FC220004D547B /* zipDistrict.txt */; };
 		D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE541763E40700A67306 /* SnaptivistTabs.m */; };
 		D26EDE5B17640BAE00A67306 /* Snaptivist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5917640BAE00A67306 /* Snaptivist.xcdatamodeld */; };
 		D26EDE601764159E00A67306 /* Signup.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5F1764159E00A67306 /* Signup.m */; };
@@ -852,8 +854,6 @@
 		D2AA676217790626004D2385 /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA676117790626004D2385 /* RepsViewController.m */; };
 		D2AA6DC217791E06004D2385 /* Zip.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC117791E06004D2385 /* Zip.m */; };
 		D2AA6DC817792426004D2385 /* Rep.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC717792426004D2385 /* Rep.m */; };
-		D2D19382177A347600B82248 /* reps.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2D19380177A347600B82248 /* reps.txt */; };
-		D2D19383177A347600B82248 /* zipDistrict.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2D19381177A347600B82248 /* zipDistrict.txt */; };
 		D2F5F6341763CEB4006E586C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6331763CEB4006E586C /* UIKit.framework */; };
 		D2F5F6361763CEB4006E586C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6351763CEB4006E586C /* Foundation.framework */; };
 		D2F5F6381763CEB4006E586C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6371763CEB4006E586C /* CoreGraphics.framework */; };
@@ -1712,6 +1712,8 @@
 		D202A313177C139A004D547B /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/../../../../../../../../../Users/Scott/Projects/Snaptivist/Snaptivist iOS/Snaptivist/Settings.m"; sourceTree = "<absolute>"; };
 		D202A315177C224E004D547B /* FinishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishViewController.h; sourceTree = "<group>"; };
 		D202A316177C224E004D547B /* FinishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishViewController.m; sourceTree = "<group>"; };
+		D202A31B177FC220004D547B /* reps.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reps.txt; sourceTree = "<group>"; };
+		D202A31C177FC220004D547B /* zipDistrict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zipDistrict.txt; sourceTree = "<group>"; };
 		D26EDE531763E40700A67306 /* SnaptivistTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaptivistTabs.h; sourceTree = "<group>"; };
 		D26EDE541763E40700A67306 /* SnaptivistTabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaptivistTabs.m; sourceTree = "<group>"; };
 		D26EDE5A17640BAE00A67306 /* Snaptivist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Snaptivist.xcdatamodel; sourceTree = "<group>"; };
@@ -1724,8 +1726,6 @@
 		D2AA6DC117791E06004D2385 /* Zip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zip.m; sourceTree = "<group>"; };
 		D2AA6DC617792426004D2385 /* Rep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rep.h; sourceTree = "<group>"; };
 		D2AA6DC717792426004D2385 /* Rep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rep.m; sourceTree = "<group>"; };
-		D2D19380177A347600B82248 /* reps.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reps.txt; sourceTree = "<group>"; };
-		D2D19381177A347600B82248 /* zipDistrict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zipDistrict.txt; sourceTree = "<group>"; };
 		D2F5F6301763CEB4006E586C /* Snaptivist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snaptivist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F5F6331763CEB4006E586C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D2F5F6351763CEB4006E586C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2707,11 +2707,11 @@
 		D2F5F63A1763CEB4006E586C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D202A31B177FC220004D547B /* reps.txt */,
+				D202A31C177FC220004D547B /* zipDistrict.txt */,
 				4F1CF67C177BF6C300D1B979 /* images */,
 				4F8D4E1B177BEFA100F69E71 /* images_reps */,
 				4F67DD00177B64F400787169 /* fonts */,
-				D2D19380177A347600B82248 /* reps.txt */,
-				D2D19381177A347600B82248 /* zipDistrict.txt */,
 				D2F5F63B1763CEB4006E586C /* Snaptivist-Info.plist */,
 				D2F5F63C1763CEB4006E586C /* InfoPlist.strings */,
 				D2F5F63F1763CEB4006E586C /* main.m */,
@@ -2781,8 +2781,6 @@
 				D2F5F6481763CEB4006E586C /* Default@2x.png in Resources */,
 				D2F5F64A1763CEB4006E586C /* Default-568h@2x.png in Resources */,
 				D2F5F64D1763CEB4006E586C /* MainStoryboard.storyboard in Resources */,
-				D2D19382177A347600B82248 /* reps.txt in Resources */,
-				D2D19383177A347600B82248 /* zipDistrict.txt in Resources */,
 				4F67DD08177B692200787169 /* app_icon.png in Resources */,
 				4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */,
 				4F67DD0E177BA9E500787169 /* wilma.otf in Resources */,
@@ -3616,6 +3614,8 @@
 				4F1CF698177BF6E200D1B979 /* splash@2x.png in Resources */,
 				4F1CF69B177BF76000D1B979 /* settings_bg.png in Resources */,
 				4F1CF69C177BF76000D1B979 /* settings_bg@2x.png in Resources */,
+				D202A31D177FC220004D547B /* reps.txt in Resources */,
+				D202A31E177FC220004D547B /* zipDistrict.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
