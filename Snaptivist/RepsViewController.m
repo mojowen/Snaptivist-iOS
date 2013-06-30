@@ -74,8 +74,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(IBAction)finish:(id)sender {
+-(IBAction)sendMessage:(id)sender {
     [[self tabController] goToFinished];
+}
+-(IBAction)noMessage:(id)sender {
+    SnaptivistTabs *parent = [self tabController];
+    [parent.signup setSendTweet:@NO];
+    [parent goToFinished];
 }
 
 #pragma mark - Private methods

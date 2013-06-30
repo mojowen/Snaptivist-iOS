@@ -32,4 +32,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *repName5;
 @property (nonatomic, retain) IBOutlet UILabel *repName6;
 
+-(IBAction)noMessage:(id)sender;
+-(IBAction)sendMessage:(id)sender;
+
 @end

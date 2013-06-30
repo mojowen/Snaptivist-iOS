@@ -18,10 +18,13 @@
         </compoundIndexes>
     </entity>
     <entity name="Signup" representedClassName="Signup" syncable="YES">
-        <attribute name="email" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friends" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="sendTweet" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -42,7 +45,7 @@
     </entity>
     <elements>
         <element name="Rep" positionX="349" positionY="306" width="128" height="150"/>
-        <element name="Signup" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Signup" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Zip" positionX="376" positionY="162" width="128" height="90"/>
     </elements>
 </model>

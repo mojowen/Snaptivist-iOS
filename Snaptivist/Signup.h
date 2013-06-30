@@ -18,5 +18,8 @@
 @property (nonatomic, retain) NSString * twitter;
 @property (nonatomic, retain) NSString * zip;
 @property (nonatomic, retain) NSString * friends;
+@property (nonatomic, retain) NSDate * created_at;
+@property (nonatomic,retain) NSData * photo;
+@property (nonatomic) NSNumber *sendTweet;
 
 @end

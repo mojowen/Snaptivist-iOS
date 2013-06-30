@@ -21,6 +21,8 @@
     
     signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
 
+    signup.created_at = [NSDate date];
+    
     UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard"
                                                   bundle:nil];
     photosViewController = [sb instantiateViewControllerWithIdentifier:@"PhotosViewController"];
