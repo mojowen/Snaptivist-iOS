@@ -33,31 +33,47 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)addFriends:(id)sender {
+    [zip resignFirstResponder];
 
-    header.text = @"Add a friend";
+    self.errorMessage.hidden = NO;
+    self.errorMessage.text = @"";
 
-    zip.hidden = YES;
-    [addFriends setTitle:@"Add" forState:UIControlStateNormal];
-    
-    yourFriends.hidden = NO;
-    friends.hidden = NO;
-
-    [friends resignFirstResponder];
-
-    if( ! [friends.text isEqualToString:@""] ) {
-
-        signup.friends = [signup.friends stringByAppendingString:friends.text ];
-        signup.friends = [signup.friends stringByAppendingString:@"," ];
-
-        yourFriends.text = [yourFriends.text stringByAppendingString:friends.text ];
-        yourFriends.text = [yourFriends.text stringByAppendingString:@"\n" ];
-        
-        friends.text = @"";
-        
+    if( [zip.text length] < 5 ) {
+        self.errorMessage.text = [NSString stringWithFormat:@"you need to enter your zip code"];
     } else {
-        yourFriends.text = @"";
-        signup.friends = @"";
+
+        header.text = @"Add a friend";
+        
+        zip.hidden = YES;
+        [addFriends setTitle:@"Add" forState:UIControlStateNormal];
+        
+        yourFriends.hidden = NO;
+        friends.hidden = NO;
+        
+        [friends resignFirstResponder];
+        
+        NSMutableString *thefriends = [signup.friends mutableCopy];
+        
+        if( thefriends != nil ) {
+            
+            [thefriends appendString:friends.text ];
+            [thefriends appendString:@"," ];
+            
+            signup.friends = [thefriends copy];
+            
+            yourFriends.text = [yourFriends.text stringByAppendingString:friends.text ];
+            yourFriends.text = [yourFriends.text stringByAppendingString:@" \n" ];
+            
+            friends.text = @"";
+            
+        } else {
+            yourFriends.text = @"";
+            signup.friends = @"";
+        }
+        NSLog(@"%@",thefriends);
+
     }
+
 }
 
 - (IBAction)nextStep:(id)sender {
