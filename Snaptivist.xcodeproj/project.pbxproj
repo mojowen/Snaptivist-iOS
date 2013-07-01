@@ -852,6 +852,12 @@
 		D26EDE5B17640BAE00A67306 /* Snaptivist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5917640BAE00A67306 /* Snaptivist.xcdatamodeld */; };
 		D26EDE601764159E00A67306 /* Signup.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5F1764159E00A67306 /* Signup.m */; };
 		D26EDE62176422F600A67306 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26EDE61176422F600A67306 /* CoreData.framework */; };
+		D272559D17811ED700DE4850 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272559B17811ED700DE4850 /* CoreImage.framework */; };
+		D272559E17811ED700DE4850 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272559C17811ED700DE4850 /* ImageIO.framework */; };
+		D27255A017811EF300DE4850 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272559F17811EF300DE4850 /* CoreMedia.framework */; };
+		D27255A217811F0000DE4850 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27255A117811F0000DE4850 /* AssetsLibrary.framework */; };
+		D27255A417811F0800DE4850 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27255A317811F0800DE4850 /* AVFoundation.framework */; };
+		D27255A617811F1400DE4850 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27255A517811F1300DE4850 /* CoreVideo.framework */; };
 		D2AA676217790626004D2385 /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA676117790626004D2385 /* RepsViewController.m */; };
 		D2AA6DC217791E06004D2385 /* Zip.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC117791E06004D2385 /* Zip.m */; };
 		D2AA6DC817792426004D2385 /* Rep.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC717792426004D2385 /* Rep.m */; };
@@ -1722,6 +1728,12 @@
 		D26EDE5E1764159E00A67306 /* Signup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signup.h; sourceTree = "<group>"; };
 		D26EDE5F1764159E00A67306 /* Signup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signup.m; sourceTree = "<group>"; };
 		D26EDE61176422F600A67306 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D272559B17811ED700DE4850 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		D272559C17811ED700DE4850 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		D272559F17811EF300DE4850 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D27255A117811F0000DE4850 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		D27255A317811F0800DE4850 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D27255A517811F1300DE4850 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		D2AA676017790626004D2385 /* RepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsViewController.h; sourceTree = "<group>"; };
 		D2AA676117790626004D2385 /* RepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsViewController.m; sourceTree = "<group>"; };
 		D2AA6DC017791E06004D2385 /* Zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zip.h; sourceTree = "<group>"; };
@@ -1753,10 +1765,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D27255A617811F1400DE4850 /* CoreVideo.framework in Frameworks */,
+				D27255A417811F0800DE4850 /* AVFoundation.framework in Frameworks */,
+				D27255A217811F0000DE4850 /* AssetsLibrary.framework in Frameworks */,
+				D2F5F6381763CEB4006E586C /* CoreGraphics.framework in Frameworks */,
+				D27255A017811EF300DE4850 /* CoreMedia.framework in Frameworks */,
+				D272559D17811ED700DE4850 /* CoreImage.framework in Frameworks */,
+				D272559E17811ED700DE4850 /* ImageIO.framework in Frameworks */,
 				D26EDE62176422F600A67306 /* CoreData.framework in Frameworks */,
 				D2F5F6341763CEB4006E586C /* UIKit.framework in Frameworks */,
 				D2F5F6361763CEB4006E586C /* Foundation.framework in Frameworks */,
-				D2F5F6381763CEB4006E586C /* CoreGraphics.framework in Frameworks */,
 				A0A332A75F5146DC860D3BAB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2684,6 +2702,12 @@
 		D2F5F6321763CEB4006E586C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D27255A517811F1300DE4850 /* CoreVideo.framework */,
+				D27255A317811F0800DE4850 /* AVFoundation.framework */,
+				D27255A117811F0000DE4850 /* AssetsLibrary.framework */,
+				D272559F17811EF300DE4850 /* CoreMedia.framework */,
+				D272559B17811ED700DE4850 /* CoreImage.framework */,
+				D272559C17811ED700DE4850 /* ImageIO.framework */,
 				D26EDE61176422F600A67306 /* CoreData.framework */,
 				D2F5F6331763CEB4006E586C /* UIKit.framework */,
 				D2F5F6351763CEB4006E586C /* Foundation.framework */,

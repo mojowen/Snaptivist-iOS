@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SnaptivistTabs.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface PhotosViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PhotosViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property (nonatomic,retain) IBOutlet UIImageView *background;
 
@@ -22,6 +23,15 @@
 @property (nonatomic, retain) IBOutlet UIButton *reLaunchCamera;
 
 @property (nonatomic,retain) IBOutlet UIImageView *camera;
+@property (nonatomic) IBOutlet UIView *previewView;
+
+@property (nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
+@property (nonatomic) AVCaptureVideoDataOutput *videoDataOutput;
+@property (nonatomic) dispatch_queue_t videoDataOutputQueue;
+@property (nonatomic) AVCaptureStillImageOutput *stillImageOutput;
+@property (nonatomic) BOOL isUsingFrontFacingCamera;
+@property (nonatomic) CGFloat effectiveScale;
+@property (nonatomic) UIView *flashView;
 
 @property (nonatomic,retain) IBOutlet UIButton *pic1;
 @property (nonatomic,retain) IBOutlet UIButton *pic2;
