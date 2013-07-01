@@ -30,6 +30,7 @@
 		4F67DD08177B692200787169 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD07177B692200787169 /* app_icon.png */; };
 		4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD09177B698400787169 /* app_icon@2x.png */; };
 		4F67DD0E177BA9E500787169 /* wilma.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD0D177BA9E500787169 /* wilma.otf */; };
+		4F7669321781F66E00CEA2C6 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7669311781F66E00CEA2C6 /* Settings.m */; };
 		4F8D5147177BEFA700F69E71 /* A000014.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D4E1C177BEFA100F69E71 /* A000014.jpg */; };
 		4F8D5148177BEFA700F69E71 /* A000022.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D4E1D177BEFA100F69E71 /* A000022.jpg */; };
 		4F8D5149177BEFA700F69E71 /* A000055.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D4E1E177BEFA100F69E71 /* A000055.jpg */; };
@@ -843,7 +844,6 @@
 		4F8D5471177BEFA700F69E71 /* Y000065.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D5146177BEFA700F69E71 /* Y000065.jpg */; };
 		4FA5CCC1177A517A00578BA9 /* UICustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */; };
 		A0A332A75F5146DC860D3BAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4C85B09C1C4E61B7A32826 /* libPods.a */; };
-		D202A314177C139A004D547B /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A313177C139A004D547B /* Settings.m */; };
 		D202A317177C224E004D547B /* FinishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D202A316177C224E004D547B /* FinishViewController.m */; };
 		D202A31D177FC220004D547B /* reps.txt in Resources */ = {isa = PBXBuildFile; fileRef = D202A31B177FC220004D547B /* reps.txt */; };
 		D202A31E177FC220004D547B /* zipDistrict.txt in Resources */ = {isa = PBXBuildFile; fileRef = D202A31C177FC220004D547B /* zipDistrict.txt */; };
@@ -902,6 +902,7 @@
 		4F67DD07177B692200787169 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
 		4F67DD09177B698400787169 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
 		4F67DD0D177BA9E500787169 /* wilma.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wilma.otf; sourceTree = "<group>"; };
+		4F7669311781F66E00CEA2C6 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		4F8D4E1C177BEFA100F69E71 /* A000014.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = A000014.jpg; sourceTree = "<group>"; };
 		4F8D4E1D177BEFA100F69E71 /* A000022.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = A000022.jpg; sourceTree = "<group>"; };
 		4F8D4E1E177BEFA100F69E71 /* A000055.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = A000055.jpg; sourceTree = "<group>"; };
@@ -1716,7 +1717,6 @@
 		4FA5CCBF177A517A00578BA9 /* UICustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomLabel.h; sourceTree = "<group>"; };
 		4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomLabel.m; sourceTree = "<group>"; };
 		D202A312177C1399004D547B /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		D202A313177C139A004D547B /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/../../../../../../../../../Users/Scott/Projects/Snaptivist/Snaptivist iOS/Snaptivist/Settings.m"; sourceTree = "<absolute>"; };
 		D202A315177C224E004D547B /* FinishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishViewController.h; sourceTree = "<group>"; };
 		D202A316177C224E004D547B /* FinishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishViewController.m; sourceTree = "<group>"; };
 		D202A31B177FC220004D547B /* reps.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reps.txt; sourceTree = "<group>"; };
@@ -2671,7 +2671,7 @@
 				D202A315177C224E004D547B /* FinishViewController.h */,
 				D202A316177C224E004D547B /* FinishViewController.m */,
 				D202A312177C1399004D547B /* Settings.h */,
-				D202A313177C139A004D547B /* Settings.m */,
+				4F7669311781F66E00CEA2C6 /* Settings.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -3697,8 +3697,8 @@
 				D2AA6DC817792426004D2385 /* Rep.m in Sources */,
 				4FA5CCC1177A517A00578BA9 /* UICustomLabel.m in Sources */,
 				4F5A0209177BD9B200D193EA /* UICustomTextField.m in Sources */,
-				D202A314177C139A004D547B /* Settings.m in Sources */,
 				D202A317177C224E004D547B /* FinishViewController.m in Sources */,
+				4F7669321781F66E00CEA2C6 /* Settings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
