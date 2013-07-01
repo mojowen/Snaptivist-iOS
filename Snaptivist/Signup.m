@@ -17,7 +17,7 @@
 @dynamic twitter;
 @dynamic zip;
 @dynamic friends;
-@dynamic created_at;
+@dynamic photo_date;
 @dynamic sendTweet;
 @dynamic photo;
 

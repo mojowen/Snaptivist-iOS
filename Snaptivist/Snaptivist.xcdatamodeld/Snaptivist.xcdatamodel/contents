@@ -18,12 +18,12 @@
         </compoundIndexes>
     </entity>
     <entity name="Signup" representedClassName="Signup" syncable="YES">
-        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friends" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="photo_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="sendTweet" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
