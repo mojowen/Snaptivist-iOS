@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     SnaptivistTabs *parent = [self tabController];
+    [parent.context save:nil];
+    
     if( ! parent.signup.sendTweet.boolValue ) {
         self.finishMessage.text = @"Thank for signing up, keep an eye out for an email from us soon";
     }
