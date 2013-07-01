@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     context = [[self appDelegate] managedObjectContext];
-    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://localhost:5050"]];
+    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://snaptivist.herokuapp.com"]];
     [self loadSignups];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
