@@ -64,8 +64,18 @@
     }
 }
 -(void)goToFinished {
-    [self setChildFrame:finishedViewController];
-    [self setButton:self.finishedButton];
+    if( [signup.email length] > 1 ) {
+        [self setChildFrame:finishedViewController];
+        [self setButton:self.finishedButton];
+    } else {
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"No Email!"
+                                                              message:@"We can't sign you up without an email..."
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        [myAlertView show];
+        [self goToForm];
+    }
 }
 // Exposed actions for buttons
 -(IBAction)goToPhotoAction:(id)sender {
