@@ -12,8 +12,6 @@
 		4F1CF67B177BF6A100D1B979 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF67A177BF6A100D1B979 /* Default-Portrait~ipad.png */; };
 		4F1CF68B177BF6E200D1B979 /* bg_view1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF67D177BF6E200D1B979 /* bg_view1.png */; };
 		4F1CF68C177BF6E200D1B979 /* bg_view2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF67E177BF6E200D1B979 /* bg_view2.png */; };
-		4F1CF68D177BF6E200D1B979 /* button_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF67F177BF6E200D1B979 /* button_camera.png */; };
-		4F1CF68E177BF6E200D1B979 /* button_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF680177BF6E200D1B979 /* button_camera@2x.png */; };
 		4F1CF68F177BF6E200D1B979 /* button_next.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF681177BF6E200D1B979 /* button_next.png */; };
 		4F1CF690177BF6E200D1B979 /* button_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF682177BF6E200D1B979 /* button_next@2x.png */; };
 		4F1CF691177BF6E200D1B979 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF683177BF6E200D1B979 /* settings.png */; };
@@ -26,6 +24,12 @@
 		4F1CF698177BF6E200D1B979 /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF68A177BF6E200D1B979 /* splash@2x.png */; };
 		4F1CF69B177BF76000D1B979 /* settings_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF699177BF76000D1B979 /* settings_bg.png */; };
 		4F1CF69C177BF76000D1B979 /* settings_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF69A177BF76000D1B979 /* settings_bg@2x.png */; };
+		4F2C3CC11782283A0094C622 /* camera_button_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CBD1782283A0094C622 /* camera_button_small.png */; };
+		4F2C3CC21782283A0094C622 /* filmstrip.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CBE1782283A0094C622 /* filmstrip.png */; };
+		4F2C3CC31782283A0094C622 /* photo_approve.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CBF1782283A0094C622 /* photo_approve.png */; };
+		4F2C3CC41782283A0094C622 /* photo_reshoot.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CC01782283A0094C622 /* photo_reshoot.png */; };
+		4F2C3CC6178229640094C622 /* camera_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CC5178229640094C622 /* camera_button.png */; };
+		4F2C3CC9178229B90094C622 /* WilmaButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C3CC8178229B90094C622 /* WilmaButton.m */; };
 		4F5A0209177BD9B200D193EA /* UICustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A0208177BD9B200D193EA /* UICustomTextField.m */; };
 		4F67DD08177B692200787169 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD07177B692200787169 /* app_icon.png */; };
 		4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD09177B698400787169 /* app_icon@2x.png */; };
@@ -883,8 +887,6 @@
 		4F1CF67A177BF6A100D1B979 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		4F1CF67D177BF6E200D1B979 /* bg_view1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_view1.png; sourceTree = "<group>"; };
 		4F1CF67E177BF6E200D1B979 /* bg_view2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_view2.png; sourceTree = "<group>"; };
-		4F1CF67F177BF6E200D1B979 /* button_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_camera.png; sourceTree = "<group>"; };
-		4F1CF680177BF6E200D1B979 /* button_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_camera@2x.png"; sourceTree = "<group>"; };
 		4F1CF681177BF6E200D1B979 /* button_next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_next.png; sourceTree = "<group>"; };
 		4F1CF682177BF6E200D1B979 /* button_next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_next@2x.png"; sourceTree = "<group>"; };
 		4F1CF683177BF6E200D1B979 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -897,6 +899,13 @@
 		4F1CF68A177BF6E200D1B979 /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
 		4F1CF699177BF76000D1B979 /* settings_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_bg.png; sourceTree = "<group>"; };
 		4F1CF69A177BF76000D1B979 /* settings_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_bg@2x.png"; sourceTree = "<group>"; };
+		4F2C3CBD1782283A0094C622 /* camera_button_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_button_small.png; sourceTree = "<group>"; };
+		4F2C3CBE1782283A0094C622 /* filmstrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filmstrip.png; sourceTree = "<group>"; };
+		4F2C3CBF1782283A0094C622 /* photo_approve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_approve.png; sourceTree = "<group>"; };
+		4F2C3CC01782283A0094C622 /* photo_reshoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_reshoot.png; sourceTree = "<group>"; };
+		4F2C3CC5178229640094C622 /* camera_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_button.png; sourceTree = "<group>"; };
+		4F2C3CC7178229B90094C622 /* WilmaButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WilmaButton.h; sourceTree = "<group>"; };
+		4F2C3CC8178229B90094C622 /* WilmaButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WilmaButton.m; sourceTree = "<group>"; };
 		4F5A0207177BD9B200D193EA /* UICustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomTextField.h; sourceTree = "<group>"; };
 		4F5A0208177BD9B200D193EA /* UICustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomTextField.m; sourceTree = "<group>"; };
 		4F67DD07177B692200787169 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
@@ -1785,13 +1794,16 @@
 		4F1CF67C177BF6C300D1B979 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4F2C3CC5178229640094C622 /* camera_button.png */,
+				4F2C3CBD1782283A0094C622 /* camera_button_small.png */,
+				4F2C3CBE1782283A0094C622 /* filmstrip.png */,
+				4F2C3CBF1782283A0094C622 /* photo_approve.png */,
+				4F2C3CC01782283A0094C622 /* photo_reshoot.png */,
 				D202A31F1780D470004D547B /* no_camera.jpg */,
 				4F1CF699177BF76000D1B979 /* settings_bg.png */,
 				4F1CF69A177BF76000D1B979 /* settings_bg@2x.png */,
 				4F1CF67D177BF6E200D1B979 /* bg_view1.png */,
 				4F1CF67E177BF6E200D1B979 /* bg_view2.png */,
-				4F1CF67F177BF6E200D1B979 /* button_camera.png */,
-				4F1CF680177BF6E200D1B979 /* button_camera@2x.png */,
 				4F1CF681177BF6E200D1B979 /* button_next.png */,
 				4F1CF682177BF6E200D1B979 /* button_next@2x.png */,
 				4F1CF683177BF6E200D1B979 /* settings.png */,
@@ -2639,6 +2651,8 @@
 				4FA5CCC0177A517A00578BA9 /* UICustomLabel.m */,
 				4F5A0207177BD9B200D193EA /* UICustomTextField.h */,
 				4F5A0208177BD9B200D193EA /* UICustomTextField.m */,
+				4F2C3CC7178229B90094C622 /* WilmaButton.h */,
+				4F2C3CC8178229B90094C622 /* WilmaButton.m */,
 			);
 			name = ViewSubclasses;
 			sourceTree = "<group>";
@@ -3627,8 +3641,6 @@
 				4F1CF67B177BF6A100D1B979 /* Default-Portrait~ipad.png in Resources */,
 				4F1CF68B177BF6E200D1B979 /* bg_view1.png in Resources */,
 				4F1CF68C177BF6E200D1B979 /* bg_view2.png in Resources */,
-				4F1CF68D177BF6E200D1B979 /* button_camera.png in Resources */,
-				4F1CF68E177BF6E200D1B979 /* button_camera@2x.png in Resources */,
 				4F1CF68F177BF6E200D1B979 /* button_next.png in Resources */,
 				4F1CF690177BF6E200D1B979 /* button_next@2x.png in Resources */,
 				4F1CF691177BF6E200D1B979 /* settings.png in Resources */,
@@ -3644,6 +3656,11 @@
 				D202A31D177FC220004D547B /* reps.txt in Resources */,
 				D202A31E177FC220004D547B /* zipDistrict.txt in Resources */,
 				D202A3201780D472004D547B /* no_camera.jpg in Resources */,
+				4F2C3CC11782283A0094C622 /* camera_button_small.png in Resources */,
+				4F2C3CC21782283A0094C622 /* filmstrip.png in Resources */,
+				4F2C3CC31782283A0094C622 /* photo_approve.png in Resources */,
+				4F2C3CC41782283A0094C622 /* photo_reshoot.png in Resources */,
+				4F2C3CC6178229640094C622 /* camera_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3699,6 +3716,7 @@
 				4F5A0209177BD9B200D193EA /* UICustomTextField.m in Sources */,
 				D202A317177C224E004D547B /* FinishViewController.m in Sources */,
 				4F7669321781F66E00CEA2C6 /* Settings.m in Sources */,
+				4F2C3CC9178229B90094C622 /* WilmaButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

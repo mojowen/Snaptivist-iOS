@@ -33,6 +33,7 @@
 @property (nonatomic) CGFloat effectiveScale;
 @property (nonatomic) UIView *flashView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *filmStrip;
 @property (nonatomic,retain) IBOutlet UIButton *pic1;
 @property (nonatomic,retain) IBOutlet UIButton *pic2;
 @property (nonatomic,retain) IBOutlet UIButton *pic3;

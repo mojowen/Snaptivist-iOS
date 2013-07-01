@@ -66,6 +66,7 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 {
     savedPhotos = [NSArray arrayWithObjects:self.pic1,self.pic2,self.pic3,self.pic4,self.pic5, nil];
     photoNumber = 0;
+    self.filmStrip.hidden = YES;
 
     [super viewDidLoad];
 }
@@ -164,7 +165,7 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 	effectiveScale = 1.0;
 	previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
 	[previewLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
-	[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
+	[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     [previewLayer.connection setVideoOrientation:[[UIDevice currentDevice] orientation]];
     
 	CALayer *rootLayer = [previewView layer];
@@ -283,9 +284,14 @@ bail:
       	[self setupAVCapture];
     else
         self.camera.hidden = NO;
+        self.filmStrip.hidden = NO;
         [self.camera setImage: [UIImage imageNamed:@"no_camera.jpg"] ];
 }
 -(SnaptivistTabs *)tabController {
     return ((SnaptivistTabs *)(self.parentViewController));
+}
+- (void)viewDidUnload {
+    [self setFilmStrip:nil];
+    [super viewDidUnload];
 }
 @end
