@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import <RestKit/RestKit.h>
+#import "Signup.h"
 
 @interface Settings : UIViewController
 

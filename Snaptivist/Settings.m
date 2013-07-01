@@ -7,7 +7,6 @@
 //
 
 #import "Settings.h"
-#import "Signup.h"
 
 @interface Settings ()
 
