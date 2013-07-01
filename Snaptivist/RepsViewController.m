@@ -32,7 +32,6 @@
         [parent.signup setSendTweet:@NO];
         [parent goToFinished];
     } else {
-        NSLog(@"try reps again");
         UITextField *zip = [alertView textFieldAtIndex:0];
         parent.signup.zip = zip.text;
         [self viewDidLoad];
@@ -168,8 +167,6 @@
         NSLog(@"Couldn't find %@",zip);
         return zipArray;
     }
-
-    NSLog(@"we are still going...");
 
     entityDescription = [NSEntityDescription entityForName:@"Rep" inManagedObjectContext:self.context];
     [request setEntity:entityDescription];
