@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Signup.h"
+#import "Zip.h"
+#import "Rep.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

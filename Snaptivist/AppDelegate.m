@@ -7,9 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "Signup.h"
-#import "Zip.h"
-#import "Rep.h"
 
 @implementation AppDelegate
 
