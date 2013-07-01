@@ -86,6 +86,36 @@
             self.repName3.hidden = YES;
             self.repImage3.hidden = YES;
         }
+        
+        if( [parent.reps count] > 4 ) {
+            Rep *rep4 = [parent.reps objectAtIndex:4];
+            repImagePath = [rep4.bioguide stringByAppendingString:@".jpg"];
+            [self.repImage4 setImage: [UIImage imageNamed:repImagePath] ];
+            [self.repName4 setText: rep4.name];
+        } else {
+            self.repName4.hidden = YES;
+            self.repImage4.hidden = YES;
+        }
+
+        if( [parent.reps count] > 5 ) {
+            Rep *rep5 = [parent.reps objectAtIndex:5];
+            repImagePath = [rep5.bioguide stringByAppendingString:@".jpg"];
+            [self.repImage5 setImage: [UIImage imageNamed:repImagePath] ];
+            [self.repName5 setText: rep5.name];
+        } else {
+            self.repName5.hidden = YES;
+            self.repImage5.hidden = YES;
+        }
+        
+        if( [parent.reps count] > 6 ) {
+            Rep *rep6 = [parent.reps objectAtIndex:6];
+            repImagePath = [rep6.bioguide stringByAppendingString:@".jpg"];
+            [self.repImage6 setImage: [UIImage imageNamed:repImagePath] ];
+            [self.repName6 setText: rep6.name];
+        } else {
+            self.repName6.hidden = YES;
+            self.repImage6.hidden = YES;
+        }
     }
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
