@@ -16,6 +16,7 @@
 @property (nonatomic,retain) IBOutlet UIButton *syncButton;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
+@property (nonatomic,retain) RKObjectManager *objectManager;
 
 @property (nonatomic,retain) NSArray *signups;
 

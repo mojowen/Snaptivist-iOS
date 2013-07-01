@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     context = [[self appDelegate] managedObjectContext];
+    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://localhost:5050"]];
     [self loadSignups];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -65,7 +66,7 @@
             
     NSError *error;
     NSArray *array = [self.context executeFetchRequest:request error:&error];
-    NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"email.lenght > 0"];
+    NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"email.length > 0"];
     array = [array filteredArrayUsingPredicate:bPredicate];
     if (array != nil && array.count != 0 ) {
         signups = array;
@@ -80,33 +81,44 @@
     [context save:&saveError];
 }
 -(void)saveSoundOff:(Signup *)signup {
-    
-    NSDictionary *signupParams = [NSDictionary
-                   dictionaryWithObjectsAndKeys:
-                        signup.firstName,@"firstName",
-                        signup.lastName, @"lastName",
-                        signup.email,@"email",
-                        signup.twitter, @"twitter",
-                        signup.friends, @"friends",
-                        signup.zip, @"zip",
-                        nil];
 
+    NSMutableURLRequest *request;
+    NSDictionary *signupParams = [NSDictionary
+                                  dictionaryWithObjectsAndKeys:
+                                  signup.firstName,@"firstName",
+                                  signup.lastName, @"lastName",
+                                  signup.email,@"email",
+                                  signup.twitter, @"twitter",
+                                  signup.friends, @"friends",
+                                  signup.zip, @"zip",
+                                  nil];
     NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:signupParams,@"signup", nil];
 
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://localhost:5050"]];
+    if( signup.photo != nil ) {
+        UIImage *photo = [UIImage imageWithData:signup.photo ];
+        request = [ [RKObjectManager sharedManager] multipartFormRequestWithObject:signup method:RKRequestMethodPOST path:@"/save" parameters:queryParams constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:UIImagePNGRepresentation(photo)
+                                        name:@"signup[photo]"
+                                    fileName:@"photo.png"
+                                    mimeType:@"image/png"];
+        }];
+    } else {
+        request = [ [RKObjectManager sharedManager] requestWithObject:signup method:RKRequestMethodPOST path:@"/save" parameters:queryParams];
+    }
+
+    RKObjectRequestOperation *operation = [[RKObjectManager sharedManager]
+                                           objectRequestOperationWithRequest:request
+                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+//                                               [context deleteObject:signup];
+                                           }
+                                           failure:nil];
+
+    [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation]; // NOTE: Must be enqueued rather than started
+
     
-    [objectManager.HTTPClient setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
-    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
-    [objectManager.HTTPClient
-         postPath:@"/save"
-         parameters:queryParams
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             [context deleteObject:signup];
-         }
-         failure:^(AFHTTPRequestOperation *operation, id responseObject) {
-         }
-     ];
+
+    
 }
 
 
