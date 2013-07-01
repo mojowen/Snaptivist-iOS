@@ -25,46 +25,69 @@
     return self;
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    SnaptivistTabs *parent = [self tabController];
+
+    if( buttonIndex == 0 ) {
+        [parent.signup setSendTweet:@NO];
+        [parent goToFinished];
+    } else {
+        NSLog(@"try reps again");
+        UITextField *zip = [alertView textFieldAtIndex:0];
+        parent.signup.zip = zip.text;
+        [self viewDidLoad];
+    }
+    
+}
+
 - (void)viewDidLoad
 {
     SnaptivistTabs *parent = [self tabController];
     context = parent.context;
     signup = parent.signup;
     
-    parent.reps = [self fetchReps:signup.zip];
+    parent.reps = [self fetchReps: signup.zip];
 
-    // TODO: Something if reps are zero
+    if( parent.reps.count == 0 ) {
+        NSString *message = [NSString stringWithFormat:@"%@ didn't work - want to enter a new one?", signup.zip];
 
-    Rep *rep0 = [parent.reps objectAtIndex:0];
-    NSString *repImagePath = [rep0.bioguide stringByAppendingString:@".jpg"];
-    [self.repImage0 setImage: [UIImage imageNamed:repImagePath] ];
-    [self.repName0 setText: rep0.name];
-    
-    Rep *rep1 = [parent.reps objectAtIndex:1];
-    repImagePath = [rep1.bioguide stringByAppendingString:@".jpg"];
-    [self.repImage1 setImage: [UIImage imageNamed:repImagePath] ];
-    [self.repName1 setText: rep1.name];
-    
-    if( [parent.reps count] > 2 ) {
-        Rep *rep2 = [parent.reps objectAtIndex:2];
-        repImagePath = [rep2.bioguide stringByAppendingString:@".jpg"];
-        [self.repImage2 setImage: [UIImage imageNamed:repImagePath] ];
-        [self.repName2 setText: rep2.name];
+        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:@"Can't Find Reps" message:message delegate:self cancelButtonTitle:@"Skip this" otherButtonTitles:@"Try New Zip", nil];
+
+        passwordAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+
+        [passwordAlert show];
     } else {
-        self.repName2.hidden = YES;
-        self.repImage2.hidden = YES;
+
+        Rep *rep0 = [parent.reps objectAtIndex:0];
+        NSString *repImagePath = [rep0.bioguide stringByAppendingString:@".jpg"];
+        [self.repImage0 setImage: [UIImage imageNamed:repImagePath] ];
+        [self.repName0 setText: rep0.name];
+        
+        Rep *rep1 = [parent.reps objectAtIndex:1];
+        repImagePath = [rep1.bioguide stringByAppendingString:@".jpg"];
+        [self.repImage1 setImage: [UIImage imageNamed:repImagePath] ];
+        [self.repName1 setText: rep1.name];
+        
+        if( [parent.reps count] > 2 ) {
+            Rep *rep2 = [parent.reps objectAtIndex:2];
+            repImagePath = [rep2.bioguide stringByAppendingString:@".jpg"];
+            [self.repImage2 setImage: [UIImage imageNamed:repImagePath] ];
+            [self.repName2 setText: rep2.name];
+        } else {
+            self.repName2.hidden = YES;
+            self.repImage2.hidden = YES;
+        }
+        
+        if( [parent.reps count] > 3 ) {
+            Rep *rep3 = [parent.reps objectAtIndex:3];
+            repImagePath = [rep3.bioguide stringByAppendingString:@".jpg"];
+            [self.repImage3 setImage: [UIImage imageNamed:repImagePath] ];
+            [self.repName3 setText: rep3.name];
+        } else {
+            self.repName3.hidden = YES;
+            self.repImage3.hidden = YES;
+        }
     }
-    
-    if( [parent.reps count] > 3 ) {
-        Rep *rep3 = [parent.reps objectAtIndex:3];
-        repImagePath = [rep3.bioguide stringByAppendingString:@".jpg"];
-        [self.repImage3 setImage: [UIImage imageNamed:repImagePath] ];
-        [self.repName3 setText: rep3.name];
-    } else {
-        self.repName3.hidden = YES;
-        self.repImage3.hidden = YES;
-    }
-    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -142,8 +165,11 @@
     }
     else
     {
-        NSLog(@"Could not find zip %@",zip);
+        NSLog(@"Couldn't find %@",zip);
+        return zipArray;
     }
+
+    NSLog(@"we are still going...");
 
     entityDescription = [NSEntityDescription entityForName:@"Rep" inManagedObjectContext:self.context];
     [request setEntity:entityDescription];
