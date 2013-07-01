@@ -12,10 +12,7 @@
 #import <AssertMacros.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-static const NSString *AVCaptureStillImageIsCapturingStillImageContext = @"AVCaptureStillImageIsCapturingStillImageContext";
 static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
-
-
 
 @interface UIImage (RotationMethods)
 - (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
