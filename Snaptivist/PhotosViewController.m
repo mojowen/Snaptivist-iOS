@@ -273,10 +273,15 @@ bail:
     self.takePhoto.hidden = YES;
     self.selectPhoto.hidden = NO;
     self.reLaunchCamera.hidden = NO;
+    [self.view bringSubviewToFront:self.selectPhoto];
+    [self.view bringSubviewToFront:self.reLaunchCamera];
+
 }
 -(void)prepForTake {
     self.previewView.hidden = NO;
     self.takePhoto.hidden = NO;
+    [self.view bringSubviewToFront:self.takePhoto];
+    
     self.selectPhoto.hidden = YES;
     self.reLaunchCamera.hidden = YES;
     
