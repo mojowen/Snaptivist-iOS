@@ -34,45 +34,35 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)addFriends:(id)sender {
-//    [zip resignFirstResponder];
-//
-//
-//    if( [zip.text length] < 5 ) {
-//
-//    } else {
-//
-//        header.text = @"Add a friend";
-//        
-//        zip.hidden = YES;
-//        [addFriends setTitle:@"Add" forState:UIControlStateNormal];
-//        
-//        yourFriends.hidden = NO;
-//        friends.hidden = NO;
-//        
-//        [friends resignFirstResponder];
-//        
-//        NSMutableString *thefriends = [signup.friends mutableCopy];
-//        
-//        if( thefriends != nil ) {
-//            
-//            [thefriends appendString:friends.text ];
-//            [thefriends appendString:@"," ];
-//            
-//            signup.friends = [thefriends copy];
-//            
-//            yourFriends.text = [yourFriends.text stringByAppendingString:friends.text ];
-//            yourFriends.text = [yourFriends.text stringByAppendingString:@" \n" ];
-//            
-//            friends.text = @"";
-//            
-//        } else {
-//            yourFriends.text = @"";
-//            signup.friends = @"";
-//        }
-//        NSLog(@"%@",thefriends);
-//
-//    }
-//
+
+    
+    
+    [friends resignFirstResponder];
+    
+    if( [friends.text length] > 0 && [self NSStringIsValidEmail:friends.text] ) {
+        NSMutableString *thefriends = [signup.friends mutableCopy];
+        
+        
+        [thefriends appendString:friends.text ];
+        [thefriends appendString:@"," ];
+        
+        signup.friends = [thefriends copy];
+        
+        yourFriends.text = [yourFriends.text stringByAppendingString:friends.text ];
+        yourFriends.text = [yourFriends.text stringByAppendingString:@" \n" ];
+        
+        friends.text = @"";
+        [self.addFriends setTitle:@"+Add Another" forState:UIControlStateNormal];
+    } else {
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Wait a sec!"
+                                                              message:@"That's not an email address..."
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"Sorry :("
+                                                    otherButtonTitles: nil];
+        [myAlertView show];
+
+    }
+
 }
 
 - (IBAction)nextStep:(id)sender {
@@ -143,12 +133,14 @@
 }
 -(void)viewDidAppear:(BOOL)animated {
     self.scrollView.frame = CGRectMake(0.0f,0.0f,1024.0f,764.0f);
-    self.scrollView.contentSize = CGSizeMake(1024.0f, 1500.0f);
+    self.scrollView.contentSize = CGSizeMake(1024.0f, 1000.0f);
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField;
 {
     if( self.zip == textField || self.email == textField || self.twitter == textField )
         [self.scrollView setContentOffset:CGPointMake(0.0f, textField.frame.origin.y - 200.0f) animated:YES];
+    if( self.friends == textField )
+        [self.scrollView setContentOffset:CGPointMake(0.0f, textField.frame.origin.y - 100.0f) animated:YES];
 }
 -(BOOL)textFieldShouldReturn:(UITextField*)textField; {
     if ( self.first_name == textField) {
@@ -166,6 +158,9 @@
     }
     if ( self.twitter == textField) {
         [self.nextButton sendActionsForControlEvents: UIControlEventTouchUpInside];
+    }
+    if( self.friends == textField ) {
+        [self.addFriends sendActionsForControlEvents: UIControlEventTouchUpInside];
     }
     return YES;
 }
