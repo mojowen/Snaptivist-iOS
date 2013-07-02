@@ -6,6 +6,19 @@
 //  Copyright (c) 2013 Scott Duncombe. All rights reserved.
 //
 
+@interface Save : NSObject
+
+@property  BOOL success;
+@property NSDictionary *signup;
+
+@end
+
+@implementation Save
+@synthesize success,signup;
+
+@end
+
+
 #import "Settings.h"
 
 @interface Settings ()
@@ -29,6 +42,22 @@
 {
     context = [[self appDelegate] managedObjectContext];
     self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://snaptivist.herokuapp.com"]];
+
+//    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://192.168.2.5:5050"]];
+    
+    RKObjectMapping *saveMapping = [RKObjectMapping mappingForClass:[Save class]];
+    [saveMapping addAttributeMappingsFromDictionary:@{
+     @"success" : @"success",
+     @"signup" : @"signup"
+     }];
+    
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:saveMapping
+                                                                                        pathPattern:nil
+                                                                                            keyPath:nil
+                                                                                        statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [self.objectManager addResponseDescriptor:responseDescriptor];
+    
+
     [self loadSignups];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -82,15 +111,22 @@
 -(void)saveSoundOff:(Signup *)signup {
 
     NSMutableURLRequest *request;
-    NSDictionary *signupParams = [NSDictionary
+    NSMutableDictionary *signupParams = [NSMutableDictionary
                                   dictionaryWithObjectsAndKeys:
                                   signup.firstName,@"firstName",
                                   signup.lastName, @"lastName",
                                   signup.email,@"email",
                                   signup.twitter, @"twitter",
-                                  signup.friends, @"friends",
                                   signup.zip, @"zip",
+                                  signup.photo_date, @"photo_date",
+                                  signup.sendTweet, @"sendTweet",
                                   nil];
+    if( signup.friends != nil )
+        [signupParams setObject:signup.friends forKey:@"friends"];
+
+    if( signup.reps != nil )
+        [signupParams setObject:signup.reps forKey:@"reps"];
+
     NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:signupParams,@"signup", nil];
 
     if( signup.photo != nil ) {
@@ -108,9 +144,14 @@
     RKObjectRequestOperation *operation = [[RKObjectManager sharedManager]
                                            objectRequestOperationWithRequest:request
                                            success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+
+                                               Save *latest = [result firstObject];
+                                               NSLog(@"%@", latest.signup);
 //                                               [context deleteObject:signup];
                                            }
-                                           failure:nil];
+                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                               NSLog(@"%@",error);
+                                           }];
 
     [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation]; // NOTE: Must be enqueued rather than started
 

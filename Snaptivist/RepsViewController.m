@@ -56,25 +56,29 @@
 
         [passwordAlert show];
     } else {
-
+        NSMutableArray *all_reps = [[NSMutableArray alloc] init];
+        
         Rep *rep0 = [parent.reps objectAtIndex:0];
         NSString *repImagePath = [rep0.bioguide stringByAppendingString:@".jpg"];
         [self.repImage0 setImage: [UIImage imageNamed:repImagePath] ];
         [self.repName0 setText: rep0.name];
+        [all_reps addObject:rep0.bioguide];
         
         Rep *rep1 = [parent.reps objectAtIndex:1];
         repImagePath = [rep1.bioguide stringByAppendingString:@".jpg"];
         [self.repImage1 setImage: [UIImage imageNamed:repImagePath] ];
         [self.repName1 setText: rep1.name];
+        [all_reps addObject:rep1.bioguide];
         
         if( [parent.reps count] > 2 ) {
             Rep *rep2 = [parent.reps objectAtIndex:2];
             repImagePath = [rep2.bioguide stringByAppendingString:@".jpg"];
             [self.repImage2 setImage: [UIImage imageNamed:repImagePath] ];
             [self.repName2 setText: rep2.name];
-        } else {
-            self.repName2.hidden = YES;
-            self.repImage2.hidden = YES;
+            [all_reps addObject:rep2.bioguide];
+
+            self.repName2.hidden = NO;
+            self.repImage2.hidden = NO;
         }
         
         if( [parent.reps count] > 3 ) {
@@ -82,9 +86,10 @@
             repImagePath = [rep3.bioguide stringByAppendingString:@".jpg"];
             [self.repImage3 setImage: [UIImage imageNamed:repImagePath] ];
             [self.repName3 setText: rep3.name];
-        } else {
-            self.repName3.hidden = YES;
-            self.repImage3.hidden = YES;
+            [all_reps addObject:rep3.bioguide];
+
+            self.repName3.hidden = NO;
+            self.repImage3.hidden = NO;
         }
         
         if( [parent.reps count] > 4 ) {
@@ -92,6 +97,8 @@
             repImagePath = [rep4.bioguide stringByAppendingString:@".jpg"];
             [self.repImage4 setImage: [UIImage imageNamed:repImagePath] ];
             [self.repName4 setText: rep4.name];
+            [all_reps addObject:rep4.bioguide];
+
             self.repName4.hidden = NO;
             self.repImage4.hidden = NO;
         }
@@ -101,6 +108,8 @@
             repImagePath = [rep5.bioguide stringByAppendingString:@".jpg"];
             [self.repImage5 setImage: [UIImage imageNamed:repImagePath] ];
             [self.repName5 setText: rep5.name];
+            [all_reps addObject:rep5.bioguide];
+
             self.repName5.hidden = NO;
             self.repImage5.hidden = NO;
         }
@@ -110,11 +119,15 @@
             repImagePath = [rep6.bioguide stringByAppendingString:@".jpg"];
             [self.repImage6 setImage: [UIImage imageNamed:repImagePath] ];
             [self.repName6 setText: rep6.name];
+            [all_reps addObject:rep6.bioguide];
+
             self.repName6.hidden = NO;
             self.repImage6.hidden = NO;
         }
+        parent.signup.rep_list = [all_reps componentsJoinedByString:@","];
+        [parent.context save:nil];
     }
-    
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
