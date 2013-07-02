@@ -128,7 +128,7 @@
         self.scrollView.frame = CGRectMake(70.0f,200.0f,900.0f,300.0f);
 
     if( [parent.reps count] > 4 ) {
-        self.scrollView.frame = CGRectMake(20.0f,200.0f,1000.0f,300.0f);
+        self.scrollView.frame = CGRectMake(30.0f,200.0f,980.0f,300.0f);
 
         if( [parent.reps count] == 5 )
             self.scrollView.contentSize = CGSizeMake(1100.0f, 300.0f);

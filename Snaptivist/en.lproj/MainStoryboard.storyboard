@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="x4U-ga-sUj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="x4U-ga-sUj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -298,7 +298,7 @@
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="@ Twitter" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="DXc-Su-mQh" customClass="UICustomTextField">
                                 <color key="textColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" keyboardType="" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2c-eo-gww">
                                 <constraints>
@@ -612,8 +612,9 @@
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="(you only have one Congressional Rep - but we grabbed all of them for your zip cause we can't ge more precise right now)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="587" translatesAutoresizingMaskIntoConstraints="NO" id="Czy-1j-ltF" customClass="UICustomLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="(you only have one Congressional Rep - but we grabbed all of them for your zip cause we can't ge more precise right now)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="684" translatesAutoresizingMaskIntoConstraints="NO" id="Czy-1j-ltF" customClass="UICustomLabel">
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="684" id="Eam-Aa-9yR"/>
                                     <constraint firstAttribute="height" constant="123" id="eZ6-tm-FSj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
@@ -623,20 +624,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92941182850000004" green="0.93333339689999995" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="eUb-bU-yRI" firstAttribute="centerX" secondItem="amA-O8-vLW" secondAttribute="centerX" type="default" id="6az-gI-ox4"/>
-                            <constraint firstItem="PAb-V7-D2g" firstAttribute="top" secondItem="XrP-lc-Rg6" secondAttribute="top" constant="179" id="9nC-QS-tAs"/>
-                            <constraint firstItem="sab-wn-Kjy" firstAttribute="trailing" secondItem="amA-O8-vLW" secondAttribute="trailing" type="default" id="BMn-nR-saZ"/>
-                            <constraint firstItem="Czy-1j-ltF" firstAttribute="leading" secondItem="XrP-lc-Rg6" secondAttribute="leading" constant="245" id="CCi-1o-eJm"/>
-                            <constraint firstItem="Czy-1j-ltF" firstAttribute="top" secondItem="XrP-lc-Rg6" secondAttribute="top" constant="76" id="GBM-aE-KxN"/>
-                            <constraint firstAttribute="bottom" secondItem="amA-O8-vLW" secondAttribute="bottom" constant="208" id="GZ7-PF-EAe"/>
-                            <constraint firstAttribute="bottom" secondItem="PAb-V7-D2g" secondAttribute="bottom" constant="258" id="HNw-2I-TYB"/>
-                            <constraint firstAttribute="trailing" secondItem="PAb-V7-D2g" secondAttribute="trailing" constant="125" id="Kv1-Sl-vV0"/>
-                            <constraint firstItem="amA-O8-vLW" firstAttribute="centerX" secondItem="zVL-a0-oZu" secondAttribute="centerX" type="default" id="PhQ-QD-Y9s"/>
+                            <constraint firstItem="PAb-V7-D2g" firstAttribute="top" secondItem="XrP-lc-Rg6" secondAttribute="top" constant="213" id="0Br-2a-bz4"/>
+                            <constraint firstItem="eUb-bU-yRI" firstAttribute="top" secondItem="XrP-lc-Rg6" secondAttribute="top" type="default" id="3Hd-K8-YUU"/>
+                            <constraint firstAttribute="bottom" secondItem="amA-O8-vLW" secondAttribute="bottom" constant="174" id="FFI-1p-fmU"/>
                             <constraint firstAttribute="bottom" secondItem="zVL-a0-oZu" secondAttribute="bottom" constant="8" id="Qtg-WS-Che"/>
-                            <constraint firstItem="PAb-V7-D2g" firstAttribute="leading" secondItem="XrP-lc-Rg6" secondAttribute="leading" constant="192" id="Ytd-gl-aHh"/>
-                            <constraint firstItem="eUb-bU-yRI" firstAttribute="top" secondItem="XrP-lc-Rg6" secondAttribute="top" constant="-34" id="aBZ-0j-ewI"/>
+                            <constraint firstItem="Czy-1j-ltF" firstAttribute="centerX" secondItem="XrP-lc-Rg6" secondAttribute="centerX" type="default" id="RwG-ZN-GCU"/>
+                            <constraint firstAttribute="trailing" secondItem="PAb-V7-D2g" secondAttribute="trailing" constant="116" id="X8x-0Q-mzr"/>
+                            <constraint firstItem="Czy-1j-ltF" firstAttribute="centerX" secondItem="amA-O8-vLW" secondAttribute="centerX" type="default" id="cUc-D6-8Ip"/>
+                            <constraint firstAttribute="bottom" secondItem="PAb-V7-D2g" secondAttribute="bottom" constant="224" id="ifO-5t-4iX"/>
                             <constraint firstItem="zVL-a0-oZu" firstAttribute="top" secondItem="sab-wn-Kjy" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lgy-Tu-cqU"/>
-                            <constraint firstItem="sab-wn-Kjy" firstAttribute="centerX" secondItem="XrP-lc-Rg6" secondAttribute="centerX" type="default" id="ncq-WP-nrH"/>
+                            <constraint firstItem="PAb-V7-D2g" firstAttribute="leading" secondItem="XrP-lc-Rg6" secondAttribute="leading" constant="201" id="q1l-6c-XWO"/>
+                            <constraint firstItem="zVL-a0-oZu" firstAttribute="leading" secondItem="XrP-lc-Rg6" secondAttribute="leading" constant="431" id="uKu-k2-keU"/>
+                            <constraint firstItem="Czy-1j-ltF" firstAttribute="top" secondItem="XrP-lc-Rg6" secondAttribute="top" constant="111" id="ugh-6M-eiF"/>
+                            <constraint firstItem="Czy-1j-ltF" firstAttribute="centerX" secondItem="eUb-bU-yRI" secondAttribute="centerX" type="default" id="v8r-Vz-Jhg"/>
+                            <constraint firstItem="sab-wn-Kjy" firstAttribute="centerX" secondItem="amA-O8-vLW" secondAttribute="centerX" type="default" id="zeN-OP-pLJ"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
