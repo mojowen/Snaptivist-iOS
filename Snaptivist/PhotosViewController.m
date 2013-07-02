@@ -98,6 +98,7 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
         [self assignPhoto]; // No camera - just use what ever is camera's default image
 }
 -(IBAction)setPhoto:(id)sender {
+    [self teardownAVCapture];
     SnaptivistTabs *parent = [self tabController];
     NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(self.camera.image)];
     parent.signup.photo =photoData;
@@ -163,7 +164,8 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 	[[videoDataOutput connectionWithMediaType:AVMediaTypeVideo] setEnabled:NO];
 	
 	effectiveScale = 1.0;
-	previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+    if( previewLayer == nil )
+        previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
 	[previewLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
 	[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     
@@ -241,7 +243,9 @@ bail:
 -(void)assignPhoto {
     UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
     
-    [newPhoto setBackgroundImage:self.camera.image forState:UIControlStateNormal];
+    UIImage *newImage = [self resizeImage:self.camera.image newSize:CGSizeMake(1024.0f, 764.0f)];
+    
+    [newPhoto setBackgroundImage:newImage forState:UIControlStateNormal];
     newPhoto.hidden = NO;
     
     if( photoNumber == 4 ) {
@@ -261,7 +265,6 @@ bail:
 		result = AVCaptureVideoOrientationLandscapeLeft;
 	return result;
 }
-
 - (IBAction)switchCameras:(id)sender
 {
 	AVCaptureDevicePosition desiredPosition;
@@ -284,17 +287,42 @@ bail:
 	}
 	isUsingFrontFacingCamera = !isUsingFrontFacingCamera;
 }
+- (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize {
+    CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
+    CGImageRef imageRef = image.CGImage;
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // Set the quality level to use when rescaling
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
+    
+    CGContextConcatCTM(context, flipVertical);
+    // Draw into the context; this scales the image
+    CGContextDrawImage(context, newRect, imageRef);
+    
+    // Get the resized image from the context and a UIImage
+    CGImageRef newImageRef = CGBitmapContextCreateImage(context);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    CGImageRelease(newImageRef);
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 
 #pragma mark - Private methods
 -(void)selectPhoto:(NSUInteger)photo {
-    [self teardownAVCapture];
-
+    previewLayer.hidden = YES;
     photo = photo - 1;
     UIImage *selectImage = ((UIButton *)[savedPhotos objectAtIndex:photo] ).currentBackgroundImage;
     self.camera.hidden = NO;
     [self.camera setImage: selectImage];
     self.takePhoto.hidden = YES;
+    self.switchCamera.hidden = YES;
+
     self.selectPhoto.hidden = NO;
     self.reLaunchCamera.hidden = NO;
     [self.view bringSubviewToFront:self.selectPhoto];
@@ -302,8 +330,12 @@ bail:
 
 }
 -(void)prepForTake {
+    previewLayer.hidden = NO;
     self.previewView.hidden = NO;
     self.takePhoto.hidden = NO;
+    self.switchCamera.hidden = NO;
+    
+    [self.view bringSubviewToFront:self.switchCamera];
     [self.view bringSubviewToFront:self.takePhoto];
     
     self.selectPhoto.hidden = YES;
