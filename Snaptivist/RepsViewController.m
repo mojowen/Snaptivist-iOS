@@ -92,9 +92,8 @@
             repImagePath = [rep4.bioguide stringByAppendingString:@".jpg"];
             [self.repImage4 setImage: [UIImage imageNamed:repImagePath] ];
             [self.repName4 setText: rep4.name];
-        } else {
-            self.repName4.hidden = YES;
-            self.repImage4.hidden = YES;
+            self.repName4.hidden = NO;
+            self.repImage4.hidden = NO;
         }
 
         if( [parent.reps count] > 5 ) {
@@ -102,9 +101,8 @@
             repImagePath = [rep5.bioguide stringByAppendingString:@".jpg"];
             [self.repImage5 setImage: [UIImage imageNamed:repImagePath] ];
             [self.repName5 setText: rep5.name];
-        } else {
-            self.repName5.hidden = YES;
-            self.repImage5.hidden = YES;
+            self.repName5.hidden = NO;
+            self.repImage5.hidden = NO;
         }
         
         if( [parent.reps count] > 6 ) {
@@ -112,9 +110,8 @@
             repImagePath = [rep6.bioguide stringByAppendingString:@".jpg"];
             [self.repImage6 setImage: [UIImage imageNamed:repImagePath] ];
             [self.repName6 setText: rep6.name];
-        } else {
-            self.repName6.hidden = YES;
-            self.repImage6.hidden = YES;
+            self.repName6.hidden = NO;
+            self.repImage6.hidden = NO;
         }
     }
     
