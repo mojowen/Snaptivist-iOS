@@ -124,7 +124,7 @@
             self.repName6.hidden = NO;
             self.repImage6.hidden = NO;
         }
-        parent.signup.rep_list = [all_reps componentsJoinedByString:@","];
+        parent.signup.reps = [all_reps componentsJoinedByString:@","];
         [parent.context save:nil];
     }
 
