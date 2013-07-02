@@ -11,29 +11,25 @@
 
 @interface FormViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet UIButton *nextButton;
-@property (nonatomic, retain) NSString *stage;
-@property (nonatomic, retain) Signup *signup;
-@property (nonatomic, retain) NSManagedObjectContext *context;
-@property (nonatomic, retain) IBOutlet UILabel *header;
-@property (nonatomic,retain) IBOutlet UIImageView *photo;
-@property (nonatomic,retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UIButton *nextButton;
+@property (nonatomic, weak) NSString *stage;
+@property (nonatomic, weak) Signup *signup;
+@property (nonatomic, weak) NSManagedObjectContext *context;
+@property (nonatomic, weak) IBOutlet UILabel *header;
+@property (nonatomic,weak) IBOutlet UIImageView *photo;
+@property (nonatomic,weak) IBOutlet UIScrollView *scrollView;
 
-// Stage 1
-@property (nonatomic, retain) IBOutlet UITextField  *first_name;
-@property (nonatomic, retain) IBOutlet UITextField  *last_name;
 
-// Stage 2
-@property (nonatomic, retain) IBOutlet UITextField  *email;
-@property (nonatomic, retain) IBOutlet UITextField  *twitter;
-
-// Stage 3
-@property (nonatomic, retain) IBOutlet UITextField  *zip;
-@property (nonatomic, retain) IBOutlet UIButton *addFriends;
+@property (nonatomic, weak) IBOutlet UITextField  *first_name;
+@property (nonatomic, weak) IBOutlet UITextField  *last_name;
+@property (nonatomic, weak) IBOutlet UITextField  *email;
+@property (nonatomic, weak) IBOutlet UITextField  *twitter;
+@property (nonatomic, weak) IBOutlet UITextField  *zip;
+@property (nonatomic, weak) IBOutlet UIButton *addFriends;
 
 // Add Friends
-@property (nonatomic, retain) IBOutlet UITextField  *friends;
-@property (nonatomic, retain) IBOutlet UITextView *yourFriends;
+@property (nonatomic, weak) IBOutlet UITextField  *friends;
+@property (nonatomic, weak) IBOutlet UITextView *yourFriends;
 
 
 -(IBAction)nextStep:(id)sender;

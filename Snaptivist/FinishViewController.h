@@ -11,5 +11,5 @@
 
 @interface FinishViewController : UIViewController
 
-@property (nonatomic,retain) IBOutlet UILabel *finishMessage;
+@property (nonatomic,weak) IBOutlet UILabel *finishMessage;
 @end
