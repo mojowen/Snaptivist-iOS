@@ -33,10 +33,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(IBAction)addAndFinish:(id)sender {
+    [friends resignFirstResponder];
+
+    if( friends.text.length > 0 && [self NSStringIsValidEmail:friends.text] )
+        [self.addFriends sendActionsForControlEvents: UIControlEventTouchUpInside];
+    
+    [self.nextButton sendActionsForControlEvents: UIControlEventTouchUpInside];
+}
 - (IBAction)addFriends:(id)sender {
 
-    
-    
     [friends resignFirstResponder];
     
     if( [friends.text length] > 0 && [self NSStringIsValidEmail:friends.text] ) {
@@ -60,7 +66,7 @@
                                                     cancelButtonTitle:@"Sorry :("
                                                     otherButtonTitles: nil];
         [myAlertView show];
-
+        friends.text = friends.text;
     }
 
 }
@@ -112,13 +118,18 @@
         NSString *lastError = [errors lastObject];
         [errors removeLastObject];
         NSString *joiner = @",";
+        NSString *errorMessage;
 
         if( [errors count] == 1 )
             joiner = @"";
-        
-        NSString *allButLast = [NSString stringWithFormat:@"you need to enter your %@",
-                              [errors componentsJoinedByString:@", "] ];
-        NSString *errorMessage = [NSString stringWithFormat:@"Hey %@%@ and %@",allButLast,joiner,lastError];
+
+        if( [errors count] == 0 ) {
+            errorMessage = [NSString stringWithFormat:@"you need to enter your %@", lastError];
+        } else {
+            NSString *allButLast = [NSString stringWithFormat:@"you need to enter your %@",
+                                    [errors componentsJoinedByString:@", "] ];
+            errorMessage = [NSString stringWithFormat:@"Hey %@%@ and %@",allButLast,joiner,lastError];
+        }
         
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Wait a sec!"
                                                               message:errorMessage
