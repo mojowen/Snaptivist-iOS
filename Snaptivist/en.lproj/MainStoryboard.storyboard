@@ -667,7 +667,7 @@
                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="(you only have one Congressional Rep - but we grabbed all of them for your zip cause we can't ge more precise right now)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="684" translatesAutoresizingMaskIntoConstraints="NO" id="Czy-1j-ltF" customClass="UICustomLabel">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="(you only have one Congressional Rep - but we grabbed all of them for your zip cause we can't ge more precise right now)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="684" translatesAutoresizingMaskIntoConstraints="NO" id="Czy-1j-ltF" customClass="UICustomLabel">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="684" id="Eam-Aa-9yR"/>
                                     <constraint firstAttribute="height" constant="123" id="eZ6-tm-FSj"/>
@@ -703,6 +703,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="disclaimer" destination="Czy-1j-ltF" id="V5u-4b-v8Z"/>
                         <outlet property="repImage0" destination="f56-5Q-742" id="OfF-LP-nHR"/>
                         <outlet property="repImage1" destination="lf7-HP-kfg" id="pbI-bu-13h"/>
                         <outlet property="repImage2" destination="zVZ-mw-Gjv" id="4TP-TW-XvX"/>
@@ -1129,6 +1130,7 @@
             <relationships>
                 <relationship kind="action" name="noMessage:"/>
                 <relationship kind="action" name="sendMessage:"/>
+                <relationship kind="outlet" name="disclaimer" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="repImage0" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="repImage1" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="repImage2" candidateClass="UIImageView"/>

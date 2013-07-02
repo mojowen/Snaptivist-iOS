@@ -124,6 +124,9 @@
 
 -(void)viewDidAppear:(BOOL)animated{
 
+    if( [parent.reps count] > 3 )
+            self.disclaimer.hidden = NO;
+
     if( [parent.reps count] == 4 )
         self.scrollView.frame = CGRectMake(70.0f,200.0f,900.0f,300.0f);
 

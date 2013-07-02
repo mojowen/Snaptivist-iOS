@@ -16,6 +16,7 @@
 @property (nonatomic, retain) Signup *signup;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic,retain) SnaptivistTabs *parent;
+@property (nonatomic,retain) IBOutlet UILabel *disclaimer;
 
 @property (nonatomic,retain) IBOutlet UIScrollView *scrollView;
 
