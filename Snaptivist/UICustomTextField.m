@@ -30,12 +30,11 @@
 
 
 - (void)awakeFromNib {
-    self.font = [UIFont fontWithName: @"Wilma-Base" size:self.font.pointSize];
+    self.font = [UIFont fontWithName: @"Wilma-Base" size:32];
     
-    self.borderStyle = UITextBorderStyleNone;
-    [self setBackgroundColor: [UIColor whiteColor]];
-    
-
+    self.borderStyle = UITextBorderStyleNone;    
+    UIImage *dottedLine = [UIImage imageNamed:@"dotted-line.png"];
+    self.backgroundColor = [UIColor colorWithPatternImage:dottedLine];
     // Hack to add left padding
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
     self.leftView = paddingView;
