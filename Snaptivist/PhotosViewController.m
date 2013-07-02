@@ -262,6 +262,28 @@ bail:
 	return result;
 }
 
+- (IBAction)switchCameras:(id)sender
+{
+	AVCaptureDevicePosition desiredPosition;
+	if (isUsingFrontFacingCamera)
+		desiredPosition = AVCaptureDevicePositionBack;
+	else
+		desiredPosition = AVCaptureDevicePositionFront;
+	
+	for (AVCaptureDevice *d in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
+		if ([d position] == desiredPosition) {
+			[[previewLayer session] beginConfiguration];
+			AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:d error:nil];
+			for (AVCaptureInput *oldInput in [[previewLayer session] inputs]) {
+				[[previewLayer session] removeInput:oldInput];
+			}
+			[[previewLayer session] addInput:input];
+			[[previewLayer session] commitConfiguration];
+			break;
+		}
+	}
+	isUsingFrontFacingCamera = !isUsingFrontFacingCamera;
+}
 
 
 #pragma mark - Private methods
