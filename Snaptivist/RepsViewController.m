@@ -14,7 +14,7 @@
 
 @implementation RepsViewController
 
-@synthesize context,signup;
+@synthesize context,signup,parent;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +26,7 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    SnaptivistTabs *parent = [self tabController];
+    parent = [self tabController];
 
     if( buttonIndex == 0 ) {
         [parent.signup setSendTweet:@NO];
@@ -41,7 +41,7 @@
 
 - (void)viewDidLoad
 {
-    SnaptivistTabs *parent = [self tabController];
+    parent = [self tabController];
     context = parent.context;
     signup = parent.signup;
     
@@ -117,8 +117,27 @@
             self.repImage6.hidden = YES;
         }
     }
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+
+    if( [parent.reps count] == 4 )
+        self.scrollView.frame = CGRectMake(70.0f,200.0f,900.0f,300.0f);
+
+    if( [parent.reps count] > 4 ) {
+        self.scrollView.frame = CGRectMake(30.0f,200.0f,980.0f,300.0f);
+
+        if( [parent.reps count] == 5 )
+            self.scrollView.contentSize = CGSizeMake(1100.0f, 300.0f);
+        if( [parent.reps count] == 6 )
+            self.scrollView.contentSize = CGSizeMake(1300.0f, 300.0f);
+        if( [parent.reps count] == 7 )
+            self.scrollView.contentSize = CGSizeMake(1500.0f, 300.0f);
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,7 +149,6 @@
     [[self tabController] goToFinished];
 }
 -(IBAction)noMessage:(id)sender {
-    SnaptivistTabs *parent = [self tabController];
     [parent.signup setSendTweet:@NO];
     [parent goToFinished];
 }
