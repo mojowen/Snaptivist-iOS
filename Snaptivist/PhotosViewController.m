@@ -68,6 +68,10 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     photoNumber = 0;
     self.filmStrip.hidden = YES;
 
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didRotate:)
+                                                name:@"UIDeviceOrientationDidChangeNotification"
+                                              object:nil];
     [super viewDidLoad];
 }
 
@@ -168,8 +172,13 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
         previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
 	[previewLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
 	[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+
+    if( [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
+        [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeRight];
+    else
+        [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeLeft];
+
     
-    [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeRight];
 
     
 	CALayer *rootLayer = [previewView layer];
@@ -265,6 +274,15 @@ bail:
 		result = AVCaptureVideoOrientationLandscapeLeft;
 	return result;
 }
+- (void) didRotate:(NSNotification *)notification {
+    if( previewLayer != nil )
+    {
+        if( [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
+            [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeRight];
+        else
+            [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeLeft];
+    }
+}
 - (IBAction)switchCameras:(id)sender
 {
 	AVCaptureDevicePosition desiredPosition;
@@ -282,6 +300,12 @@ bail:
 			}
 			[[previewLayer session] addInput:input];
 			[[previewLayer session] commitConfiguration];
+
+            if( [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
+                [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeRight];
+            else
+                [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeLeft];
+        
 			break;
 		}
 	}
