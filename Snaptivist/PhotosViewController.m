@@ -166,7 +166,9 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 	previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
 	[previewLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
 	[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    [previewLayer.connection setVideoOrientation:[[UIDevice currentDevice] orientation]];
+    
+    [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeRight];
+
     
 	CALayer *rootLayer = [previewView layer];
 	[rootLayer setMasksToBounds:YES];

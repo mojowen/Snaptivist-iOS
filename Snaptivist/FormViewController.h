@@ -16,8 +16,8 @@
 @property (nonatomic, retain) Signup *signup;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) IBOutlet UILabel *header;
-
-@property (nonatomic, retain) IBOutlet UILabel *errorMessage;
+@property (nonatomic,retain) IBOutlet UIImageView *photo;
+@property (nonatomic,retain) IBOutlet UIScrollView *scrollView;
 
 // Stage 1
 @property (nonatomic, retain) IBOutlet UITextField  *first_name;
