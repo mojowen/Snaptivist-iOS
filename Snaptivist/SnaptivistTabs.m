@@ -51,8 +51,16 @@
 }
 -(void)goToReps {
     if( [signup.zip length] > 4 ) {
-        [self setChildFrame:repsViewController];
-        [self setButton:self.repsButton];
+        if( [signup.zip length ] > 5 && [signup.email length ] > 1 )
+        {
+            [signup setSendTweet:@NO];
+            [self goToFinished];
+        }
+        else
+        {
+            [self setChildFrame:repsViewController];
+            [self setButton:self.repsButton];
+        }
     } else {
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"No Zip - No Reps!"
                                                               message:@"You need to enter a valid zip code to see your representatives"
@@ -64,6 +72,7 @@
     }
 }
 -(void)goToFinished {
+    self.reps = nil;
     if( [signup.email length] > 1 ) {
         [self setChildFrame:finishedViewController];
         [self setButton:self.finishedButton];
