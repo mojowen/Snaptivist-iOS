@@ -12,42 +12,7 @@
 #import <AssertMacros.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
-
-@interface UIImage (RotationMethods)
-- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
-@end
-
-@implementation UIImage (RotationMethods)
-
-- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees
-{
-	// calculate the size of the rotated view's containing box for our drawing space
-	UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.size.width, self.size.height)];
-	CGAffineTransform t = CGAffineTransformMakeRotation(DegreesToRadians(degrees));
-	rotatedViewBox.transform = t;
-	CGSize rotatedSize = rotatedViewBox.frame.size;
-	
-	// Create the bitmap context
-	UIGraphicsBeginImageContext(rotatedSize);
-	CGContextRef bitmap = UIGraphicsGetCurrentContext();
-	
-	// Move the origin to the middle of the image so we will rotate and scale around the center.
-	CGContextTranslateCTM(bitmap, rotatedSize.width/2, rotatedSize.height/2);
-	
-	//   // Rotate the image context
-	CGContextRotateCTM(bitmap, DegreesToRadians(degrees));
-	
-	// Now, draw the rotated/scaled image into the context
-	CGContextScaleCTM(bitmap, 1.0, -1.0);
-	CGContextDrawImage(bitmap, CGRectMake(-self.size.width / 2, -self.size.height / 2, self.size.width, self.size.height), [self CGImage]);
-	
-	UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	return newImage;
-	
-}
-@end;
+static const NSString *AVCaptureStillImageIsCapturingStillImageContext = @"AVCaptureStillImageIsCapturingStillImageContext";
 
 @interface PhotosViewController ()
 
@@ -138,12 +103,12 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
 	
-    isUsingFrontFacingCamera = NO;
 	if ( [session canAddInput:deviceInput] )
 		[session addInput:deviceInput];
 	
     // Make a still image output
 	stillImageOutput = [AVCaptureStillImageOutput new];
+	[stillImageOutput addObserver:self forKeyPath:@"capturingStillImage" options:NSKeyValueObservingOptionNew context:(__bridge void *)(AVCaptureStillImageIsCapturingStillImageContext)];
 
 	if ( [session canAddOutput:stillImageOutput] )
 		[session addOutput:stillImageOutput];
@@ -168,8 +133,8 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 	[[videoDataOutput connectionWithMediaType:AVMediaTypeVideo] setEnabled:NO];
 	
 	effectiveScale = 1.0;
-    if( previewLayer == nil )
-        previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+
+    previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
 	[previewLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
 	[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
 
@@ -186,6 +151,9 @@ static CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 	[previewLayer setFrame:[rootLayer bounds]];
 	[rootLayer addSublayer:previewLayer];
 	[session startRunning];
+
+    if( isUsingFrontFacingCamera )
+        [self switchCameraSide:NO];
 
 bail:
 	if (error) {
@@ -204,6 +172,12 @@ bail:
 {
 	if (videoDataOutputQueue)
 		dispatch_release(videoDataOutputQueue);
+    @try {
+        [stillImageOutput removeObserver:self forKeyPath:@"isCapturingStillImage"];
+    } @catch(id anException) {
+        NSLog(@"%@",anException);
+    }
+
 	[previewLayer removeFromSuperlayer];
 }
 
@@ -249,6 +223,37 @@ bail:
           }
 	 ];
 }
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ( context == (__bridge void *)(AVCaptureStillImageIsCapturingStillImageContext) ) {
+		BOOL isCapturingStillImage = [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
+		
+		if ( isCapturingStillImage ) {
+			// do flash bulb like animation
+			flashView = [[UIView alloc] initWithFrame: [[UIScreen mainScreen] applicationFrame]];
+			[flashView setBackgroundColor:[UIColor whiteColor]];
+			[flashView setAlpha:0.f];
+			[[[self view] window] addSubview:flashView];
+			
+			[UIView animateWithDuration:0.1f
+							 animations:^{
+								 [flashView setAlpha:1.f];
+							 }
+			 ];
+		}
+		else {
+			[UIView animateWithDuration:0.1f
+							 animations:^{
+								 [flashView setAlpha:0.f];
+							 }
+							 completion:^(BOOL finished){
+								 [flashView removeFromSuperview];
+								 flashView = nil;
+							 }
+			 ];
+		}
+	}
+}
 -(void)assignPhoto {
     UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
     
@@ -268,10 +273,10 @@ bail:
 - (AVCaptureVideoOrientation)avOrientationForDeviceOrientation:(UIDeviceOrientation)deviceOrientation
 {
 	AVCaptureVideoOrientation result = deviceOrientation;
-	if ( deviceOrientation == UIDeviceOrientationLandscapeLeft )
-		result = AVCaptureVideoOrientationLandscapeRight;
-	else if ( deviceOrientation == UIDeviceOrientationLandscapeRight )
-		result = AVCaptureVideoOrientationLandscapeLeft;
+        if ( deviceOrientation == UIDeviceOrientationLandscapeLeft )
+            result = AVCaptureVideoOrientationLandscapeRight;
+        else if ( deviceOrientation == UIDeviceOrientationLandscapeRight )
+            result = AVCaptureVideoOrientationLandscapeLeft;
 	return result;
 }
 - (void) didRotate:(NSNotification *)notification {
@@ -285,8 +290,12 @@ bail:
 }
 - (IBAction)switchCameras:(id)sender
 {
+    [self switchCameraSide:isUsingFrontFacingCamera];
+    isUsingFrontFacingCamera = !isUsingFrontFacingCamera;
+}
+-(void)switchCameraSide:(BOOL)goBackCamera {
 	AVCaptureDevicePosition desiredPosition;
-	if (isUsingFrontFacingCamera)
+	if (goBackCamera)
 		desiredPosition = AVCaptureDevicePositionBack;
 	else
 		desiredPosition = AVCaptureDevicePositionFront;
@@ -301,15 +310,10 @@ bail:
 			[[previewLayer session] addInput:input];
 			[[previewLayer session] commitConfiguration];
 
-            if( [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
-                [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeRight];
-            else
-                [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeLeft];
-        
 			break;
 		}
 	}
-	isUsingFrontFacingCamera = !isUsingFrontFacingCamera;
+	
 }
 - (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize {
     CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
@@ -320,9 +324,14 @@ bail:
     
     // Set the quality level to use when rescaling
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-    CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
     
-    CGContextConcatCTM(context, flipVertical);
+
+    if( ! isUsingFrontFacingCamera )
+    {
+        CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
+        CGContextConcatCTM(context, flipVertical);
+    }
+    
     // Draw into the context; this scales the image
     CGContextDrawImage(context, newRect, imageRef);
     
@@ -339,7 +348,8 @@ bail:
 
 #pragma mark - Private methods
 -(void)selectPhoto:(NSUInteger)photo {
-    previewLayer.hidden = YES;
+    [self teardownAVCapture];
+    
     photo = photo - 1;
     UIImage *selectImage = ((UIButton *)[savedPhotos objectAtIndex:photo] ).currentBackgroundImage;
     self.camera.hidden = NO;
@@ -354,7 +364,7 @@ bail:
 
 }
 -(void)prepForTake {
-    previewLayer.hidden = NO;
+
     self.previewView.hidden = NO;
     self.takePhoto.hidden = NO;
     self.switchCamera.hidden = NO;
