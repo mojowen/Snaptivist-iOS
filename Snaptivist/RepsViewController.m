@@ -46,6 +46,11 @@
     signup = parent.signup;
     
     parent.reps = [self fetchReps: signup.zip];
+    
+    if ( signup.twitter == nil || [signup.twitter length] < 1)
+        self.message.text = [NSString stringWithFormat:@"%@ from your district asks you to cosponsor Safe Schools laws #SoundOff",signup.firstName];
+    else
+        self.message.text = [NSString stringWithFormat:@"@%@ from your district asks you to cosponsor Safe Schools laws #SoundOff",signup.twitter];
 
     if( parent.reps.count == 0 ) {
         NSString *message = [NSString stringWithFormat:@"%@ didn't work - want to enter a new one?", signup.zip];

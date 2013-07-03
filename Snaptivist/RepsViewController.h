@@ -28,6 +28,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *repImage5;
 @property (nonatomic, weak) IBOutlet UIImageView *repImage6;
 
+@property (nonatomic,weak) IBOutlet UILabel *message;
 @property (nonatomic, weak) IBOutlet UILabel *repName0;
 @property (nonatomic, weak) IBOutlet UILabel *repName1;
 @property (nonatomic, weak) IBOutlet UILabel *repName2;
