@@ -32,6 +32,11 @@
 		4F2C3CC9178229B90094C622 /* WilmaButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C3CC8178229B90094C622 /* WilmaButton.m */; };
 		4F2C3CCB178253CB0094C622 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CCA178253CB0094C622 /* bubble.png */; };
 		4F2C3CCD17825B080094C622 /* dotted-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CCC17825B080094C622 /* dotted-line.png */; };
+		4F3A530417848CB60099E30D /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530017848CB60099E30D /* button_bg.png */; };
+		4F3A530517848CB60099E30D /* rep_bg_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530117848CB60099E30D /* rep_bg_blue.png */; };
+		4F3A530617848CB60099E30D /* rep_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530217848CB60099E30D /* rep_bg.png */; };
+		4F3A530717848CB60099E30D /* twitter_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530317848CB60099E30D /* twitter_bubble.png */; };
+		4F3A5309178490D30099E30D /* tac_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A5308178490D30099E30D /* tac_logo.png */; };
 		4F5A0209177BD9B200D193EA /* UICustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A0208177BD9B200D193EA /* UICustomTextField.m */; };
 		4F67DD08177B692200787169 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD07177B692200787169 /* app_icon.png */; };
 		4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD09177B698400787169 /* app_icon@2x.png */; };
@@ -910,6 +915,11 @@
 		4F2C3CC8178229B90094C622 /* WilmaButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WilmaButton.m; sourceTree = "<group>"; };
 		4F2C3CCA178253CB0094C622 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		4F2C3CCC17825B080094C622 /* dotted-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotted-line.png"; sourceTree = "<group>"; };
+		4F3A530017848CB60099E30D /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
+		4F3A530117848CB60099E30D /* rep_bg_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rep_bg_blue.png; sourceTree = "<group>"; };
+		4F3A530217848CB60099E30D /* rep_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rep_bg.png; sourceTree = "<group>"; };
+		4F3A530317848CB60099E30D /* twitter_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_bubble.png; sourceTree = "<group>"; };
+		4F3A5308178490D30099E30D /* tac_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tac_logo.png; sourceTree = "<group>"; };
 		4F5A0207177BD9B200D193EA /* UICustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomTextField.h; sourceTree = "<group>"; };
 		4F5A0208177BD9B200D193EA /* UICustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomTextField.m; sourceTree = "<group>"; };
 		4F67DD07177B692200787169 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
@@ -1798,6 +1808,11 @@
 		4F1CF67C177BF6C300D1B979 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4F3A5308178490D30099E30D /* tac_logo.png */,
+				4F3A530017848CB60099E30D /* button_bg.png */,
+				4F3A530117848CB60099E30D /* rep_bg_blue.png */,
+				4F3A530217848CB60099E30D /* rep_bg.png */,
+				4F3A530317848CB60099E30D /* twitter_bubble.png */,
 				4F2C3CCC17825B080094C622 /* dotted-line.png */,
 				4F2C3CCA178253CB0094C622 /* bubble.png */,
 				4F2C3CC5178229640094C622 /* camera_button.png */,
@@ -3669,6 +3684,11 @@
 				4F2C3CC6178229640094C622 /* camera_button.png in Resources */,
 				4F2C3CCB178253CB0094C622 /* bubble.png in Resources */,
 				4F2C3CCD17825B080094C622 /* dotted-line.png in Resources */,
+				4F3A530417848CB60099E30D /* button_bg.png in Resources */,
+				4F3A530517848CB60099E30D /* rep_bg_blue.png in Resources */,
+				4F3A530617848CB60099E30D /* rep_bg.png in Resources */,
+				4F3A530717848CB60099E30D /* twitter_bubble.png in Resources */,
+				4F3A5309178490D30099E30D /* tac_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
