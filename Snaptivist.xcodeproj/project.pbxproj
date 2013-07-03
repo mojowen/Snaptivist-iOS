@@ -3703,9 +3703,6 @@
 				4F3A5309178490D30099E30D /* tac_logo.png in Resources */,
 				4F3A530B178495E60099E30D /* camera_flip.png in Resources */,
 				4F3A530D1784A5840099E30D /* user-placeholder.png in Resources */,
-<<<<<<< HEAD
-				4F3A53111784D72A0099E30D /* bg1.png in Resources */,
-=======
 				D27673181784D6540037C0FD /* tour_dates.txt in Resources */,
 >>>>>>> 68c0069c3745ad29e48cb02ad54b469e6d70ecd7
 			);
