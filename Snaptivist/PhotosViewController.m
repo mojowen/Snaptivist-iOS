@@ -12,8 +12,6 @@
 #import <AssertMacros.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-static const NSString *AVCaptureStillImageIsCapturingStillImageContext = @"AVCaptureStillImageIsCapturingStillImageContext";
-
 @interface PhotosViewController ()
 
 - (void)setupAVCapture;
@@ -34,9 +32,6 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext = @"AVCap
     self.filmStrip.hidden = YES;
 
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didRotate:)
-                                                name:@"UIDeviceOrientationDidChangeNotification"
-                                              object:nil];
     [super viewDidLoad];
 }
 
@@ -60,7 +55,7 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext = @"AVCap
 }
 
 -(IBAction)takePhotos:(id)sender {
-
+    [self flash];
     if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         [self takePicture]; // This method will assign photo asynchronously - after it's complete
     else
@@ -69,8 +64,8 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext = @"AVCap
 -(IBAction)setPhoto:(id)sender {
     [self teardownAVCapture];
     SnaptivistTabs *parent = [self tabController];
-    NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(self.camera.image)];
-    parent.signup.photo =photoData;
+    NSData *photoData = [[NSData dataWithData:UIImagePNGRepresentation(self.camera.image)] copy];
+    parent.signup.photo = photoData;
    [parent goToForm];
 }
 - (IBAction)selectPic1:(id)sender {
@@ -108,7 +103,6 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext = @"AVCap
 	
     // Make a still image output
 	stillImageOutput = [AVCaptureStillImageOutput new];
-	[stillImageOutput addObserver:self forKeyPath:@"capturingStillImage" options:NSKeyValueObservingOptionNew context:(__bridge void *)(AVCaptureStillImageIsCapturingStillImageContext)];
 
 	if ( [session canAddOutput:stillImageOutput] )
 		[session addOutput:stillImageOutput];
@@ -172,12 +166,6 @@ bail:
 {
 	if (videoDataOutputQueue)
 		dispatch_release(videoDataOutputQueue);
-    @try {
-        [stillImageOutput removeObserver:self forKeyPath:@"isCapturingStillImage"];
-    } @catch(id anException) {
-        NSLog(@"%@",anException);
-    }
-
 	[previewLayer removeFromSuperlayer];
 }
 
@@ -223,36 +211,23 @@ bail:
           }
 	 ];
 }
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)flash
 {
-	if ( context == (__bridge void *)(AVCaptureStillImageIsCapturingStillImageContext) ) {
-		BOOL isCapturingStillImage = [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
-		
-		if ( isCapturingStillImage ) {
-			// do flash bulb like animation
-			flashView = [[UIView alloc] initWithFrame: [[UIScreen mainScreen] applicationFrame]];
-			[flashView setBackgroundColor:[UIColor whiteColor]];
-			[flashView setAlpha:0.f];
-			[[[self view] window] addSubview:flashView];
-			
-			[UIView animateWithDuration:0.1f
-							 animations:^{
-								 [flashView setAlpha:1.f];
-							 }
-			 ];
-		}
-		else {
-			[UIView animateWithDuration:0.1f
-							 animations:^{
-								 [flashView setAlpha:0.f];
-							 }
-							 completion:^(BOOL finished){
-								 [flashView removeFromSuperview];
-								 flashView = nil;
-							 }
-			 ];
-		}
-	}
+    // do flash bulb like animation
+    flashView = [[UIView alloc] initWithFrame: [[UIScreen mainScreen] applicationFrame]];
+    [flashView setBackgroundColor:[UIColor whiteColor]];
+    [flashView setAlpha:1.f];
+    [[[self view] window] addSubview:flashView];
+    
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         [flashView setAlpha:0.f];
+                     }
+                     completion:^(BOOL finished){
+                         [flashView removeFromSuperview];
+                         flashView = nil;
+                     }
+     ];
 }
 -(void)assignPhoto {
     UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
