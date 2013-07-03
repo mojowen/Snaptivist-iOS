@@ -8,6 +8,12 @@
 
 #import "RepsViewController.h"
 
+@interface RepBG : UIImageView
+@end
+@implementation RepBG
+@end
+
+
 @interface RepsViewController ()
 
 @end
@@ -60,77 +66,6 @@
         passwordAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
 
         [passwordAlert show];
-    } else {
-        NSMutableArray *all_reps = [[NSMutableArray alloc] init];
-        
-        Rep *rep0 = [parent.reps objectAtIndex:0];
-        NSString *repImagePath = [rep0.bioguide stringByAppendingString:@".jpg"];
-        [self.repImage0 setImage: [UIImage imageNamed:repImagePath] ];
-        [self.repName0 setText: rep0.name];
-        [all_reps addObject:rep0.bioguide];
-        
-        Rep *rep1 = [parent.reps objectAtIndex:1];
-        repImagePath = [rep1.bioguide stringByAppendingString:@".jpg"];
-        [self.repImage1 setImage: [UIImage imageNamed:repImagePath] ];
-        [self.repName1 setText: rep1.name];
-        [all_reps addObject:rep1.bioguide];
-        
-        if( [parent.reps count] > 2 ) {
-            Rep *rep2 = [parent.reps objectAtIndex:2];
-            repImagePath = [rep2.bioguide stringByAppendingString:@".jpg"];
-            [self.repImage2 setImage: [UIImage imageNamed:repImagePath] ];
-            [self.repName2 setText: rep2.name];
-            [all_reps addObject:rep2.bioguide];
-
-            self.repName2.hidden = NO;
-            self.repImage2.hidden = NO;
-        }
-        
-        if( [parent.reps count] > 3 ) {
-            Rep *rep3 = [parent.reps objectAtIndex:3];
-            repImagePath = [rep3.bioguide stringByAppendingString:@".jpg"];
-            [self.repImage3 setImage: [UIImage imageNamed:repImagePath] ];
-            [self.repName3 setText: rep3.name];
-            [all_reps addObject:rep3.bioguide];
-
-            self.repName3.hidden = NO;
-            self.repImage3.hidden = NO;
-        }
-        
-        if( [parent.reps count] > 4 ) {
-            Rep *rep4 = [parent.reps objectAtIndex:4];
-            repImagePath = [rep4.bioguide stringByAppendingString:@".jpg"];
-            [self.repImage4 setImage: [UIImage imageNamed:repImagePath] ];
-            [self.repName4 setText: rep4.name];
-            [all_reps addObject:rep4.bioguide];
-
-            self.repName4.hidden = NO;
-            self.repImage4.hidden = NO;
-        }
-
-        if( [parent.reps count] > 5 ) {
-            Rep *rep5 = [parent.reps objectAtIndex:5];
-            repImagePath = [rep5.bioguide stringByAppendingString:@".jpg"];
-            [self.repImage5 setImage: [UIImage imageNamed:repImagePath] ];
-            [self.repName5 setText: rep5.name];
-            [all_reps addObject:rep5.bioguide];
-
-            self.repName5.hidden = NO;
-            self.repImage5.hidden = NO;
-        }
-        
-        if( [parent.reps count] > 6 ) {
-            Rep *rep6 = [parent.reps objectAtIndex:6];
-            repImagePath = [rep6.bioguide stringByAppendingString:@".jpg"];
-            [self.repImage6 setImage: [UIImage imageNamed:repImagePath] ];
-            [self.repName6 setText: rep6.name];
-            [all_reps addObject:rep6.bioguide];
-
-            self.repName6.hidden = NO;
-            self.repImage6.hidden = NO;
-        }
-        parent.signup.reps = [all_reps componentsJoinedByString:@","];
-        [parent.context save:nil];
     }
 
     [super viewDidLoad];
@@ -138,16 +73,12 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-
-    if( [parent.reps count] > 3 )
-            self.disclaimer.hidden = NO;
-
     if( [parent.reps count] == 4 )
         self.scrollView.frame = CGRectMake(157.0f,436.0f,710.0f,321.0f);
-
+    
     if( [parent.reps count] > 4 ) {
         self.scrollView.frame = CGRectMake(157.0f,436.0f,710.0f,321.0f);
-
+        
         if( [parent.reps count] == 5 )
             self.scrollView.contentSize = CGSizeMake(1100.0f, 300.0f);
         if( [parent.reps count] == 6 )
@@ -155,6 +86,68 @@
         if( [parent.reps count] == 7 )
             self.scrollView.contentSize = CGSizeMake(1500.0f, 300.0f);
     }
+
+    if( [parent.reps count] > 2 ) {
+        NSMutableArray *all_reps = [[NSMutableArray alloc] init];
+        NSInteger i = 0;
+        
+        for( Rep *rep in parent.reps) {
+            NSString *repImagePath = [rep.bioguide stringByAppendingString:@".jpg"];
+            
+            switch ( i ) {
+                case 0: {
+                    [self.repImage0 setImage: [UIImage imageNamed:repImagePath] ];
+                    [self.repName0 setText: rep.name];
+                    [all_reps addObject:rep.bioguide];
+                    break;
+                }
+                case 1: {
+                    [self.repImage1 setImage: [UIImage imageNamed:repImagePath] ];
+                    [self.repName1 setText: rep.name];
+                    [all_reps addObject:rep.bioguide];
+                    break;
+                }
+                case 2: {
+                    [self.repImage2 setImage: [UIImage imageNamed:repImagePath] ];
+                    [self.repName2 setText: rep.name];
+                    [all_reps addObject:rep.bioguide];
+                    break;
+                }
+                default: {
+                    UIImageView *repImage = [[UIImageView alloc] initWithFrame:self.repImage2.frame ];
+                    [repImage setImage: [UIImage imageNamed:repImagePath]];
+                    
+                    UILabel *repLabel = [[UILabel alloc] initWithFrame:self.repName2.frame ];
+                    [repLabel setText: rep.name];
+                    [repLabel setBackgroundColor:[UIColor clearColor] ];
+                    
+                    RepBG *repBGImage = [[RepBG alloc] initWithFrame:self.repBGImage2.frame ];
+                    [repBGImage setImage:self.repBGImage2.image];
+                    
+                    [self.scrollView addSubview:repBGImage];
+                    [self.scrollView addSubview:repLabel];
+                    [self.scrollView addSubview:repImage];
+                    
+                    [self.scrollView bringSubviewToFront:repBGImage];
+                    [self.scrollView bringSubviewToFront:repLabel];
+                    [self.scrollView bringSubviewToFront:repImage];
+
+                    [repBGImage setFrame:CGRectOffset( repBGImage.frame, 200.0f * (i-2), 0.0f)];
+                    [repImage setFrame:CGRectOffset( repImage.frame, 200.0f * (i-2), 0.0f)];
+                    [repLabel setFrame:CGRectOffset( repLabel.frame, 200.0f * (i-2), 0.0f)];
+
+                    break;
+                }
+                    
+            }
+            i = i + 1;
+        }
+        
+        
+        parent.signup.reps = [all_reps componentsJoinedByString:@","];
+        [parent.context save:nil];
+    }
+
 
 }
 
@@ -164,6 +157,21 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)sendMessage:(id)sender {
+    for( id view in self.scrollView.subviews) {
+        if( [view isKindOfClass:[RepBG class]] )
+        {
+            RepBG *bg = view;
+            [bg setImage: [UIImage imageNamed: @"rep_bg_blue.png"]];
+        }
+    }
+    [NSTimer scheduledTimerWithTimeInterval:0.3f
+                                     target:self
+                                   selector:@selector(nextStep)
+                                   userInfo:nil
+                                    repeats:NO];
+
+}
+-(void)nextStep {
     [[self tabController] goToFinished];
 }
 -(IBAction)noMessage:(id)sender {
@@ -253,4 +261,8 @@
 }
 
 
+- (void)viewDidUnload {
+    [self setRepBGImage2:nil];
+    [super viewDidUnload];
+}
 @end
