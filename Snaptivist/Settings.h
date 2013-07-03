@@ -15,10 +15,15 @@
 
 @property (nonatomic,retain) IBOutlet UILabel *numberOfSignups;
 @property (nonatomic,retain) IBOutlet UIButton *syncButton;
+@property(nonatomic,retain) IBOutlet UILabel *eventLabel;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic,retain) RKObjectManager *objectManager;
 
 @property (nonatomic,retain) NSArray *signups;
+@property (nonatomic,retain) NSArray *events;
+@property (nonatomic,retain) NSString *event;
+
+@property (nonatomic, retain) IBOutlet UIPickerView *myPickerView;
 
 @end

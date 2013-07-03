@@ -23,20 +23,12 @@
 
 @interface Settings ()
 
+
 @end
 
 @implementation Settings
 
 @synthesize context,signups;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -45,9 +37,6 @@
 //    NSString *base_URL = @"http://192.168.2.5:5050";
 
     self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:base_URL]];
-
-
-    
     RKObjectMapping *saveMapping = [RKObjectMapping mappingForClass:[Save class]];
     [saveMapping addAttributeMappingsFromDictionary:@{
      @"success" : @"success",
@@ -60,8 +49,9 @@
                                                                                         statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [self.objectManager addResponseDescriptor:responseDescriptor];
     
-
     [self loadSignups];
+    [self setUpPicker];
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -114,16 +104,16 @@
 -(void)saveSoundOff:(Signup *)signup {
 
     NSMutableURLRequest *request;
-    NSMutableDictionary *signupParams = [NSMutableDictionary
-                                  dictionaryWithObjectsAndKeys:
-                                  signup.firstName,@"firstName",
-                                  signup.lastName, @"lastName",
-                                  signup.email,@"email",
-                                  signup.twitter, @"twitter",
-                                  signup.zip, @"zip",
-                                  signup.photo_date, @"photo_date",
-                                  signup.sendTweet, @"sendTweet",
-                                  nil];
+    NSMutableDictionary *signupParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                             signup.firstName,@"firstName",
+                                             signup.lastName, @"lastName",
+                                             signup.email,@"email",
+                                             signup.twitter, @"twitter",
+                                             signup.zip, @"zip",
+                                             signup.photo_date, @"photo_date",
+                                             signup.sendTweet, @"sendTweet",
+                                             self.event, @"event",
+                                         nil];
     if( signup.friends != nil )
         [signupParams setObject:signup.friends forKey:@"friends"];
 
@@ -159,13 +149,58 @@
                                                NSLog(@"%@",error);
                                            }];
 
-    [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation]; // NOTE: Must be enqueued rather than started
-
-    
-    
-
+    [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation];
     
 }
 
+#pragma mark -
+#pragma mark UIPickerViewDataSource
+-(void)setUpPicker {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tour_dates" ofType:@"txt"];
+    NSString *fh = [NSString stringWithContentsOfFile:filePath encoding:NSUnicodeStringEncoding error:NULL];
+    self.events = [fh componentsSeparatedByString:@"\n"];
+    self.myPickerView.showsSelectionIndicator = YES;
+    NSInteger i = 3;
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"MM/dd/yyyy"];
+
+    for (NSString *event in self.events) {
+        NSArray *eventSplit = [event componentsSeparatedByString:@" "];
+        NSDate *date = [format dateFromString: [eventSplit objectAtIndex:0]];
+        NSDate *today =[NSDate date];
+        NSLog(@"%@",date);
+        NSLog(@"%@",today);
+        if( date > today )
+            break;
+        i = i +1;
+    }
+    
+    [self.myPickerView selectRow:i inComponent:0 animated:YES];
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [self.events objectAtIndex:row];
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+	return 40.0;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+	return [self.events count];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+	return 1;
+}
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    [self setEvent:[self.events objectAtIndex:[pickerView selectedRowInComponent:0]]];
+}
 
 @end
+
+
