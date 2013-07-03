@@ -774,7 +774,7 @@
                                     <constraint firstAttribute="width" constant="467" id="NTy-vt-ymC"/>
                                     <constraint firstAttribute="height" constant="149" id="hIZ-va-Gis"/>
                                 </constraints>
-                                <mutableString key="text">I hereby grant The Ally Coalition, its employees, legal representatives, agents and/or assigns, including all those acting with its permission, the irrevocable right and permission to copyright, use (in any legal manner), reuse and/or publish in any media form, any photograph or image captured, without restriction. The image may be in any media form including color, or black-and-white and made through any media form by The Ally Coalition and/or FUN. Music LLC., for any lawful purpose whatsoever, including the use in any related printed matter. I hereby waive any and all rights to inspect and/or approve the finished images/photos that may be used I hereby irrevocably release, discharge and agree to hold harmless The Ally Coalition, its representatives, assigns, employees, agents and/or any person or corporation, acting under its permission or authority, including any firm publishing and/or distributing the finished image, in whole or in part, from and against any and all liability or claims as a result of any distortion, blurring, alteration, optical illusion, and/or use in any composite form, either intentionally or otherwise, that may occur or be produced in the taking, processing and/or reproduction of the finished image, its publication, and/or its distribution. I hereby confirm that I am over eighteen years of age, and I am competent to contract in my own name as stated above. I fully acknowledge I am entitled to no compensation.I have read the foregoing release, authorization and agreement, and warrant that I fully understand the contents thereof.</mutableString>
+                                <string key="text">I hereby grant The Ally Coalition, its employees, legal representatives, agents and/or assigns, including all those acting with its permission, the irrevocable right and permission to copyright, use (in any legal manner), reuse and/or publish in any media form, any photograph or image captured, without restriction. The image may be in any media form including color, or black-and-white and made through any media form by The Ally Coalition and/or FUN. Music LLC., for any lawful purpose whatsoever, including the use in any related printed matter. I hereby waive any and all rights to inspect and/or approve the finished images/photos that may be used I hereby irrevocably release, discharge and agree to hold harmless The Ally Coalition, its representatives, assigns, employees, agents and/or any person or corporation, acting under its permission or authority, including any firm publishing and/or distributing the finished image, in whole or in part, from and against any and all liability or claims as a result of any distortion, blurring, alteration, optical illusion, and/or use in any composite form, either intentionally or otherwise, that may occur or be produced in the taking, processing and/or reproduction of the finished image, its publication, and/or its distribution. I hereby confirm that I am over eighteen years of age, and I am competent to contract in my own name as stated above. I fully acknowledge I am entitled to no compensation.I have read the foregoing release, authorization and agreement, and warrant that I fully understand the contents thereof.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -886,17 +886,28 @@
                                     <action selector="syncNow:" destination="O1w-wo-EnA" eventType="touchUpInside" id="ylz-aC-DWv"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgw-HD-mVm">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="498" id="huA-cH-8zz"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="O1w-wo-EnA" id="Div-ez-4oX"/>
+                                    <outlet property="delegate" destination="O1w-wo-EnA" id="bSG-ek-dgt"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wgw-HD-mVm" secondAttribute="bottom" constant="88" id="7k2-Kq-4oQ"/>
                             <constraint firstItem="tLH-pU-5bi" firstAttribute="top" secondItem="MHa-rG-czq" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8vt-e3-opt"/>
                             <constraint firstItem="MHa-rG-czq" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" constant="201" id="Jhw-13-Fxg"/>
                             <constraint firstItem="pld-bB-Ebt" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" constant="20" symbolic="YES" type="default" id="TUm-zO-mEG"/>
                             <constraint firstItem="3QF-cj-9fk" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" type="default" id="UDd-Cm-PpE"/>
                             <constraint firstItem="3QF-cj-9fk" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" type="default" id="cE4-Pm-Grg"/>
                             <constraint firstItem="pld-bB-Ebt" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dLL-0b-bhS"/>
-                            <constraint firstItem="MHa-rG-czq" firstAttribute="centerX" secondItem="3QF-cj-9fk" secondAttribute="centerX" type="default" id="dci-Ph-HRa"/>
-                            <constraint firstItem="tLH-pU-5bi" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="453" id="qT3-YS-ej3"/>
+                            <constraint firstItem="wgw-HD-mVm" firstAttribute="centerX" secondItem="tLH-pU-5bi" secondAttribute="centerX" type="default" id="ejW-6i-Exl"/>
+                            <constraint firstItem="wgw-HD-mVm" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="277" id="yYk-3r-52U"/>
+                            <constraint firstItem="MHa-rG-czq" firstAttribute="centerX" secondItem="3QF-cj-9fk" secondAttribute="centerX" type="default" id="zAy-Ln-Y2V"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -907,6 +918,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="myPickerView" destination="wgw-HD-mVm" id="5P8-kB-xOc"/>
                         <outlet property="numberOfSignups" destination="MHa-rG-czq" id="K3d-jc-050"/>
                         <outlet property="syncButton" destination="tLH-pU-5bi" id="Jda-ye-GEE"/>
                     </connections>
@@ -1127,7 +1139,6 @@
         <class className="FormViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FormViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addAndFinish:"/>
                 <relationship kind="action" name="addFriends:"/>
                 <relationship kind="action" name="nextStep:"/>
                 <relationship kind="outlet" name="addFriends" candidateClass="UIButton"/>
@@ -1199,6 +1210,8 @@
         <class className="Settings" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
             <relationships>
+                <relationship kind="outlet" name="eventLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="myPickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="numberOfSignups" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="syncButton" candidateClass="UIButton"/>
             </relationships>
@@ -1228,6 +1241,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JQy-4i-Ood"/>
+        <segue reference="HUW-Vn-eX2"/>
     </inferredMetricsTieBreakers>
 </document>

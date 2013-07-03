@@ -871,6 +871,7 @@
 		D27255A217811F0000DE4850 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27255A117811F0000DE4850 /* AssetsLibrary.framework */; };
 		D27255A417811F0800DE4850 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27255A317811F0800DE4850 /* AVFoundation.framework */; };
 		D27255A617811F1400DE4850 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27255A517811F1300DE4850 /* CoreVideo.framework */; };
+		D27673181784D6540037C0FD /* tour_dates.txt in Resources */ = {isa = PBXBuildFile; fileRef = D27673171784D6540037C0FD /* tour_dates.txt */; };
 		D2AA676217790626004D2385 /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA676117790626004D2385 /* RepsViewController.m */; };
 		D2AA6DC217791E06004D2385 /* Zip.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC117791E06004D2385 /* Zip.m */; };
 		D2AA6DC817792426004D2385 /* Rep.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC717792426004D2385 /* Rep.m */; };
@@ -1761,6 +1762,7 @@
 		D27255A117811F0000DE4850 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		D27255A317811F0800DE4850 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D27255A517811F1300DE4850 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		D27673171784D6540037C0FD /* tour_dates.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tour_dates.txt; sourceTree = "<group>"; };
 		D2AA676017790626004D2385 /* RepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsViewController.h; sourceTree = "<group>"; };
 		D2AA676117790626004D2385 /* RepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsViewController.m; sourceTree = "<group>"; };
 		D2AA6DC017791E06004D2385 /* Zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zip.h; sourceTree = "<group>"; };
@@ -2776,6 +2778,7 @@
 			isa = PBXGroup;
 			children = (
 				D202A31B177FC220004D547B /* reps.txt */,
+				D27673171784D6540037C0FD /* tour_dates.txt */,
 				D202A31C177FC220004D547B /* zipDistrict.txt */,
 				4F1CF67C177BF6C300D1B979 /* images */,
 				4F8D4E1B177BEFA100F69E71 /* images_reps */,
@@ -3697,6 +3700,7 @@
 				4F3A5309178490D30099E30D /* tac_logo.png in Resources */,
 				4F3A530B178495E60099E30D /* camera_flip.png in Resources */,
 				4F3A530D1784A5840099E30D /* user-placeholder.png in Resources */,
+				D27673181784D6540037C0FD /* tour_dates.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
