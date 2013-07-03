@@ -45,7 +45,10 @@
 
     [friends resignFirstResponder];
     
-    if( [friends.text length] > 0 && [self NSStringIsValidEmail:friends.text] ) {
+    if( [self NSStringIsValidEmail:friends.text] ) {
+        if( signup.friends == nil )
+            signup.friends = @"";
+
         NSMutableString *thefriends = [signup.friends mutableCopy];
         
         
@@ -59,6 +62,9 @@
         
         friends.text = @"";
         [self.addFriends setTitle:@"+Add Another" forState:UIControlStateNormal];
+        
+    } else if( [friends.text length] == 0 ) {
+        [self.friends becomeFirstResponder];
     } else {
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Wait a sec!"
                                                               message:@"That's not an email address..."
