@@ -150,7 +150,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated {
     self.scrollView.frame = CGRectMake(0.0f,0.0f,1024.0f,764.0f);
-    self.scrollView.contentSize = CGSizeMake(1024.0f, 1000.0f);
+    self.scrollView.contentSize = CGSizeMake(1024.0f, 900.0f);
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField;
 {
