@@ -8,7 +8,7 @@
 
 @interface Save : NSObject
 
-@property  BOOL success;
+@property  NSString *success;
 @property NSDictionary *signup;
 
 @end
@@ -41,9 +41,12 @@
 - (void)viewDidLoad
 {
     context = [[self appDelegate] managedObjectContext];
-    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://snaptivist.herokuapp.com"]];
+//    NSString *base_URL = @"http://snaptivist.herokuapp.com";
+    NSString *base_URL = @"http://192.168.2.5:5050";
 
-//    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://192.168.2.5:5050"]];
+    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:base_URL]];
+
+
     
     RKObjectMapping *saveMapping = [RKObjectMapping mappingForClass:[Save class]];
     [saveMapping addAttributeMappingsFromDictionary:@{
@@ -146,8 +149,11 @@
                                            success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
 
                                                Save *latest = [result firstObject];
+                                               if( [latest.success isEqualToString:@"true"] )
+                                                   [context deleteObject:signup];
+                                               NSLog(@"%@", latest.success);
                                                NSLog(@"%@", latest.signup);
-//                                               [context deleteObject:signup];
+               
                                            }
                                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                NSLog(@"%@",error);
