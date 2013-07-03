@@ -769,17 +769,58 @@
                                     <segue destination="x4U-ga-sUj" kind="modal" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="JQy-4i-Ood"/>
                                 </connections>
                             </button>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOH-y5-vzX">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="467" id="NTy-vt-ymC"/>
+                                    <constraint firstAttribute="height" constant="149" id="hIZ-va-Gis"/>
+                                </constraints>
+                                <mutableString key="text">I hereby grant The Ally Coalition, its employees, legal representatives, agents and/or assigns, including all those acting with its permission, the irrevocable right and permission to copyright, use (in any legal manner), reuse and/or publish in any media form, any photograph or image captured, without restriction. The image may be in any media form including color, or black-and-white and made through any media form by The Ally Coalition and/or FUN. Music LLC., for any lawful purpose whatsoever, including the use in any related printed matter. I hereby waive any and all rights to inspect and/or approve the finished images/photos that may be used I hereby irrevocably release, discharge and agree to hold harmless The Ally Coalition, its representatives, assigns, employees, agents and/or any person or corporation, acting under its permission or authority, including any firm publishing and/or distributing the finished image, in whole or in part, from and against any and all liability or claims as a result of any distortion, blurring, alteration, optical illusion, and/or use in any composite form, either intentionally or otherwise, that may occur or be produced in the taking, processing and/or reproduction of the finished image, its publication, and/or its distribution. I hereby confirm that I am over eighteen years of age, and I am competent to contract in my own name as stated above. I fully acknowledge I am entitled to no compensation.I have read the foregoing release, authorization and agreement, and warrant that I fully understand the contents thereof.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="By signing up - I agree to the Ally Coalition's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1U-1m-6Cc">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="363" id="ezJ-g4-OzN"/>
+                                    <constraint firstAttribute="height" constant="21" id="tBe-t8-kxW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.7254902124" green="0.0" blue="0.050980392839999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yt5-IE-9Vn">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="9F5-Ak-dHY"/>
+                                    <constraint firstAttribute="height" constant="25" id="V89-Jl-0kz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <state key="normal" title="Photo Release">
+                                    <color key="titleColor" red="0.7254902124" green="0.0" blue="0.050980392839999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showWaiver:" destination="gQ6-eJ-AY6" eventType="touchUpInside" id="NKk-Ra-ENk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5wg-p6-FpA" firstAttribute="leading" secondItem="0w2-mN-2ES" secondAttribute="leading" constant="412" id="4Yi-8H-yda"/>
-                            <constraint firstItem="BRD-LW-6Qs" firstAttribute="centerX" secondItem="rLo-5k-5Vr" secondAttribute="centerX" type="default" id="6hB-5r-DXW"/>
+                            <constraint firstAttribute="trailing" secondItem="Yt5-IE-9Vn" secondAttribute="trailing" constant="385" id="3XJ-Pu-RtU"/>
+                            <constraint firstItem="f1U-1m-6Cc" firstAttribute="centerY" secondItem="Yt5-IE-9Vn" secondAttribute="centerY" type="default" id="8NQ-RM-yYo"/>
                             <constraint firstItem="sAe-Rc-kK8" firstAttribute="top" secondItem="0w2-mN-2ES" secondAttribute="top" constant="129" id="Dpq-d7-awg"/>
+                            <constraint firstItem="sAe-Rc-kK8" firstAttribute="centerX" secondItem="BRD-LW-6Qs" secondAttribute="centerX" type="default" id="EC7-cJ-rpU"/>
                             <constraint firstItem="rLo-5k-5Vr" firstAttribute="centerX" secondItem="sAe-Rc-kK8" secondAttribute="centerX" type="default" id="FaY-QR-Bzz"/>
+                            <constraint firstAttribute="bottom" secondItem="kOH-y5-vzX" secondAttribute="bottom" constant="38" id="IOA-9K-Sdi"/>
+                            <constraint firstItem="kOH-y5-vzX" firstAttribute="centerX" secondItem="rLo-5k-5Vr" secondAttribute="centerX" type="default" id="O2G-3k-vLQ"/>
                             <constraint firstItem="BRD-LW-6Qs" firstAttribute="leading" secondItem="0w2-mN-2ES" secondAttribute="leading" type="default" id="RRH-ky-hqj"/>
-                            <constraint firstItem="rLo-5k-5Vr" firstAttribute="top" secondItem="0w2-mN-2ES" secondAttribute="top" constant="289" id="XYv-Zm-VjH"/>
+                            <constraint firstItem="f1U-1m-6Cc" firstAttribute="leading" secondItem="rLo-5k-5Vr" secondAttribute="leading" type="default" id="Tx6-Wv-nzs"/>
+                            <constraint firstAttribute="bottom" secondItem="Yt5-IE-9Vn" secondAttribute="bottom" constant="182" id="Wth-61-ZTu"/>
+                            <constraint firstItem="5wg-p6-FpA" firstAttribute="top" secondItem="rLo-5k-5Vr" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ihx-50-MnA"/>
+                            <constraint firstItem="5wg-p6-FpA" firstAttribute="leading" secondItem="0w2-mN-2ES" secondAttribute="leading" constant="410" id="ncc-zZ-KKO"/>
+                            <constraint firstAttribute="bottom" secondItem="5wg-p6-FpA" secondAttribute="bottom" constant="302" id="oCG-Zj-5CN"/>
                             <constraint firstItem="BRD-LW-6Qs" firstAttribute="top" secondItem="0w2-mN-2ES" secondAttribute="top" type="default" id="ow0-vn-8cI"/>
-                            <constraint firstAttribute="bottom" secondItem="5wg-p6-FpA" secondAttribute="bottom" constant="281" id="zBQ-ra-QVH"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -791,6 +832,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="finishMessage" destination="rLo-5k-5Vr" id="u3l-gt-9yH"/>
+                        <outlet property="waiver" destination="kOH-y5-vzX" id="xZ1-ge-Wfg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uo4-3t-FwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1073,6 +1115,112 @@
         <image name="tac_logo.png" width="83" height="121"/>
         <image name="twitter_bubble.png" width="470" height="186"/>
     </resources>
+    <classes>
+        <class className="FinishViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FinishViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showWaiver:"/>
+                <relationship kind="outlet" name="finishMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="waiver" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="FormViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FormViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addFriends:"/>
+                <relationship kind="action" name="nextStep:"/>
+                <relationship kind="outlet" name="addFriends" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="first_name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="friends" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="header" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="last_name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nextButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="photo" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="twitter" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="yourFriends" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="zip" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PhotosViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goToForm:"/>
+                <relationship kind="action" name="launchCamera:"/>
+                <relationship kind="action" name="relaunchCamera:"/>
+                <relationship kind="action" name="selectPic1:"/>
+                <relationship kind="action" name="selectPic2:"/>
+                <relationship kind="action" name="selectPic3:"/>
+                <relationship kind="action" name="selectPic4:"/>
+                <relationship kind="action" name="selectPic5:"/>
+                <relationship kind="action" name="setPhoto:"/>
+                <relationship kind="action" name="takePhotos:"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="camera" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="filmStrip" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="launchCamera" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="noPhoto" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pic1" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pic2" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pic3" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pic4" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pic5" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="previewView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="reLaunchCamera" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="selectPhoto" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="switchCamera" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="takePhoto" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RepBG" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RepBG.h"/>
+        </class>
+        <class className="RepsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RepsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="noMessage:"/>
+                <relationship kind="action" name="sendMessage:"/>
+                <relationship kind="outlet" name="message" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="repBGImage2" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="repImage0" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="repImage1" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="repImage2" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="repName0" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="repName1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="repName2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="Settings" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
+            <relationships>
+                <relationship kind="outlet" name="numberOfSignups" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="syncButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="SnaptivistTabs" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SnaptivistTabs.h"/>
+            <relationships>
+                <relationship kind="outlet" name="finishedButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="formButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="repsButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="UICustomLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICustomLabel.h"/>
+        </class>
+        <class className="UICustomTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICustomTextField.h"/>
+        </class>
+        <class className="WilmaButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WilmaButton.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -40,10 +40,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(IBAction) showWaiver:(id)sender {
+    self.waiver.hidden = NO;
+}
 
 #pragma mark - Private methods
 -(SnaptivistTabs *)tabController {
     return ((SnaptivistTabs *)(self.parentViewController));
+}
+- (void)viewDidUnload {
+    [self setWaiver:nil];
+    [super viewDidUnload];
 }
 @end

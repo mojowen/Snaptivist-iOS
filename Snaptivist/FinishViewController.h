@@ -12,4 +12,9 @@
 @interface FinishViewController : UIViewController
 
 @property (nonatomic,weak) IBOutlet UILabel *finishMessage;
+
+@property (weak, nonatomic) IBOutlet UITextView *waiver;
+
+-(IBAction)showWaiver:(id)sender;
+
 @end
