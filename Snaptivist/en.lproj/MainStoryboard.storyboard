@@ -713,12 +713,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="twitter_bubble.png" translatesAutoresizingMaskIntoConstraints="NO" id="MNA-Lr-kkX"/>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="327" translatesAutoresizingMaskIntoConstraints="NO" id="amA-O8-vLW" customClass="UICustomLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="[USER] from your district asks you to cosponsor Safe Schools laws" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="327" translatesAutoresizingMaskIntoConstraints="NO" id="amA-O8-vLW" customClass="UICustomLabel">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="327" id="7Vx-e2-PzI"/>
                                     <constraint firstAttribute="height" constant="87" id="eF4-xt-mYF"/>
                                 </constraints>
-                                <string key="text">Donec ullamcorper nulla non metus auctor fringilla. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. #tac #equality</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -781,6 +780,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="disclaimer" destination="Czy-1j-ltF" id="V5u-4b-v8Z"/>
+                        <outlet property="message" destination="amA-O8-vLW" id="OoI-z8-hbm"/>
                         <outlet property="repImage0" destination="f56-5Q-742" id="OfF-LP-nHR"/>
                         <outlet property="repImage1" destination="lf7-HP-kfg" id="pbI-bu-13h"/>
                         <outlet property="repImage2" destination="zVZ-mw-Gjv" id="4TP-TW-XvX"/>
