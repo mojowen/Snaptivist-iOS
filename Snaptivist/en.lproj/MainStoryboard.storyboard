@@ -327,7 +327,7 @@
                                             <constraint firstAttribute="height" constant="208" id="ham-zj-EOj"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="2. Tell Us About Yourself" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="849" translatesAutoresizingMaskIntoConstraints="NO" id="XEW-X5-Oce" customClass="UICustomLabel">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="2. Tell Us About Yourself" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="851" translatesAutoresizingMaskIntoConstraints="NO" id="XEW-X5-Oce" customClass="UICustomLabel">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="49" id="EJB-TU-PQX"/>
                                         </constraints>
@@ -336,9 +336,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rp0-ay-552" customClass="WilmaButton">
-                                        <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="0DD-OV-Ydp"/>
+                                            <constraint firstAttribute="width" constant="221" type="user" id="iq6-A8-zfx"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="+ Add Friend" backgroundImage="button_blue.png">
@@ -545,7 +545,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_view2.png" translatesAutoresizingMaskIntoConstraints="NO" id="qpH-fj-aqD"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sab-wn-Kjy" customClass="WilmaButton">
-                                <color key="backgroundColor" red="0.86274516580000005" green="0.0" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal" title="Send" backgroundImage="button_red.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -778,7 +777,7 @@
                                     <constraint firstAttribute="width" constant="467" id="NTy-vt-ymC"/>
                                     <constraint firstAttribute="height" constant="149" id="hIZ-va-Gis"/>
                                 </constraints>
-                                <mutableString key="text">I hereby grant The Ally Coalition, its employees, legal representatives, agents and/or assigns, including all those acting with its permission, the irrevocable right and permission to copyright, use (in any legal manner), reuse and/or publish in any media form, any photograph or image captured, without restriction. The image may be in any media form including color, or black-and-white and made through any media form by The Ally Coalition and/or FUN. Music LLC., for any lawful purpose whatsoever, including the use in any related printed matter. I hereby waive any and all rights to inspect and/or approve the finished images/photos that may be used I hereby irrevocably release, discharge and agree to hold harmless The Ally Coalition, its representatives, assigns, employees, agents and/or any person or corporation, acting under its permission or authority, including any firm publishing and/or distributing the finished image, in whole or in part, from and against any and all liability or claims as a result of any distortion, blurring, alteration, optical illusion, and/or use in any composite form, either intentionally or otherwise, that may occur or be produced in the taking, processing and/or reproduction of the finished image, its publication, and/or its distribution. I hereby confirm that I am over eighteen years of age, and I am competent to contract in my own name as stated above. I fully acknowledge I am entitled to no compensation.I have read the foregoing release, authorization and agreement, and warrant that I fully understand the contents thereof.</mutableString>
+                                <string key="text">I hereby grant The Ally Coalition, its employees, legal representatives, agents and/or assigns, including all those acting with its permission, the irrevocable right and permission to copyright, use (in any legal manner), reuse and/or publish in any media form, any photograph or image captured, without restriction. The image may be in any media form including color, or black-and-white and made through any media form by The Ally Coalition and/or FUN. Music LLC., for any lawful purpose whatsoever, including the use in any related printed matter. I hereby waive any and all rights to inspect and/or approve the finished images/photos that may be used I hereby irrevocably release, discharge and agree to hold harmless The Ally Coalition, its representatives, assigns, employees, agents and/or any person or corporation, acting under its permission or authority, including any firm publishing and/or distributing the finished image, in whole or in part, from and against any and all liability or claims as a result of any distortion, blurring, alteration, optical illusion, and/or use in any composite form, either intentionally or otherwise, that may occur or be produced in the taking, processing and/or reproduction of the finished image, its publication, and/or its distribution. I hereby confirm that I am over eighteen years of age, and I am competent to contract in my own name as stated above. I fully acknowledge I am entitled to no compensation.I have read the foregoing release, authorization and agreement, and warrant that I fully understand the contents thereof.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
