@@ -25,5 +25,10 @@
 @property (nonatomic,retain) NSString *event;
 
 @property (nonatomic, retain) IBOutlet UIPickerView *myPickerView;
+@property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
+
+
+-(void)deleteSignup:(Signup *)signup;
+-(void)saveSignup:(Signup *)signup;
 
 @end

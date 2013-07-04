@@ -5,6 +5,7 @@
 //  Created by Scott Duncombe on 6/26/13.
 //  Copyright (c) 2013 Scott Duncombe. All rights reserved.
 //
+#import "Settings.h"
 
 @interface Save : NSObject
 
@@ -18,8 +19,59 @@
 
 @end
 
+@interface Cell : UICollectionViewCell
 
-#import "Settings.h"
+@property (retain, nonatomic) IBOutlet UILabel *label;
+@property (retain, nonatomic) IBOutlet UIImageView *photo;
+@property (retain,nonatomic) Signup *signup;
+@property (retain,nonatomic) NSString *action;
+@property (retain,nonatomic) Settings *parent;
+
+@end
+@implementation Cell
+
+@synthesize parent,signup,action;
+
+-(void)viewDidLoad {
+    parent = ((Settings *)[self superview]);
+}
+
+-(IBAction)delete:(id)sender {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setLocale:usLocale];
+    
+    NSString *title = [NSString stringWithFormat:@"Delete %@",signup.firstName];
+    NSString *message = [NSString stringWithFormat:@"Are you sure you want to delete %@ - from %@",signup.firstName,[dateFormatter stringFromDate:signup.photo_date]];
+    
+    action = @"Delete";
+    
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
+                                                          message: message
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Delete", nil];
+    [myAlertView show];
+
+}
+-(IBAction)save:(id)sender {
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if( buttonIndex == 1 ) {
+        if( [action isEqualToString:@"Delete"])
+            [parent deleteSignup:signup];
+        else if ( [action isEqualToString:@"Save"] )
+            [parent saveSignup:signup];
+    }
+    action = nil;
+}
+
+@end
+
+
 
 @interface Settings ()
 
@@ -51,7 +103,7 @@
     
     [self loadSignups];
     [self setUpPicker];
-
+    [self.collectionView setBackgroundColor:[UIColor clearColor]];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -63,11 +115,12 @@
 }
 -(IBAction)syncNow:(id)sender {
 
+    
     self.syncButton.hidden = YES;
     int count = 1;
 
     for (Signup *signup in signups) {
-        [self saveSoundOff:signup];
+        [self saveSignup:signup];
         NSString *label = [NSString stringWithFormat: @"Saving %u of %lu...", count, (unsigned long)[signups count]];
         self.numberOfSignups.text = label;
         count += 1;
@@ -101,7 +154,15 @@
     NSError *saveError = nil;
     [context save:&saveError];
 }
--(void)saveSoundOff:(Signup *)signup {
+-(void)deleteSignup:(Signup *)signup {
+    NSIndexPath *index = [NSIndexPath indexPathForRow:[signups indexOfObject:signup] inSection:0];
+    [context deleteObject:signup];
+    Cell *cell = (Cell *)[self.collectionView cellForItemAtIndexPath:index];
+    [cell removeFromSuperview];
+    [self loadSignups];
+    [self.collectionView reloadData];
+}
+-(void)saveSignup:(Signup *)signup {
 
     NSMutableURLRequest *request;
     NSMutableDictionary *signupParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -153,6 +214,8 @@
     
 }
 
+
+// Picker stuff
 #pragma mark -
 #pragma mark UIPickerViewDataSource
 -(void)setUpPicker {
@@ -201,6 +264,36 @@
     self.event = [self.events objectAtIndex:[pickerView selectedRowInComponent:0]];
 }
 
-@end
 
+// Cell View Stuff
+
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
+{
+    return [signups count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+{
+    static NSString *identifier = @"cell";
+
+    Cell *cell = [cv dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    cell.parent = self;
+    cell.signup = [signups objectAtIndex:indexPath.row];
+
+    
+    if( cell.signup.photo != nil ) {
+        [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f]];
+    }
+    
+    [cell setBackgroundColor:[UIColor redColor]];
+    
+    cell.label.text = [NSString stringWithFormat:@"%@",cell.signup.firstName];
+
+    return cell;
+}
+
+
+
+@end
 
