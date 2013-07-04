@@ -159,9 +159,10 @@
 
     outstandingSync--;
     
-    if( outstandingSync < 1 )
+    if( outstandingSync < 1 ) {
         [self enableSync];
         [self reloadSignups];
+    }
 }
 -(void)reloadSignups {
     [self loadSignups];
