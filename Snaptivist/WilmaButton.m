@@ -29,7 +29,7 @@
 */
 
 - (void)awakeFromNib {
-    self.font = [UIFont fontWithName: @"Wilma-Base" size:self.font.pointSize];
+    self.titleLabel.font = [UIFont fontWithName: @"Wilma-Base" size:self.titleLabel.font.pointSize];
 }
 
 @end
