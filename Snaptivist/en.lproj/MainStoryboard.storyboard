@@ -1020,6 +1020,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxC-fn-1iH">
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="192" type="user" id="Pl1-QJ-ted"/>
+                                    <constraint firstAttribute="height" constant="192" type="user" id="evY-0G-EOx"/>
+                                    <constraint firstAttribute="width" constant="28" type="user" id="unt-De-7iu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" backgroundImage="sidenav_inactive.png">
@@ -1035,6 +1037,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l70-6H-P7X">
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="28" type="user" id="3Fi-Rg-Bq6"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="192" type="user" id="R9J-qT-2LP"/>
                                     <constraint firstAttribute="height" constant="192" type="user" id="eh2-vc-biy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1052,6 +1056,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QI4-bk-JiK">
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="192" type="user" id="CrI-ed-pth"/>
+                                    <constraint firstAttribute="height" constant="192" type="user" id="Gp9-Oc-ETq"/>
+                                    <constraint firstAttribute="width" constant="28" type="user" id="ZJJ-j3-qbC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" backgroundImage="sidenav_inactive.png">
@@ -1068,6 +1074,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYj-6J-Gel">
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="192" type="user" id="0tI-ys-qgy"/>
+                                    <constraint firstAttribute="height" constant="192" type="user" id="3UT-MJ-dKZ"/>
+                                    <constraint firstAttribute="width" constant="28" type="user" id="HCn-kp-g62"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" backgroundImage="sidenav_active.png">
@@ -1237,6 +1245,10 @@
         <class className="SnaptivistTabs" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SnaptivistTabs.h"/>
             <relationships>
+                <relationship kind="action" name="goToFinishedAction:"/>
+                <relationship kind="action" name="goToFormAction:"/>
+                <relationship kind="action" name="goToPhotoAction:"/>
+                <relationship kind="action" name="goToRepsAction:"/>
                 <relationship kind="outlet" name="finishedButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="formButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="photosButton" candidateClass="UIButton"/>
