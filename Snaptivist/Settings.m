@@ -175,6 +175,7 @@
 //    }
 //    
 //    [self.myPickerView selectRow:i inComponent:0 animated:YES];
+    self.event = [self.events objectAtIndex:0];
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
