@@ -881,6 +881,8 @@
 		D22637841784FE3F00FEB8E4 /* B001278.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D22637751784FE3E00FEB8E4 /* B001278.jpg */; };
 		D22637851784FE3F00FEB8E4 /* C001098.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D22637761784FE3F00FEB8E4 /* C001098.jpg */; };
 		D22637861784FE3F00FEB8E4 /* K000384.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D22637771784FE3F00FEB8E4 /* K000384.jpg */; };
+		D2534B4717861E98006917E9 /* SignupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2534B4617861E98006917E9 /* SignupCell.m */; };
+		D2534B4A17861F68006917E9 /* Save.m in Sources */ = {isa = PBXBuildFile; fileRef = D2534B4917861F68006917E9 /* Save.m */; };
 		D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE541763E40700A67306 /* SnaptivistTabs.m */; };
 		D26EDE5B17640BAE00A67306 /* Snaptivist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5917640BAE00A67306 /* Snaptivist.xcdatamodeld */; };
 		D26EDE601764159E00A67306 /* Signup.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5F1764159E00A67306 /* Signup.m */; };
@@ -1790,6 +1792,10 @@
 		D22637751784FE3E00FEB8E4 /* B001278.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = B001278.jpg; sourceTree = "<group>"; };
 		D22637761784FE3F00FEB8E4 /* C001098.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = C001098.jpg; sourceTree = "<group>"; };
 		D22637771784FE3F00FEB8E4 /* K000384.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = K000384.jpg; sourceTree = "<group>"; };
+		D2534B4517861E98006917E9 /* SignupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupCell.h; sourceTree = "<group>"; };
+		D2534B4617861E98006917E9 /* SignupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupCell.m; sourceTree = "<group>"; };
+		D2534B4817861F68006917E9 /* Save.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Save.h; sourceTree = "<group>"; };
+		D2534B4917861F68006917E9 /* Save.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Save.m; sourceTree = "<group>"; };
 		D26EDE531763E40700A67306 /* SnaptivistTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaptivistTabs.h; sourceTree = "<group>"; };
 		D26EDE541763E40700A67306 /* SnaptivistTabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaptivistTabs.m; sourceTree = "<group>"; };
 		D26EDE5A17640BAE00A67306 /* Snaptivist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Snaptivist.xcdatamodel; sourceTree = "<group>"; };
@@ -2742,6 +2748,8 @@
 				4F5A0208177BD9B200D193EA /* UICustomTextField.m */,
 				4F2C3CC7178229B90094C622 /* WilmaButton.h */,
 				4F2C3CC8178229B90094C622 /* WilmaButton.m */,
+				D2534B4517861E98006917E9 /* SignupCell.h */,
+				D2534B4617861E98006917E9 /* SignupCell.m */,
 			);
 			name = ViewSubclasses;
 			sourceTree = "<group>";
@@ -2756,6 +2764,8 @@
 				D2AA6DC717792426004D2385 /* Rep.m */,
 				D2AA6DC017791E06004D2385 /* Zip.h */,
 				D2AA6DC117791E06004D2385 /* Zip.m */,
+				D2534B4817861F68006917E9 /* Save.h */,
+				D2534B4917861F68006917E9 /* Save.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3837,6 +3847,8 @@
 				D202A317177C224E004D547B /* FinishViewController.m in Sources */,
 				4F7669321781F66E00CEA2C6 /* Settings.m in Sources */,
 				4F2C3CC9178229B90094C622 /* WilmaButton.m in Sources */,
+				D2534B4717861E98006917E9 /* SignupCell.m in Sources */,
+				D2534B4A17861F68006917E9 /* Save.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
