@@ -306,6 +306,8 @@ bail:
         (! isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
         ||
        (isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+       ||
+       ! [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]
     )
     {
         CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
