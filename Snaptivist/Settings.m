@@ -89,7 +89,7 @@
     NSArray *batchOfSignups;
 
     if( outstandingSync > 10 ) {
-        batchOfSignups  = [signups subarrayWithRange:NSMakeRange(0,9)];
+        batchOfSignups  = [signups subarrayWithRange:NSMakeRange(0,10)];
         nextToSync = 10;
     } else{
         batchOfSignups = [signups copy];
@@ -103,12 +103,17 @@
 -(void)disableSync {
     self.syncButton.enabled = NO;
     self.syncDisabled = YES;
+    [self.myPickerView setUserInteractionEnabled:NO];
     [self.syncButton setAlpha:0.3f];
+    [self.myPickerView setAlpha:0.3f];
+
 }
 -(void)enableSync {
     self.syncButton.enabled = YES;
     self.syncDisabled = NO;
+    [self.myPickerView setUserInteractionEnabled:YES];
     [self.syncButton setAlpha:1.0f];
+    [self.myPickerView setAlpha:1.0f];
 }
 #pragma mark - Private methods
 - (AppDelegate *)appDelegate {
@@ -118,6 +123,11 @@
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"Signup" inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
+
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"photo_date" ascending:NO];
+    [request setSortDescriptors:@[sortDescriptor]];
+
     [request setEntity:entityDescription];
             
     NSError *error;
@@ -152,12 +162,17 @@
 }
 -(void)finishedSync {
     
-    if( nextToSync != -1 && nextToSync < [signups count ])
+    if( nextToSync != -1 && nextToSync < [signups count ] ) {
         [self saveSignup:(Signup *)[signups objectAtIndex: nextToSync]];
-    else
+        NSLog(@"Syncing %u named %@",nextToSync, ((Signup *)[signups objectAtIndex: nextToSync]).firstName);
+        nextToSync++;
+    }
+    else {
         nextToSync = -1;
+    }
 
     outstandingSync--;
+    NSLog(@"outstanding sync %u",outstandingSync);
     
     if( outstandingSync < 1 ) {
         [self enableSync];
@@ -223,18 +238,17 @@
                                                    self.errors.hidden = NO;
                                                }
                                               [self finishedSync];
-                                               NSLog(@"%@", latest.success);
-                                               NSLog(@"%@", latest.signup);
+                                               //NSLog(@"%@", latest.success);
+             //                                  NSLog(@"%@", latest.signup);
                
                                            }
                                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                [self errorSignup:signup];
-                                               
-                                               outstandingSync = outstandingSync -1;
+                                               [self finishedSync];
+
                                                self.errors.text = @"Some errors on the last sync";
                                                self.errors.hidden = NO;
-                                               NSLog(@"%@", error);
-                                               [self finishedSync];
+                                             //  NSLog(@"%@", error);
                                            }];
 
     [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation];
@@ -311,6 +325,8 @@
     
     if( cell.signup.photo != nil ) {
         [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
+    } else {
+        [cell.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
     }
     
     [cell setBackgroundColor:[UIColor redColor]];
