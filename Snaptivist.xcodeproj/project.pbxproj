@@ -879,6 +879,7 @@
 		D22637841784FE3F00FEB8E4 /* B001278.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D22637751784FE3E00FEB8E4 /* B001278.jpg */; };
 		D22637851784FE3F00FEB8E4 /* C001098.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D22637761784FE3F00FEB8E4 /* C001098.jpg */; };
 		D22637861784FE3F00FEB8E4 /* K000384.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D22637771784FE3F00FEB8E4 /* K000384.jpg */; };
+		D226378817851D5600FEB8E4 /* K000385.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D226378717851D5600FEB8E4 /* K000385.jpg */; };
 		D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE541763E40700A67306 /* SnaptivistTabs.m */; };
 		D26EDE5B17640BAE00A67306 /* Snaptivist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5917640BAE00A67306 /* Snaptivist.xcdatamodeld */; };
 		D26EDE601764159E00A67306 /* Signup.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5F1764159E00A67306 /* Signup.m */; };
@@ -1786,6 +1787,7 @@
 		D22637751784FE3E00FEB8E4 /* B001278.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = B001278.jpg; sourceTree = "<group>"; };
 		D22637761784FE3F00FEB8E4 /* C001098.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = C001098.jpg; sourceTree = "<group>"; };
 		D22637771784FE3F00FEB8E4 /* K000384.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = K000384.jpg; sourceTree = "<group>"; };
+		D226378717851D5600FEB8E4 /* K000385.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = K000385.jpg; sourceTree = "<group>"; };
 		D26EDE531763E40700A67306 /* SnaptivistTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaptivistTabs.h; sourceTree = "<group>"; };
 		D26EDE541763E40700A67306 /* SnaptivistTabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnaptivistTabs.m; sourceTree = "<group>"; };
 		D26EDE5A17640BAE00A67306 /* Snaptivist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Snaptivist.xcdatamodel; sourceTree = "<group>"; };
@@ -2254,6 +2256,7 @@
 				4F8D4F6F177BEFA200F69E71 /* H001043.jpg */,
 				4F8D4F70177BEFA200F69E71 /* H001044.jpg */,
 				4F8D4F71177BEFA200F69E71 /* H001045.jpg */,
+				D226378717851D5600FEB8E4 /* K000385.jpg */,
 				4F8D4F72177BEFA200F69E71 /* H001046-.jpg */,
 				4F8D4F73177BEFA200F69E71 /* H001046.jpg */,
 				4F8D4F74177BEFA200F69E71 /* H001047.jpg */,
@@ -3773,6 +3776,7 @@
 				4F304E6F17850FF500BBD9F1 /* camera_confirm.png in Resources */,
 				4F304E7017850FF500BBD9F1 /* camera_retake.png in Resources */,
 				4F304E7117850FF500BBD9F1 /* camera_shutter.png in Resources */,
+				D226378817851D5600FEB8E4 /* K000385.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
