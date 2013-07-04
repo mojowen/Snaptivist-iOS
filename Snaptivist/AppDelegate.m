@@ -18,7 +18,7 @@
 {
     [self loadZips];
     [self loadReps];
-    [self loadTestSaves];
+//    [self loadTestSaves];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
