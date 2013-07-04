@@ -27,6 +27,8 @@
 @property (nonatomic,retain) UIViewController *finishedViewController;
 
 @property (nonatomic,retain) UIViewController *activeView;
+@property (nonatomic,retain) IBOutlet UIImageView *allyLogo;
+
 
 // View Buttons
 @property (nonatomic,retain) IBOutlet UIButton *photosButton;

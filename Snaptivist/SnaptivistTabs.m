@@ -44,12 +44,15 @@
 -(void)goToPhoto {
     [self setChildFrame:photosViewController];
     [self setButton:self.photosButton];
+    self.allyLogo.hidden = NO; 
 }
 -(void)goToForm {
     [self setChildFrame:formViewController];
     [self setButton:self.formButton];
+    self.allyLogo.hidden = NO;
 }
 -(void)goToReps {
+    self.allyLogo.hidden = NO;
     if( [signup.zip length] > 4 ) {
         if( [signup.zip length ] > 5 && [signup.email length ] > 1 )
         {
@@ -76,6 +79,7 @@
     if( [signup.email length] > 1 ) {
         [self setChildFrame:finishedViewController];
         [self setButton:self.finishedButton];
+        self.allyLogo.hidden = YES;
     } else {
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"No Email!"
                                                               message:@"We can't sign you up without an email..."
