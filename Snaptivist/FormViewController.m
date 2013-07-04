@@ -152,6 +152,10 @@
     self.scrollView.frame = CGRectMake(0.0f,0.0f,1024.0f,764.0f);
     self.scrollView.contentSize = CGSizeMake(1024.0f, 900.0f);
 }
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [self.scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+}
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField;
 {
     if( self.zip == textField || self.email == textField || self.twitter == textField )
