@@ -165,11 +165,10 @@
     [format setDateFormat:@"MM/dd/yyyy"];
 
     for (NSString *event in self.events) {
-        NSArray *eventSplit = [event componentsSeparatedByString:@" "];
+        NSArray *eventSplit = [event componentsSeparatedByString:@"\t"];
         NSDate *date = [format dateFromString: [eventSplit objectAtIndex:0]];
         NSDate *today =[NSDate date];
-        NSLog(@"%@",date);
-        NSLog(@"%@",today);
+
         if( date > today )
             break;
         i = i +1;
