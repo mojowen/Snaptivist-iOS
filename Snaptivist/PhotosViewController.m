@@ -31,8 +31,11 @@
     photoNumber = 0;
     self.filmStrip.hidden = YES;
 
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [super viewDidLoad];
+
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -255,13 +258,11 @@ bail:
 	return result;
 }
 - (void) didRotate:(NSNotification *)notification {
-    if( previewLayer != nil )
-    {
-        if( [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
-            [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeRight];
-        else
-            [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeLeft];
-    }
+
+    if( [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
+        [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeRight];
+    else
+        [previewLayer.connection setVideoOrientation: AVCaptureVideoOrientationLandscapeLeft];
 }
 - (IBAction)switchCameras:(id)sender
 {
@@ -301,7 +302,11 @@ bail:
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     
 
-    if( ! isUsingFrontFacingCamera )
+    if(
+        (! isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
+        ||
+       (isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+    )
     {
         CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
         CGContextConcatCTM(context, flipVertical);
@@ -363,5 +368,6 @@ bail:
 - (void)viewDidUnload {
     [self setFilmStrip:nil];
     [super viewDidUnload];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 @end
