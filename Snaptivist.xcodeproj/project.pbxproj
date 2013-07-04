@@ -32,6 +32,12 @@
 		4F2C3CC9178229B90094C622 /* WilmaButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C3CC8178229B90094C622 /* WilmaButton.m */; };
 		4F2C3CCB178253CB0094C622 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CCA178253CB0094C622 /* bubble.png */; };
 		4F2C3CCD17825B080094C622 /* dotted-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C3CCC17825B080094C622 /* dotted-line.png */; };
+		4F304E6C17850FF500BBD9F1 /* button_bigcamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F304E6617850FF500BBD9F1 /* button_bigcamera.png */; };
+		4F304E6D17850FF500BBD9F1 /* button_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F304E6717850FF500BBD9F1 /* button_blue.png */; };
+		4F304E6E17850FF500BBD9F1 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F304E6817850FF500BBD9F1 /* button_red.png */; };
+		4F304E6F17850FF500BBD9F1 /* camera_confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F304E6917850FF500BBD9F1 /* camera_confirm.png */; };
+		4F304E7017850FF500BBD9F1 /* camera_retake.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F304E6A17850FF500BBD9F1 /* camera_retake.png */; };
+		4F304E7117850FF500BBD9F1 /* camera_shutter.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F304E6B17850FF500BBD9F1 /* camera_shutter.png */; };
 		4F3A530417848CB60099E30D /* button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530017848CB60099E30D /* button_bg.png */; };
 		4F3A530517848CB60099E30D /* rep_bg_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530117848CB60099E30D /* rep_bg_blue.png */; };
 		4F3A530617848CB60099E30D /* rep_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530217848CB60099E30D /* rep_bg.png */; };
@@ -933,6 +939,12 @@
 		4F2C3CC8178229B90094C622 /* WilmaButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WilmaButton.m; sourceTree = "<group>"; };
 		4F2C3CCA178253CB0094C622 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		4F2C3CCC17825B080094C622 /* dotted-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotted-line.png"; sourceTree = "<group>"; };
+		4F304E6617850FF500BBD9F1 /* button_bigcamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bigcamera.png; sourceTree = "<group>"; };
+		4F304E6717850FF500BBD9F1 /* button_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_blue.png; sourceTree = "<group>"; };
+		4F304E6817850FF500BBD9F1 /* button_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_red.png; sourceTree = "<group>"; };
+		4F304E6917850FF500BBD9F1 /* camera_confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_confirm.png; sourceTree = "<group>"; };
+		4F304E6A17850FF500BBD9F1 /* camera_retake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_retake.png; sourceTree = "<group>"; };
+		4F304E6B17850FF500BBD9F1 /* camera_shutter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_shutter.png; sourceTree = "<group>"; };
 		4F3A530017848CB60099E30D /* button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bg.png; sourceTree = "<group>"; };
 		4F3A530117848CB60099E30D /* rep_bg_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rep_bg_blue.png; sourceTree = "<group>"; };
 		4F3A530217848CB60099E30D /* rep_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rep_bg.png; sourceTree = "<group>"; };
@@ -1844,6 +1856,12 @@
 		4F1CF67C177BF6C300D1B979 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4F304E6617850FF500BBD9F1 /* button_bigcamera.png */,
+				4F304E6717850FF500BBD9F1 /* button_blue.png */,
+				4F304E6817850FF500BBD9F1 /* button_red.png */,
+				4F304E6917850FF500BBD9F1 /* camera_confirm.png */,
+				4F304E6A17850FF500BBD9F1 /* camera_retake.png */,
+				4F304E6B17850FF500BBD9F1 /* camera_shutter.png */,
 				4F3A530C1784A5840099E30D /* user-placeholder.png */,
 				4F3A530A178495E60099E30D /* camera_flip.png */,
 				4F3A5308178490D30099E30D /* tac_logo.png */,
@@ -3761,6 +3779,12 @@
 				D22637841784FE3F00FEB8E4 /* B001278.jpg in Resources */,
 				D22637851784FE3F00FEB8E4 /* C001098.jpg in Resources */,
 				D22637861784FE3F00FEB8E4 /* K000384.jpg in Resources */,
+				4F304E6C17850FF500BBD9F1 /* button_bigcamera.png in Resources */,
+				4F304E6D17850FF500BBD9F1 /* button_blue.png in Resources */,
+				4F304E6E17850FF500BBD9F1 /* button_red.png in Resources */,
+				4F304E6F17850FF500BBD9F1 /* camera_confirm.png in Resources */,
+				4F304E7017850FF500BBD9F1 /* camera_retake.png in Resources */,
+				4F304E7117850FF500BBD9F1 /* camera_shutter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
