@@ -39,7 +39,6 @@
 		4F3A5309178490D30099E30D /* tac_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A5308178490D30099E30D /* tac_logo.png */; };
 		4F3A530B178495E60099E30D /* camera_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530A178495E60099E30D /* camera_flip.png */; };
 		4F3A530D1784A5840099E30D /* user-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A530C1784A5840099E30D /* user-placeholder.png */; };
-		4F3A53111784D72A0099E30D /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3A53101784D72A0099E30D /* bg1.png */; };
 		4F5A0209177BD9B200D193EA /* UICustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A0208177BD9B200D193EA /* UICustomTextField.m */; };
 		4F67DD08177B692200787169 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD07177B692200787169 /* app_icon.png */; };
 		4F67DD0A177B698400787169 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F67DD09177B698400787169 /* app_icon@2x.png */; };
@@ -926,7 +925,6 @@
 		4F3A5308178490D30099E30D /* tac_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tac_logo.png; sourceTree = "<group>"; };
 		4F3A530A178495E60099E30D /* camera_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_flip.png; sourceTree = "<group>"; };
 		4F3A530C1784A5840099E30D /* user-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-placeholder.png"; sourceTree = "<group>"; };
-		4F3A53101784D72A0099E30D /* bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg1.png; sourceTree = "<group>"; };
 		4F5A0207177BD9B200D193EA /* UICustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomTextField.h; sourceTree = "<group>"; };
 		4F5A0208177BD9B200D193EA /* UICustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomTextField.m; sourceTree = "<group>"; };
 		4F67DD07177B692200787169 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
@@ -1816,7 +1814,6 @@
 		4F1CF67C177BF6C300D1B979 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				4F3A53101784D72A0099E30D /* bg1.png */,
 				4F3A530C1784A5840099E30D /* user-placeholder.png */,
 				4F3A530A178495E60099E30D /* camera_flip.png */,
 				4F3A5308178490D30099E30D /* tac_logo.png */,
@@ -3704,7 +3701,6 @@
 				4F3A530B178495E60099E30D /* camera_flip.png in Resources */,
 				4F3A530D1784A5840099E30D /* user-placeholder.png in Resources */,
 				D27673181784D6540037C0FD /* tour_dates.txt in Resources */,
->>>>>>> 68c0069c3745ad29e48cb02ad54b469e6d70ecd7
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
