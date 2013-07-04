@@ -160,21 +160,21 @@
     NSString *fh = [NSString stringWithContentsOfFile:filePath encoding:NSUnicodeStringEncoding error:NULL];
     self.events = [fh componentsSeparatedByString:@"\n"];
     self.myPickerView.showsSelectionIndicator = YES;
-    NSInteger i = 3;
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"MM/dd/yyyy"];
-
-    for (NSString *event in self.events) {
-        NSArray *eventSplit = [event componentsSeparatedByString:@"\t"];
-        NSDate *date = [format dateFromString: [eventSplit objectAtIndex:0]];
-        NSDate *today =[NSDate date];
-
-        if( date > today )
-            break;
-        i = i +1;
-    }
-    
-    [self.myPickerView selectRow:i inComponent:0 animated:YES];
+//    NSInteger i = 3;
+//    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+//    [format setDateFormat:@"MM/dd/yyyy"];
+//
+//    for (NSString *event in self.events) {
+//        NSArray *eventSplit = [event componentsSeparatedByString:@"\t"];
+//        NSDate *date = [format dateFromString: [eventSplit objectAtIndex:0]];
+//        NSDate *today =[NSDate date];
+//
+//        if( date > today )
+//            break;
+//        i = i +1;
+//    }
+//    
+//    [self.myPickerView selectRow:i inComponent:0 animated:YES];
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
@@ -197,7 +197,7 @@
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [self setEvent:[self.events objectAtIndex:[pickerView selectedRowInComponent:0]]];
+    self.event = [self.events objectAtIndex:[pickerView selectedRowInComponent:0]];
 }
 
 @end
