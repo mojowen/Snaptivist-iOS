@@ -22,10 +22,14 @@
 @interface Cell : UICollectionViewCell
 
 @property (retain, nonatomic) IBOutlet UILabel *label;
-@property (retain, nonatomic) IBOutlet UIImageView *photo;
+@property (retain, nonatomic) IBOutlet UILabel *state;
+@property (retain, nonatomic) IBOutlet UIButton *photo;
 @property (retain,nonatomic) Signup *signup;
 @property (retain,nonatomic) NSString *action;
 @property (retain,nonatomic) Settings *parent;
+
+-(void)setSyncState;
+-(void)setErrorState;
 
 @end
 @implementation Cell
@@ -37,36 +41,93 @@
 }
 
 -(IBAction)delete:(id)sender {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    [dateFormatter setLocale:usLocale];
-    
-    NSString *title = [NSString stringWithFormat:@"Delete %@",signup.firstName];
-    NSString *message = [NSString stringWithFormat:@"Are you sure you want to delete %@ - from %@",signup.firstName,[dateFormatter stringFromDate:signup.photo_date]];
-    
-    action = @"Delete";
-    
-    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
-                                                          message: message
-                                                         delegate:self
-                                                cancelButtonTitle:@"Cancel"
-                                                otherButtonTitles:@"Delete", nil];
+    UIAlertView *myAlertView;
+
+    if( parent.outstandingSync < 1 ) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        [dateFormatter setLocale:usLocale];
+        
+        NSString *title = [NSString stringWithFormat:@"Delete %@",signup.firstName];
+        NSString *message = [NSString stringWithFormat:@"Are you sure you want to delete %@ - from %@",signup.firstName,[dateFormatter stringFromDate:signup.photo_date]];
+        
+        action = @"Delete";
+        
+        myAlertView = [[UIAlertView alloc] initWithTitle:title
+                                                              message: message
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                                    otherButtonTitles:@"Delete", nil];
+    } else {
+        myAlertView = [[UIAlertView alloc] initWithTitle:@"Cool Your Jets"
+                                                 message:@"Things are saving - wait till that's done"
+                                                delegate:self
+                                       cancelButtonTitle:@"Ok - I'll wait"
+                                       otherButtonTitles:nil, nil];
+    }
     [myAlertView show];
 
 }
 -(IBAction)save:(id)sender {
-}
+    if( ! parent.syncDisabled ) {
+        UIAlertView *myAlertView;
+        
+        if( parent.outstandingSync < 1 ) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+            [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+            NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+            [dateFormatter setLocale:usLocale];
+            
+            NSString *title = [NSString stringWithFormat:@"Sync %@",signup.firstName];
+            NSString *message = [NSString stringWithFormat:@"Are you sure you want to sync %@ - from %@ - to %@?",signup.firstName,[dateFormatter stringFromDate:signup.photo_date],parent.event];
+            
+            action = @"Sync";
+            
+            myAlertView = [[UIAlertView alloc] initWithTitle:title
+                                                     message: message
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           otherButtonTitles:@"Delete", nil];
+        } else {
+            myAlertView = [[UIAlertView alloc] initWithTitle:@"Cool Your Jets"
+                                                     message:@"Things are saving - wait till that's done"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Ok - I'll wait"
+                                           otherButtonTitles:nil, nil];
+        }
+        
+        [myAlertView show];
+    }
 
+
+}
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if( buttonIndex == 1 ) {
         if( [action isEqualToString:@"Delete"])
             [parent deleteSignup:signup];
-        else if ( [action isEqualToString:@"Save"] )
+        else if ( [action isEqualToString:@"Sync"] )
+            parent.outstandingSync = 1;
+            [parent disableSync];
             [parent saveSignup:signup];
     }
     action = nil;
+}
+-(void)setErrorState {
+    self.state.text = @"!!";
+    [self.state setTextColor:[UIColor redColor]];
+    self.state.hidden = NO;
+}
+-(void)clearState {
+    self.state.text = nil;
+    self.state.hidden = YES;
+}
+-(void)setSyncState {
+    self.state.text = @"sync";
+    [self.state setTextColor:[UIColor whiteColor]];
+    self.state.hidden = NO;
 }
 
 @end
@@ -80,14 +141,39 @@
 
 @implementation Settings
 
-@synthesize context,signups;
+@synthesize context,signups,outstandingSync;
 
 - (void)viewDidLoad
 {
     context = [[self appDelegate] managedObjectContext];
-    NSString *base_URL = @"http://snaptivist.herokuapp.com";
-//    NSString *base_URL = @"http://192.168.2.5:5050";
+//    NSString *base_URL = @"http://snaptivist.herokuapp.com";
+    NSString *base_URL = @"http://192.168.2.5:5050";
 
+    Reachability *reach = [Reachability reachabilityWithHostname:base_URL];
+    
+    // set the blocks
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self disableSync];
+            self.errors.text = @"No connection detected";
+            self.errors.hidden = NO;
+        });
+    };
+    
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self enableSync];
+            self.errors.hidden = YES;
+            self.errors.text = nil;
+        });
+    };
+    
+    // start the notifier which will cause the reachability object to retain itself!
+    [reach startNotifier];
+    
+    
     self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:base_URL]];
     RKObjectMapping *saveMapping = [RKObjectMapping mappingForClass:[Save class]];
     [saveMapping addAttributeMappingsFromDictionary:@{
@@ -115,19 +201,23 @@
 }
 -(IBAction)syncNow:(id)sender {
 
-    
-    self.syncButton.hidden = YES;
-    int count = 1;
+    [self disableSync];
+    outstandingSync = [signups count];
 
     for (Signup *signup in signups) {
         [self saveSignup:signup];
-        NSString *label = [NSString stringWithFormat: @"Saving %u of %lu...", count, (unsigned long)[signups count]];
-        self.numberOfSignups.text = label;
-        count += 1;
     }
-    self.numberOfSignups.text = @"Synced";
 }
-
+-(void)disableSync {
+    self.syncButton.enabled = NO;
+    self.syncDisabled = YES;
+    [self.syncButton setAlpha:0.3f];
+}
+-(void)enableSync {
+    self.syncButton.enabled = YES;
+    self.syncDisabled = NO;
+    [self.syncButton setAlpha:1.0f];
+}
 #pragma mark - Private methods
 - (AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -144,25 +234,44 @@
     array = [array filteredArrayUsingPredicate:bPredicate];
     if (array != nil && array.count != 0 ) {
         signups = array;
-        NSString *label = [NSString stringWithFormat: @"%lu Sign Ups", (unsigned long)[signups count]];
+        NSString *label;
+        if( array.count == 1 )
+            label = [NSString stringWithFormat: @"%lu Sign Up", (unsigned long)[signups count]];
+        else
+            label = [NSString stringWithFormat: @"%lu Sign Ups", (unsigned long)[signups count]];
         
         self.numberOfSignups.text = label;
         self.syncButton.hidden = NO;
     } else {
-        self.numberOfSignups.text = @"No signups to sync";
+        self.numberOfSignups.text = @"No Singups";
     }
     NSError *saveError = nil;
     [context save:&saveError];
 }
--(void)deleteSignup:(Signup *)signup {
+-(Cell *)getSignupCell:(Signup *)signup {
     NSIndexPath *index = [NSIndexPath indexPathForRow:[signups indexOfObject:signup] inSection:0];
+    return (Cell *)[self.collectionView cellForItemAtIndexPath:index];
+}
+-(void)deleteSignup:(Signup *)signup {
+    Cell *cell = [self getSignupCell:signup];
     [context deleteObject:signup];
-    Cell *cell = (Cell *)[self.collectionView cellForItemAtIndexPath:index];
     [cell removeFromSuperview];
+    [self reloadSignups];
+}
+-(void)reloadSignups {
     [self loadSignups];
     [self.collectionView reloadData];
 }
+-(void)errorSignup:(Signup *)signup {
+    Cell *cell = [self getSignupCell:signup];
+    [cell setErrorState];
+}
+-(void)startSavingSingup:(Signup *)signup {
+    Cell *cell = [self getSignupCell:signup];
+    [cell setSyncState ];
+}
 -(void)saveSignup:(Signup *)signup {
+    [self startSavingSingup:signup];
 
     NSMutableURLRequest *request;
     NSMutableDictionary *signupParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -200,14 +309,23 @@
                                            success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
 
                                                Save *latest = [result firstObject];
-                                               if( [latest.success isEqualToString:@"true"] )
-                                                   [context deleteObject:signup];
+                                               if( [latest.success isEqualToString:@"true"] ) {
+                                                   [self deleteSignup:signup];
+                                               }
+                                              outstandingSync = outstandingSync -1;
+                                              if( outstandingSync < 1 )
+                                                  [self enableSync];
                                                NSLog(@"%@", latest.success);
                                                NSLog(@"%@", latest.signup);
                
                                            }
                                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                               NSLog(@"%@",error);
+                                               [self errorSignup:signup];
+                                               outstandingSync = outstandingSync -1;
+                                               self.errors.text = @"Some errors on the last sync";
+                                               NSLog(@"%@", error);
+                                               if( outstandingSync < 1 )
+                                                   [self enableSync];
                                            }];
 
     [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation];
@@ -283,7 +401,7 @@
 
     
     if( cell.signup.photo != nil ) {
-        [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f]];
+        [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
     }
     
     [cell setBackgroundColor:[UIColor redColor]];
