@@ -50,7 +50,6 @@
     [self setButton:self.formButton];
 }
 -(void)goToReps {
-    signup.zip = @"76271";
     if( [signup.zip length] > 4 ) {
         if( [signup.zip length ] > 5 && [signup.email length ] > 1 )
         {

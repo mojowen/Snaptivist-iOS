@@ -59,7 +59,7 @@
     else
         self.message.text = [NSString stringWithFormat:@"@%@ from your district asks you to cosponsor Safe Schools laws #SoundOff",signup.twitter];
 
-    if( parent.reps.count == 0 ) {
+    if( parent.reps.count < 2 ) {
         NSString *message = [NSString stringWithFormat:@"%@ didn't work - want to enter a new one?", signup.zip];
 
         UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:@"Can't Find Reps" message:message delegate:self cancelButtonTitle:@"Skip this" otherButtonTitles:@"Try New Zip", nil];
@@ -89,30 +89,28 @@
             self.scrollView.contentSize = CGSizeMake(1500.0f, 300.0f);
     }
 
-    if( [parent.reps count] > 2 ) {
+    if( [parent.reps count] >= 2 ) {
         NSMutableArray *all_reps = [[NSMutableArray alloc] init];
         NSInteger i = 0;
         
         for( Rep *rep in parent.reps) {
             NSString *repImagePath = [rep.bioguide stringByAppendingString:@".jpg"];
-            
+            [all_reps addObject:rep.bioguide];
+
             switch ( i ) {
                 case 0: {
                     [self.repImage0 setImage: [UIImage imageNamed:repImagePath] ];
                     [self.repName0 setText: rep.name];
-                    [all_reps addObject:rep.bioguide];
                     break;
                 }
                 case 1: {
                     [self.repImage1 setImage: [UIImage imageNamed:repImagePath] ];
                     [self.repName1 setText: rep.name];
-                    [all_reps addObject:rep.bioguide];
                     break;
                 }
                 case 2: {
                     [self.repImage2 setImage: [UIImage imageNamed:repImagePath] ];
                     [self.repName2 setText: rep.name];
-                    [all_reps addObject:rep.bioguide];
                     break;
                 }
                 default: {
@@ -137,14 +135,20 @@
                     [repBGImage setFrame:CGRectOffset( repBGImage.frame, 200.0f * (i-2), 0.0f)];
                     [repImage setFrame:CGRectOffset( repImage.frame, 200.0f * (i-2), 0.0f)];
                     [repLabel setFrame:CGRectOffset( repLabel.frame, 200.0f * (i-2), 0.0f)];
-
                     break;
                 }
                     
             }
             i = i + 1;
         }
-        
+        if( [parent.reps count] < 3 ) {
+            self.repBGImage2.hidden =YES;
+            self.repImage2.hidden = YES;
+            self.repName2.hidden = YES;
+            [self.repName1 setFrame:CGRectOffset( self.repName1.frame, 200.0f, 0.0f)];
+            [self.repImage1 setFrame:CGRectOffset( self.repImage1.frame, 200.0f, 0.0f)];
+            [self.repBGImage1 setFrame:CGRectOffset( self.repBGImage1.frame, 200.0f, 0.0f)];
+        }
         
         parent.signup.reps = [all_reps componentsJoinedByString:@","];
         [parent.context save:nil];
