@@ -20,7 +20,7 @@
 @property (nonatomic,weak) IBOutlet UILabel *message;
 @property (nonatomic,weak) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *repBGImage2;
-
+@property (nonatomic,weak) IBOutlet UILabel *header;
 
 @property (nonatomic, weak) IBOutlet UIImageView *repImage0;
 @property (nonatomic, weak) IBOutlet UIImageView *repImage1;

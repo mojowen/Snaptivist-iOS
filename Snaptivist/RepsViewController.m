@@ -52,6 +52,7 @@
     signup = parent.signup;
     
     parent.reps = [self fetchReps: signup.zip];
+    self.header.text = [NSString stringWithFormat:@"3. Sweet. Now let‘s tweet at the reps & senators for zipcode %@",signup.zip];
     
     if ( signup.twitter == nil || [signup.twitter length] < 1)
         self.message.text = [NSString stringWithFormat:@"%@ from your district asks you to cosponsor Safe Schools laws #SoundOff",signup.firstName];
@@ -73,16 +74,17 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+
     if( [parent.reps count] == 4 )
-        self.scrollView.frame = CGRectMake(157.0f,436.0f,710.0f,321.0f);
+        self.scrollView.frame = CGRectMake(60.0f,436.0f,810.0f,321.0f);
     
-    if( [parent.reps count] > 4 ) {
-        self.scrollView.frame = CGRectMake(157.0f,436.0f,710.0f,321.0f);
+    if( [parent.reps count] > 3 ) {
+        self.scrollView.frame = CGRectMake(-30.0f,436.0f,1054.0f,321.0f);
         
         if( [parent.reps count] == 5 )
             self.scrollView.contentSize = CGSizeMake(1100.0f, 300.0f);
         if( [parent.reps count] == 6 )
-            self.scrollView.contentSize = CGSizeMake(1300.0f, 300.0f);
+            self.scrollView.contentSize = CGSizeMake(1260.0f, 300.0f);
         if( [parent.reps count] == 7 )
             self.scrollView.contentSize = CGSizeMake(1500.0f, 300.0f);
     }
