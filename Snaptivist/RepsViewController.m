@@ -120,6 +120,11 @@
                     UILabel *repLabel = [[UILabel alloc] initWithFrame:self.repName2.frame ];
                     [repLabel setText: rep.name];
                     [repLabel setBackgroundColor:[UIColor clearColor] ];
+                    [repLabel setTextColor: self.repName2.textColor];
+                    [repLabel setTextAlignment: self.repName2.textAlignment];
+                    [repLabel setFont: self.repName2.font];
+                    [repLabel setAdjustsFontSizeToFitWidth: self.repName2.adjustsFontSizeToFitWidth];
+                    [repLabel setAdjustsLetterSpacingToFitWidth: self.repName2.adjustsLetterSpacingToFitWidth ];
                     
                     RepBG *repBGImage = [[RepBG alloc] initWithFrame:self.repBGImage2.frame ];
                     [repBGImage setImage:self.repBGImage2.image];
