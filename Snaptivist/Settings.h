@@ -21,6 +21,8 @@
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic,retain) RKObjectManager *objectManager;
 @property NSInteger outstandingSync;
+@property NSInteger nextToSync;
+
 @property BOOL syncDisabled;
 
 @property (nonatomic,retain) NSArray *signups;

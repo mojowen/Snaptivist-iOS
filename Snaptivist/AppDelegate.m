@@ -18,7 +18,8 @@
 {
     [self loadZips];
     [self loadReps];
-
+    [self loadTestSaves];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
 }
@@ -225,6 +226,26 @@
     } else {
         NSLog(@"Loaded reps already");
     }
+}
+
+-(void)loadTestSaves{
+    NSManagedObjectContext *context = [self managedObjectContext];
+
+    for (int i=0; i <= 20; i++) {
+        Signup *signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
+
+        signup.firstName = [NSString stringWithFormat:@"fake first name %u",i];
+        signup.lastName = [NSString stringWithFormat:@"fake last name %u",i];
+        signup.email = [NSString stringWithFormat:@"sduncombe+%u@gmail.com",i];
+
+        signup.zip = @"97227";
+        if( i > 15 )
+            signup.friends = @"srduncombe+friend1@gmail.com,srduncombe+friend2@gmail.com";
+
+        if( i > 15 )
+            signup.photo = [[NSData dataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"no_camera.jpg"])] copy];
+    }
+    [context save:nil];
 }
 
 @end

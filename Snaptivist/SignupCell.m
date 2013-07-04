@@ -85,10 +85,12 @@
     if( buttonIndex == 1 ) {
         if( [action isEqualToString:@"Delete"])
             [parent deleteSignup:signup];
-        else if ( [action isEqualToString:@"Sync"] )
+        else if ( [action isEqualToString:@"Sync"] ) {
             parent.outstandingSync = 1;
-        [parent disableSync];
-        [parent saveSignup:signup];
+            parent.nextToSync = -1;
+            [parent disableSync];
+            [parent saveSignup:signup];
+        }
     }
     action = nil;
 }

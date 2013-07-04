@@ -21,5 +21,6 @@
 
 -(void)setSyncState;
 -(void)setErrorState;
+-(void)clearState;
 
 @end

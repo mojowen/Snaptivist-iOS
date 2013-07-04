@@ -16,7 +16,7 @@
 
 @implementation Settings
 
-@synthesize context,signups,outstandingSync;
+@synthesize context,signups,outstandingSync,nextToSync;
 
 - (void)viewDidLoad
 {
@@ -85,8 +85,18 @@
 
     [self disableSync];
     outstandingSync = [signups count];
+    self.errors.text = nil;
+    NSArray *batchOfSignups;
 
-    for (Signup *signup in signups) {
+    if( outstandingSync > 10 ) {
+        batchOfSignups  = [signups subarrayWithRange:NSMakeRange(0,9)];
+        nextToSync = 10;
+    } else{
+        batchOfSignups = [signups copy];
+        nextToSync = -1;
+    }
+
+    for (Signup *signup in batchOfSignups) {
         [self saveSignup:signup];
     }
 }
@@ -136,12 +146,26 @@
 }
 -(void)deleteSignup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
-    [cell removeFromSuperview];
     [context deleteObject:signup];
-    [self reloadSignups];
+    [cell removeFromSuperview];
+    [cell clearState];
+}
+-(void)finishedSync {
+    
+    if( nextToSync != -1 && nextToSync < [signups count ])
+        [self saveSignup:(Signup *)[signups objectAtIndex: nextToSync]];
+    else
+        nextToSync = -1;
+
+    outstandingSync--;
+    
+    if( outstandingSync < 1 )
+        [self enableSync];
+        [self reloadSignups];
 }
 -(void)reloadSignups {
     [self loadSignups];
+    [self.collectionView reloadData];
 }
 -(void)errorSignup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
@@ -192,21 +216,24 @@
                                                Save *latest = [result firstObject];
                                                if( [latest.success isEqualToString:@"true"] ) {
                                                    [self deleteSignup:signup];
+                                               } else {
+                                                   [self errorSignup:signup];
+                                                   self.errors.text = @"Some errors on the last sync";
+                                                   self.errors.hidden = NO;
                                                }
-                                              outstandingSync = outstandingSync -1;
-                                              if( outstandingSync < 1 )
-                                                  [self enableSync];
+                                              [self finishedSync];
                                                NSLog(@"%@", latest.success);
                                                NSLog(@"%@", latest.signup);
                
                                            }
                                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                [self errorSignup:signup];
+                                               
                                                outstandingSync = outstandingSync -1;
                                                self.errors.text = @"Some errors on the last sync";
+                                               self.errors.hidden = NO;
                                                NSLog(@"%@", error);
-                                               if( outstandingSync < 1 )
-                                                   [self enableSync];
+                                               [self finishedSync];
                                            }];
 
     [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation];
