@@ -18,7 +18,7 @@
 {
     [self loadZips];
     [self loadReps];
-//    [self loadTestSaves];
+//    [self loadTestSaves:1];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
@@ -228,10 +228,10 @@
     }
 }
 
--(void)loadTestSaves{
+-(void)loadTestSaves:(int)number {
     NSManagedObjectContext *context = [self managedObjectContext];
 
-    for (int i=0; i <= 20; i++) {
+    for (int i=0; i <= number; i++) {
         Signup *signup = [NSEntityDescription insertNewObjectForEntityForName:@"Signup" inManagedObjectContext:context];
 
         signup.firstName = [NSString stringWithFormat:@"fake first name %u",i];
