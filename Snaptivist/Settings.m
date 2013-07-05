@@ -158,6 +158,7 @@
 -(void)deleteSignup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
     [context deleteObject:signup];
+    [context save:nil];
     [cell removeFromSuperview];
     [cell clearState];
 }
