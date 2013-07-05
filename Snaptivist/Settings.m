@@ -147,8 +147,8 @@
     } else {
         self.numberOfSignups.text = @"No Singups";
     }
-    NSError *saveError = nil;
-    [context save:&saveError];
+
+    [self.collectionView reloadData];
 }
 -(SignupCell *)getSignupCell:(Signup *)signup {
     NSIndexPath *index = [NSIndexPath indexPathForRow:[signups indexOfObject:signup] inSection:0];
@@ -181,7 +181,6 @@
 }
 -(void)reloadSignups {
     [self loadSignups];
-    [self.collectionView reloadData];
 }
 -(void)errorSignup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
