@@ -49,9 +49,13 @@
 }
 - (IBAction)launchCamera:(id)sender {
     self.background.hidden = YES;
+    self.allyBG.hidden = YES;
     self.launchCamera.hidden = YES;
     self.noPhoto.hidden = YES;
-    [(SnaptivistTabs *)[self tabController] hideButtons];
+
+    SnaptivistTabs *parent = [self tabController];
+    [parent hideButtons];
+    parent.allyLogo.hidden = YES;
     
     [self prepForTake];
 }

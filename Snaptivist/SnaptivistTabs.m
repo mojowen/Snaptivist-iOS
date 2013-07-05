@@ -44,7 +44,6 @@
 -(void)goToPhoto {
     [self setChildFrame:photosViewController];
     [self setButton:self.photosButton];
-    self.allyLogo.hidden = NO; 
 }
 -(void)goToForm {
     [self setChildFrame:formViewController];

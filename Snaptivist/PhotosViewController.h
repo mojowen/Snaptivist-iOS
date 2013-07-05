@@ -13,7 +13,7 @@
 @interface PhotosViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property (nonatomic,weak) IBOutlet UIImageView *background;
-
+@property (nonatomic,weak) IBOutlet UIImageView *allyBG;
 @property (nonatomic, weak) IBOutlet UIButton *noPhoto;
 @property (nonatomic, weak) IBOutlet UIButton *launchCamera;
 

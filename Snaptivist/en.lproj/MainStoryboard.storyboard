@@ -167,6 +167,12 @@
                                     <action selector="selectPic4:" destination="2" eventType="touchUpInside" id="jqD-Jy-Kfr"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_view2.png" translatesAutoresizingMaskIntoConstraints="NO" id="HPq-nP-3mK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="97" id="vHK-MH-Pdp"/>
+                                    <constraint firstAttribute="width" constant="71" id="ys5-fb-8yN"/>
+                                </constraints>
+                            </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQ9-yi-rih">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="8Ph-jJ-qEn"/>
@@ -221,30 +227,32 @@
                         <constraints>
                             <constraint firstItem="Lwu-iq-gKD" firstAttribute="bottom" secondItem="17" secondAttribute="bottom" type="default" id="0ba-mJ-hfJ"/>
                             <constraint firstItem="xmZ-lC-8pd" firstAttribute="bottom" secondItem="cQ9-yi-rih" secondAttribute="bottom" type="default" id="4bl-yd-Vpz"/>
-                            <constraint firstAttribute="trailing" secondItem="G9V-xw-WCe" secondAttribute="trailing" constant="21" id="61c-Cu-TpI"/>
                             <constraint firstItem="PJ0-I8-gMb" firstAttribute="top" secondItem="17" secondAttribute="top" constant="20" symbolic="YES" type="default" id="68x-aL-5cU"/>
+                            <constraint firstItem="HPq-nP-3mK" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="38" id="ACN-kD-YXz"/>
+                            <constraint firstAttribute="trailing" secondItem="xmZ-lC-8pd" secondAttribute="trailing" constant="222" id="BPe-lp-7Ah"/>
                             <constraint firstAttribute="trailing" secondItem="PJ0-I8-gMb" secondAttribute="trailing" constant="28" id="E7f-10-c2x"/>
                             <constraint firstItem="Vgn-xZ-ZdV" firstAttribute="top" secondItem="17" secondAttribute="top" constant="526" id="EDF-Ub-AKa"/>
                             <constraint firstItem="PJ0-I8-gMb" firstAttribute="leading" secondItem="Ib1-j4-qCA" secondAttribute="leading" type="default" id="ITP-4b-ptI"/>
                             <constraint firstItem="xmZ-lC-8pd" firstAttribute="bottom" secondItem="G9V-xw-WCe" secondAttribute="bottom" type="default" id="Lwy-v4-4tG"/>
-                            <constraint firstAttribute="trailing" secondItem="xmZ-lC-8pd" secondAttribute="trailing" constant="219" id="M2M-0m-bgZ"/>
                             <constraint firstItem="a6B-0I-jrQ" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="Oz2-CE-Cbf"/>
-                            <constraint firstItem="bQq-7k-uX8" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="232" id="Pux-qv-LAa"/>
                             <constraint firstAttribute="bottom" secondItem="tt8-Gs-ThN" secondAttribute="bottom" constant="68" id="S8o-2t-Zhz"/>
                             <constraint firstItem="Vgn-xZ-ZdV" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="SiY-sf-HpW"/>
+                            <constraint firstItem="bQq-7k-uX8" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="215" id="UF5-ho-umH"/>
                             <constraint firstItem="a6B-0I-jrQ" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="Zau-OO-2W6"/>
                             <constraint firstItem="tt8-Gs-ThN" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="284" id="bG7-Ag-inN"/>
                             <constraint firstItem="Lwu-iq-gKD" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="bdm-Zu-O13"/>
-                            <constraint firstItem="gWU-ut-mph" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="33" id="c7E-m7-qur"/>
                             <constraint firstItem="nag-bX-yHf" firstAttribute="centerX" secondItem="a6B-0I-jrQ" secondAttribute="centerX" type="default" id="cBW-ds-VS4"/>
                             <constraint firstAttribute="bottom" secondItem="gWU-ut-mph" secondAttribute="bottom" constant="24" id="chi-Yz-mIg"/>
                             <constraint firstItem="xmZ-lC-8pd" firstAttribute="top" secondItem="G9V-xw-WCe" secondAttribute="top" type="default" id="dCi-yC-Rag"/>
+                            <constraint firstAttribute="bottom" secondItem="HPq-nP-3mK" secondAttribute="bottom" constant="5" id="ePh-J3-iCb"/>
                             <constraint firstItem="bQq-7k-uX8" firstAttribute="bottom" secondItem="cQ9-yi-rih" secondAttribute="bottom" type="default" id="gD9-90-zrf"/>
-                            <constraint firstItem="tt8-Gs-ThN" firstAttribute="centerX" secondItem="cQ9-yi-rih" secondAttribute="centerX" type="default" id="gQB-i9-tNO"/>
-                            <constraint firstItem="Lwu-iq-gKD" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="-1" id="h0s-49-9Xe"/>
                             <constraint firstItem="xmZ-lC-8pd" firstAttribute="top" secondItem="cQ9-yi-rih" secondAttribute="top" type="default" id="hLP-FR-KHT"/>
                             <constraint firstItem="Lwu-iq-gKD" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" type="default" id="qS4-qC-siM"/>
+                            <constraint firstAttribute="trailing" secondItem="G9V-xw-WCe" secondAttribute="trailing" constant="23" id="rSC-Ud-aLo"/>
+                            <constraint firstItem="gWU-ut-mph" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="13" id="tLg-Qj-Jra"/>
+                            <constraint firstItem="Lwu-iq-gKD" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="-1" id="tel-Te-fIe"/>
                             <constraint firstItem="bQq-7k-uX8" firstAttribute="top" secondItem="cQ9-yi-rih" secondAttribute="top" type="default" id="uR2-dc-4iJ"/>
+                            <constraint firstItem="cQ9-yi-rih" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="420" id="vTf-gp-g3E"/>
                             <constraint firstAttribute="bottom" secondItem="Ib1-j4-qCA" secondAttribute="bottom" constant="325" id="vgR-n7-RlP"/>
                             <constraint firstItem="bQq-7k-uX8" firstAttribute="bottom" secondItem="gWU-ut-mph" secondAttribute="bottom" type="default" id="vrP-az-vja"/>
                             <constraint firstItem="bQq-7k-uX8" firstAttribute="top" secondItem="gWU-ut-mph" secondAttribute="top" type="default" id="x8q-Sk-vv0"/>
@@ -259,6 +267,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="allyBG" destination="HPq-nP-3mK" id="2c2-jH-pMY"/>
                         <outlet property="background" destination="a6B-0I-jrQ" id="hZ3-RU-Pcc"/>
                         <outlet property="camera" destination="UsD-Q0-g4b" id="ZQ2-G6-NfD"/>
                         <outlet property="filmStrip" destination="Vgn-xZ-ZdV" id="SDM-HQ-4bD"/>
@@ -1302,6 +1311,7 @@
                 <relationship kind="action" name="selectPic5:"/>
                 <relationship kind="action" name="setPhoto:"/>
                 <relationship kind="action" name="takePhotos:"/>
+                <relationship kind="outlet" name="allyBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="camera" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="filmStrip" candidateClass="UIImageView"/>
