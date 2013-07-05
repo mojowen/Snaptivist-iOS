@@ -54,7 +54,7 @@
 -(void)goToReps {
     self.allyLogo.hidden = NO;
     if( [signup.zip length] > 4 ) {
-        if( [signup.zip length ] > 5 && [signup.email length ] > 1 )
+        if( [signup.zip length ] != 5 && [signup.email length ] > 1 )
         {
             [signup setSendTweet:@NO];
             [self goToFinished];
