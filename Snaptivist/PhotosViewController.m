@@ -237,7 +237,7 @@ bail:
 -(void)assignPhoto {
     UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
     
-    UIImage *newImage = [self resizeImage:self.camera.image newSize:CGSizeMake(1024.0f, 764.0f)];
+    UIImage *newImage = [self resizeImage:self.camera.image newSize:CGSizeMake(500.0f, 373.0f)];
     
     [newPhoto setBackgroundImage:newImage forState:UIControlStateNormal];
     newPhoto.hidden = NO;
