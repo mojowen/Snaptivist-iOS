@@ -87,10 +87,11 @@
     outstandingSync = [signups count];
     self.errors.text = nil;
     NSArray *batchOfSignups;
-
-    if( outstandingSync > 10 ) {
-        batchOfSignups  = [signups subarrayWithRange:NSMakeRange(0,10)];
-        nextToSync = 10;
+    int batch_size = 5;
+    
+    if( outstandingSync > batch_size ) {
+        batchOfSignups  = [signups subarrayWithRange:NSMakeRange(0,batch_size)];
+        nextToSync = batch_size;
     } else{
         batchOfSignups = [signups copy];
         nextToSync = -1;
