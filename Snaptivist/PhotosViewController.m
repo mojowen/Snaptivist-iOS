@@ -70,6 +70,7 @@
 
     SnaptivistTabs *parent = [self tabController];
 
+    UIImageWriteToSavedPhotosAlbum(self.camera.image, nil, nil, nil);
     parent.signup.photo = [NSData dataWithData:UIImagePNGRepresentation(self.camera.image)];
     self.camera = nil;
     savedPhotos = nil;
