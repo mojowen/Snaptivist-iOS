@@ -51,6 +51,8 @@
     self.background.hidden = YES;
     self.launchCamera.hidden = YES;
     self.noPhoto.hidden = YES;
+    [(SnaptivistTabs *)[self tabController] hideButtons];
+    
     [self prepForTake];
 }
 - (IBAction)relaunchCamera:(id)sender {
@@ -71,7 +73,8 @@
     parent.signup.photo = [NSData dataWithData:UIImagePNGRepresentation(self.camera.image)];
     self.camera = nil;
     savedPhotos = nil;
-   [parent goToForm];
+    [parent showButtons];
+    [parent goToForm];
 }
 - (IBAction)selectPic1:(id)sender {
     [self selectPhoto:1];
@@ -209,7 +212,24 @@ bail:
                 NSLog(@"failed");
             } else {
                 NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-                [self.camera setImage:[UIImage imageWithData:jpegData]];
+                UIImage *capturedImage;
+                float scale = 0.4f;
+                
+                if( isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
+                    capturedImage = [UIImage
+                                        imageWithCGImage:[UIImage imageWithData:jpegData scale:0.3f].CGImage
+                                        scale:1.0f
+                                        orientation:UIImageOrientationDownMirrored];
+                else if( isUsingFrontFacingCamera  )
+                    capturedImage = [UIImage
+                                     imageWithCGImage:[UIImage imageWithData:jpegData scale:0.3f].CGImage
+                                     scale:1.0f
+                                     orientation:UIImageOrientationUpMirrored];
+                
+                else
+                    capturedImage = [UIImage imageWithData:jpegData scale:scale];
+                 
+                [self.camera setImage:capturedImage];
                 [self assignPhoto];
             }
 
@@ -237,9 +257,7 @@ bail:
 -(void)assignPhoto {
     UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
     
-    UIImage *newImage = [self resizeImage:self.camera.image newSize:CGSizeMake(500.0f, 373.0f)];
-    
-    [newPhoto setBackgroundImage:newImage forState:UIControlStateNormal];
+    [newPhoto setBackgroundImage:self.camera.image forState:UIControlStateNormal];
     newPhoto.hidden = NO;
     
     if( photoNumber == 4 ) {
@@ -293,42 +311,6 @@ bail:
 	}
 	
 }
-- (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize {
-    CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
-    CGImageRef imageRef = image.CGImage;
-    
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // Set the quality level to use when rescaling
-    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-    
-
-    if(
-        (! isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
-        ||
-       (isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
-       ||
-       ! [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]
-    )
-    {
-        CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
-        CGContextConcatCTM(context, flipVertical);
-    }
-
-    // Draw into the context; this scales the image
-    CGContextDrawImage(context, newRect, imageRef);
-    
-    // Get the resized image from the context and a UIImage
-    CGImageRef newImageRef = CGBitmapContextCreateImage(context);
-    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
-    
-    CGImageRelease(newImageRef);
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
-
 
 #pragma mark - Private methods
 -(void)selectPhoto:(NSUInteger)photo {
