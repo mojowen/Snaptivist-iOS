@@ -75,7 +75,6 @@
     }
 }
 -(void)goToFinished {
-    self.reps = nil;
     if( [signup.email length] > 1 ) {
         [self setChildFrame:finishedViewController];
         [self setButton:self.finishedButton];
