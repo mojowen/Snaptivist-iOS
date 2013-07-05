@@ -156,6 +156,11 @@
     NSIndexPath *index = [NSIndexPath indexPathForRow:[signups indexOfObject:signup] inSection:0];
     return (SignupCell *)[self.collectionView cellForItemAtIndexPath:index];
 }
+- (IBAction)removeSettings:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)deleteSignup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
     [context deleteObject:signup];

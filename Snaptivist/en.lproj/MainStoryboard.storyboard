@@ -882,7 +882,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="x4U-ga-sUj" kind="modal" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="HUW-Vn-eX2"/>
+                                    <action selector="removeSettings:" destination="O1w-wo-EnA" eventType="touchUpInside" id="jwG-eK-e1y"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHa-rG-czq">
