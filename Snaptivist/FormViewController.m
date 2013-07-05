@@ -19,13 +19,16 @@
 - (void)viewDidLoad
 {
     
-    stage = @"first";
+    [super viewDidLoad];
     SnaptivistTabs *parent = [self tabController];
     context = parent.context;
     signup = parent.signup;
-    [self.photo setImage: [UIImage imageWithData:signup.photo] ];
+    if( signup.photo != nil )
+        [self.photo setImage: [UIImage imageWithData:signup.photo scale: 0.1f] ];
+    else
+        [self.photo setImage: [UIImage imageNamed:@"user-placeholder.png"] ];
+
     [self.first_name becomeFirstResponder];
-    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
