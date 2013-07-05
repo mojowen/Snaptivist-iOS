@@ -23,10 +23,6 @@
     SnaptivistTabs *parent = [self tabController];
     context = parent.context;
     signup = parent.signup;
-    if( signup.photo != nil )
-        [self.photo setImage: [UIImage imageWithData:signup.photo scale: 0.1f] ];
-    else
-        [self.photo setImage: [UIImage imageNamed:@"user-placeholder.png"] ];
 
     [self.first_name becomeFirstResponder];
 }
@@ -152,6 +148,11 @@
 
 }
 -(void)viewDidAppear:(BOOL)animated {
+    if( signup.photo != nil )
+        [self.photo setImage: [UIImage imageWithData:signup.photo scale: 0.1f] ];
+    else
+        [self.photo setImage: [UIImage imageNamed:@"user-placeholder.png"] ];
+
     self.scrollView.frame = CGRectMake(0.0f,0.0f,1024.0f,764.0f);
     self.scrollView.contentSize = CGSizeMake(1024.0f, 900.0f);
 }
