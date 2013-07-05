@@ -134,8 +134,10 @@
     NSArray *array = [self.context executeFetchRequest:request error:&error];
     NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"email.length > 0"];
     array = [array filteredArrayUsingPredicate:bPredicate];
-    if (array != nil && array.count != 0 ) {
+    if (array != nil ) {
         signups = array;
+        [self.collectionView reloadData];
+
         NSString *label;
         if( array.count == 1 )
             label = [NSString stringWithFormat: @"%lu Sign Up", (unsigned long)[signups count]];
@@ -147,8 +149,7 @@
     } else {
         self.numberOfSignups.text = @"No Singups";
     }
-
-    [self.collectionView reloadData];
+    
 }
 -(SignupCell *)getSignupCell:(Signup *)signup {
     NSIndexPath *index = [NSIndexPath indexPathForRow:[signups indexOfObject:signup] inSection:0];
@@ -176,11 +177,8 @@
     
     if( outstandingSync < 1 ) {
         [self enableSync];
-        [self reloadSignups];
+        [self loadSignups];
     }
-}
--(void)reloadSignups {
-    [self loadSignups];
 }
 -(void)errorSignup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
