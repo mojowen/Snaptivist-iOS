@@ -22,14 +22,6 @@
 
 @synthesize context,signup,parent;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     parent = [self tabController];
@@ -41,6 +33,7 @@
         UITextField *zip = [alertView textFieldAtIndex:0];
         parent.signup.zip = zip.text;
         [self viewDidLoad];
+        [self setReps];
     }
     
 }
@@ -75,11 +68,48 @@
 
 -(void)viewDidAppear:(BOOL)animated{
 
+    [self setReps];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(IBAction)sendMessage:(id)sender {
+    for( id view in self.scrollView.subviews) {
+        if( [view isKindOfClass:[RepBG class]] )
+        {
+            RepBG *bg = view;
+            [bg setImage: [UIImage imageNamed: @"rep_bg_blue.png"]];
+        }
+    }
+    [parent.signup setSendTweet:@YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.3f
+                                     target:self
+                                   selector:@selector(nextStep)
+                                   userInfo:nil
+                                    repeats:NO];
+
+}
+-(void)nextStep {
+    [[self tabController] goToFinished];
+}
+-(IBAction)noMessage:(id)sender {
+    [parent.signup setSendTweet:@NO];
+    [parent goToFinished];
+}
+
+#pragma mark - Private methods
+-(SnaptivistTabs *)tabController {
+    return ((SnaptivistTabs *)(self.parentViewController));
+}
+-(void)setReps {
     if( [parent.reps count] == 4 )
-        self.scrollView.frame = CGRectMake(60.0f,436.0f,810.0f,321.0f);
+        self.scrollView.frame = CGRectMake(60.0f,436.0f,920.0f,321.0f);
     
-    if( [parent.reps count] > 3 ) {
-        self.scrollView.frame = CGRectMake(-30.0f,436.0f,1054.0f,321.0f);
+    if( [parent.reps count] > 4 ) {
+        self.scrollView.frame = CGRectMake(18.0f,436.0f,1008.0f,321.0f);
         
         if( [parent.reps count] == 5 )
             self.scrollView.contentSize = CGSizeMake(1100.0f, 300.0f);
@@ -88,7 +118,7 @@
         if( [parent.reps count] == 7 )
             self.scrollView.contentSize = CGSizeMake(1500.0f, 300.0f);
     }
-
+    
     if( [parent.reps count] >= 2 ) {
         NSMutableArray *all_reps = [[NSMutableArray alloc] init];
         NSInteger i = 0;
@@ -96,7 +126,7 @@
         for( Rep *rep in parent.reps) {
             NSString *repImagePath = [rep.bioguide stringByAppendingString:@".jpg"];
             [all_reps addObject:rep.bioguide];
-
+            
             switch ( i ) {
                 case 0: {
                     [self.repImage0 setImage: [UIImage imageNamed:repImagePath] ];
@@ -136,7 +166,7 @@
                     [self.scrollView bringSubviewToFront:repBGImage];
                     [self.scrollView bringSubviewToFront:repLabel];
                     [self.scrollView bringSubviewToFront:repImage];
-
+                    
                     [repBGImage setFrame:CGRectOffset( repBGImage.frame, 200.0f * (i-2), 0.0f)];
                     [repImage setFrame:CGRectOffset( repImage.frame, 200.0f * (i-2), 0.0f)];
                     [repLabel setFrame:CGRectOffset( repLabel.frame, 200.0f * (i-2), 0.0f)];
@@ -158,44 +188,7 @@
         parent.signup.reps = [all_reps componentsJoinedByString:@","];
         [parent.context save:nil];
     }
-
-
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
--(IBAction)sendMessage:(id)sender {
-    for( id view in self.scrollView.subviews) {
-        if( [view isKindOfClass:[RepBG class]] )
-        {
-            RepBG *bg = view;
-            [bg setImage: [UIImage imageNamed: @"rep_bg_blue.png"]];
-        }
-    }
-    [parent.signup setSendTweet:@YES];
-    [NSTimer scheduledTimerWithTimeInterval:0.3f
-                                     target:self
-                                   selector:@selector(nextStep)
-                                   userInfo:nil
-                                    repeats:NO];
-
-}
--(void)nextStep {
-    [[self tabController] goToFinished];
-}
--(IBAction)noMessage:(id)sender {
-    [parent.signup setSendTweet:@NO];
-    [parent goToFinished];
-}
-
-#pragma mark - Private methods
--(SnaptivistTabs *)tabController {
-    return ((SnaptivistTabs *)(self.parentViewController));
-}
-
 -(NSArray *)fetchReps:(NSString *)zip {
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"Zip" inManagedObjectContext:self.context];
