@@ -120,8 +120,8 @@
 }
 -(void)setButton:(UIButton *) button {
 
-    [activeButton setImage:inactiveImage forState:UIControlStateNormal];
-    [button setImage:activeImage forState:UIControlStateNormal];
+    [activeButton setBackgroundImage:inactiveImage forState:UIControlStateNormal];
+    [button setBackgroundImage:activeImage forState:UIControlStateNormal];
     activeButton = button;
 }
 @end
