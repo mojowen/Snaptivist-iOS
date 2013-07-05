@@ -12,10 +12,8 @@
 @interface FormViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
-@property (nonatomic, weak) NSString *stage;
 @property (nonatomic, weak) Signup *signup;
 @property (nonatomic, weak) NSManagedObjectContext *context;
-@property (nonatomic, weak) IBOutlet UILabel *header;
 @property (nonatomic,weak) IBOutlet UIImageView *photo;
 @property (nonatomic,weak) IBOutlet UIScrollView *scrollView;
 

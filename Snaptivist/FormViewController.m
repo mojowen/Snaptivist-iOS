@@ -14,7 +14,7 @@
 
 @implementation FormViewController
 
-@synthesize nextButton,context,stage,signup,header,first_name,last_name,email,twitter,zip,addFriends,friends,yourFriends;
+@synthesize nextButton,context,signup,first_name,last_name,email,twitter,zip,addFriends,friends,yourFriends;
 
 - (void)viewDidLoad
 {
