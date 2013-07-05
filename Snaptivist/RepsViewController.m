@@ -175,6 +175,7 @@
             [bg setImage: [UIImage imageNamed: @"rep_bg_blue.png"]];
         }
     }
+    [parent.signup setSendTweet:@YES];
     [NSTimer scheduledTimerWithTimeInterval:0.3f
                                      target:self
                                    selector:@selector(nextStep)
