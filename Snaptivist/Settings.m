@@ -21,8 +21,8 @@
 - (void)viewDidLoad
 {
     context = [[self appDelegate] managedObjectContext];
-//    NSString *base_URL = @"http://snaptivist.herokuapp.com";
-    NSString *base_URL = @"http://192.168.2.5:5050";
+    NSString *base_URL = @"http://snaptivist.herokuapp.com";
+//    NSString *base_URL = @"http://192.168.2.5:5050";
     
     
     Reachability *reach = [Reachability reachabilityWithHostname:[ [ [base_URL
