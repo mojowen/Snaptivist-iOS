@@ -55,9 +55,9 @@
     self.header.text = [NSString stringWithFormat:@"3. Sweet. Now let‘s tweet at the reps & senators for zipcode %@",signup.zip];
     
     if ( signup.twitter == nil || [signup.twitter length] < 1)
-        self.message.text = [NSString stringWithFormat:@"%@ from your district asks you to cosponsor Safe Schools laws #SoundOff",signup.firstName];
+        self.message.text = [NSString stringWithFormat:@"@congress %@ from your district asks you to sponsor Safe Schools #MostNights #SoundOff",signup.firstName];
     else
-        self.message.text = [NSString stringWithFormat:@"@%@ from your district asks you to cosponsor Safe Schools laws #SoundOff",signup.twitter];
+        self.message.text = [NSString stringWithFormat:@"@congress @%@ from your district asks you to sponsor Safe Schools #MostNights #SoundOff",signup.twitter];
 
     if( parent.reps.count < 2 ) {
         NSString *message = [NSString stringWithFormat:@"%@ didn't work - want to enter a new one?", signup.zip];
