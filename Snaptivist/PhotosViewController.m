@@ -214,16 +214,16 @@ bail:
             } else {
                 NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *capturedImage;
-                float scale = 0.4f;
+                float scale = 0.2f;
                 
                 if( isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
                     capturedImage = [UIImage
-                                        imageWithCGImage:[UIImage imageWithData:jpegData scale:0.3f].CGImage
+                                        imageWithCGImage:[UIImage imageWithData:jpegData scale:scale].CGImage
                                         scale:1.0f
                                         orientation:UIImageOrientationDownMirrored];
                 else if( isUsingFrontFacingCamera  )
                     capturedImage = [UIImage
-                                     imageWithCGImage:[UIImage imageWithData:jpegData scale:0.3f].CGImage
+                                     imageWithCGImage:[UIImage imageWithData:jpegData scale:scale].CGImage
                                      scale:1.0f
                                      orientation:UIImageOrientationUpMirrored];
                 
