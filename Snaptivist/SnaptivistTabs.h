@@ -42,5 +42,7 @@
 -(void)goToForm;
 -(void)goToReps;
 -(void)goToFinished;
+-(void)hideButtons;
+-(void)showButtons;
 
 @end

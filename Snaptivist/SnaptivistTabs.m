@@ -90,6 +90,19 @@
         [self goToForm];
     }
 }
+-(void)hideButtons {
+    self.photosButton.hidden = YES;
+    self.formButton.hidden = YES;
+    self.repsButton.hidden = YES;
+    self.finishedButton.hidden = YES;
+}
+-(void)showButtons {
+    self.photosButton.hidden = NO;
+    self.formButton.hidden = NO;
+    self.repsButton.hidden = NO;
+    self.finishedButton.hidden = NO;
+}
+
 // Exposed actions for buttons
 -(IBAction)goToPhotoAction:(id)sender {
     [self goToPhoto];
