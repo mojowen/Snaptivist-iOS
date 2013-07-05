@@ -83,9 +83,10 @@
 }
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if( buttonIndex == 1 ) {
-        if( [action isEqualToString:@"Delete"])
+        if( [action isEqualToString:@"Delete"]) {
             [parent deleteSignup:signup];
-        else if ( [action isEqualToString:@"Sync"] ) {
+            [parent loadSignups];
+        } else if ( [action isEqualToString:@"Sync"] ) {
             parent.outstandingSync = 1;
             parent.nextToSync = -1;
             [parent disableSync];

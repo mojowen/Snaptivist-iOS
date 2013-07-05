@@ -37,5 +37,6 @@
 -(void)saveSignup:(Signup *)signup;
 -(void)disableSync;
 -(void)enableSync;
+-(void)loadSignups;
 
 @end
