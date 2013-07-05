@@ -65,10 +65,12 @@
         [self assignPhoto]; // No camera - just use what ever is camera's default image
 }
 -(IBAction)setPhoto:(id)sender {
-    [self teardownAVCapture];
+
     SnaptivistTabs *parent = [self tabController];
-    NSData *photoData = [[NSData dataWithData:UIImagePNGRepresentation(self.camera.image)] copy];
-    parent.signup.photo = photoData;
+
+    parent.signup.photo = [NSData dataWithData:UIImagePNGRepresentation(self.camera.image)];
+    self.camera = nil;
+    savedPhotos = nil;
    [parent goToForm];
 }
 - (IBAction)selectPic1:(id)sender {
@@ -313,7 +315,7 @@ bail:
         CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
         CGContextConcatCTM(context, flipVertical);
     }
-    
+
     // Draw into the context; this scales the image
     CGContextDrawImage(context, newRect, imageRef);
     
@@ -357,19 +359,20 @@ bail:
     self.selectPhoto.hidden = YES;
     self.reLaunchCamera.hidden = YES;
     
-    if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-      	[self setupAVCapture];
-    else
+    if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self setupAVCapture];
+    } else {
         self.camera.hidden = NO;
-        self.filmStrip.hidden = NO;
         [self.camera setImage: [UIImage imageNamed:@"no_camera.jpg"] ];
+    }
+    self.filmStrip.hidden = NO;
 }
 -(SnaptivistTabs *)tabController {
     return ((SnaptivistTabs *)(self.parentViewController));
 }
 - (void)viewDidUnload {
-    [self setFilmStrip:nil];
-    [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+    [super viewDidUnload];
+
 }
 @end
