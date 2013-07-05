@@ -14,23 +14,14 @@
 
 @implementation FinishViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     SnaptivistTabs *parent = [self tabController];
     [parent.context save:nil];
+
     
-    if( ! parent.signup.sendTweet.boolValue ) {
-        self.finishMessage.text = @"Thank for signing up, keep an eye out for an email from us soon";
-    }
+    self.finishMessage.text = @"Thank for signing up, keep an eye out for an email from us soon";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -42,6 +33,9 @@
 }
 -(IBAction) showWaiver:(id)sender {
     self.waiver.hidden = NO;
+}
+-(IBAction) startOver:(id)sender {
+    [(SnaptivistTabs *)[self tabController] startOver];
 }
 
 #pragma mark - Private methods

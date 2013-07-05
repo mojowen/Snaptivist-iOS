@@ -16,6 +16,7 @@
 
 - (void)setupAVCapture;
 - (void)teardownAVCapture;
+- (void)unload;
 
 @end
 
@@ -37,9 +38,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
 }
-
+-(void)unload {
+    self.pic1 = nil;
+    self.pic2 = nil;
+    self.pic3 = nil;
+    self.pic4 = nil;
+    self.pic5 = nil;
+    savedPhotos = nil;
+    self.camera = nil;
+    self.filmStrip = nil;
+}
 - (void)didReceiveMemoryWarning
 {
+    [self unload];
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -78,6 +89,7 @@
     parent.signup.photo = [NSData dataWithData:UIImagePNGRepresentation(self.camera.image)];
     self.camera = nil;
     savedPhotos = nil;
+    [self unload];
     [parent showButtons];
     [parent goToForm];
 }

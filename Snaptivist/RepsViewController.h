@@ -16,6 +16,7 @@
 @property (nonatomic, weak) Signup *signup;
 @property (nonatomic, weak) NSManagedObjectContext *context;
 @property (nonatomic,weak) SnaptivistTabs *parent;
+@property (nonatomic,weak) NSArray *reps;
 
 @property (nonatomic,weak) IBOutlet UILabel *message;
 @property (nonatomic,weak) IBOutlet UIScrollView *scrollView;
@@ -33,5 +34,5 @@
 
 -(IBAction)noMessage:(id)sender;
 -(IBAction)sendMessage:(id)sender;
-
+-(void)unload;
 @end

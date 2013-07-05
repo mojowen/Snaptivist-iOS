@@ -10,6 +10,8 @@
 
 @interface FormViewController ()
 
+-(void)unload;
+
 @end
 
 @implementation FormViewController
@@ -26,9 +28,23 @@
 
     [self.first_name becomeFirstResponder];
 }
-
+- (void)unload {
+    signup = nil;
+    context = nil;
+    nextButton = nil;
+    first_name = nil;
+    last_name = nil;
+    email = nil;
+    twitter = nil;
+    zip = nil;
+    addFriends = nil;
+    friends = nil;
+    yourFriends = nil;
+    self.photo = nil;
+}
 - (void)didReceiveMemoryWarning
 {
+    [self unload];
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

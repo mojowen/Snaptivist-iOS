@@ -20,7 +20,7 @@
 
 @implementation RepsViewController
 
-@synthesize context,signup,parent;
+@synthesize context,signup,parent,reps;
 
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -44,7 +44,7 @@
     context = parent.context;
     signup = parent.signup;
     
-    parent.reps = [self fetchReps: signup.zip];
+    reps = [self fetchReps: signup.zip];
     self.header.text = [NSString stringWithFormat:@"3. Sweet. Now let‘s tweet at the reps & senators for zipcode %@",signup.zip];
     
     if ( signup.twitter == nil || [signup.twitter length] < 1)
@@ -52,7 +52,7 @@
     else
         self.message.text = [NSString stringWithFormat:@"@congress @%@ from your district asks you to sponsor Safe Schools #MostNights #SoundOff",signup.twitter];
 
-    if( parent.reps.count < 2 ) {
+    if( reps.count < 2 ) {
         NSString *message = [NSString stringWithFormat:@"%@ didn't work - want to enter a new one?", signup.zip];
 
         UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:@"Can't Find Reps" message:message delegate:self cancelButtonTitle:@"Skip this" otherButtonTitles:@"Try New Zip", nil];
@@ -70,9 +70,20 @@
 
     [self setReps];
 }
-
+-(void)unload {
+    self.repImage0 = nil;
+    self.repImage1 = nil;
+    self.repImage2 = nil;
+    self.repName0 = nil;
+    self.repName1 = nil;
+    self.repName2 = nil;
+    self.repBGImage1 = nil;
+    self.repBGImage1 = nil;
+    self.signup = nil;
+}
 - (void)didReceiveMemoryWarning
 {
+    [self unload];
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -93,6 +104,7 @@
 
 }
 -(void)nextStep {
+    [self unload];
     [[self tabController] goToFinished];
 }
 -(IBAction)noMessage:(id)sender {
@@ -105,25 +117,25 @@
     return ((SnaptivistTabs *)(self.parentViewController));
 }
 -(void)setReps {
-    if( [parent.reps count] == 4 )
+    if( [reps count] == 4 )
         self.scrollView.frame = CGRectMake(60.0f,436.0f,920.0f,321.0f);
     
-    if( [parent.reps count] > 4 ) {
-        self.scrollView.frame = CGRectMake(18.0f,436.0f,1008.0f,321.0f);
+    if( [reps count] > 4 ) {
+        self.scrollView.frame = CGRectMake(60.0f,436.0f,920.0f,321.0f);
         
-        if( [parent.reps count] == 5 )
+        if( [reps count] == 5 )
             self.scrollView.contentSize = CGSizeMake(1100.0f, 300.0f);
-        if( [parent.reps count] == 6 )
+        if( [reps count] == 6 )
             self.scrollView.contentSize = CGSizeMake(1260.0f, 300.0f);
-        if( [parent.reps count] == 7 )
+        if( [reps count] == 7 )
             self.scrollView.contentSize = CGSizeMake(1500.0f, 300.0f);
     }
     
-    if( [parent.reps count] >= 2 ) {
+    if( [reps count] >= 2 ) {
         NSMutableArray *all_reps = [[NSMutableArray alloc] init];
         NSInteger i = 0;
         
-        for( Rep *rep in parent.reps) {
+        for( Rep *rep in reps) {
             NSString *repImagePath = [rep.bioguide stringByAppendingString:@".jpg"];
             [all_reps addObject:rep.bioguide];
             
@@ -176,7 +188,7 @@
             }
             i = i + 1;
         }
-        if( [parent.reps count] < 3 ) {
+        if( [reps count] < 3 ) {
             self.repBGImage2.hidden =YES;
             self.repImage2.hidden = YES;
             self.repName2.hidden = YES;

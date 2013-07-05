@@ -16,5 +16,5 @@
 @property (weak, nonatomic) IBOutlet UITextView *waiver;
 
 -(IBAction)showWaiver:(id)sender;
-
+-(IBAction)startOver:(id)sender;
 @end

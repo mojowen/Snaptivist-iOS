@@ -12,19 +12,18 @@
 
 @interface SnaptivistTabs : UIViewController
 
-@property (nonatomic, retain) Signup *signup;
-@property (nonatomic, retain) NSArray *reps;
+@property (nonatomic, strong) Signup *signup;
 
-@property (nonatomic, retain) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSManagedObjectContext *context;
 
 @property (nonatomic,retain) UIImage *activeImage;
 @property (nonatomic,retain) UIImage *inactiveImage;
 
 // View Tabs
-@property (nonatomic,retain) UIViewController *photosViewController;
-@property (nonatomic,retain) UIViewController *formViewController;
-@property (nonatomic,retain) UIViewController *repsViewController;
-@property (nonatomic,retain) UIViewController *finishedViewController;
+@property (nonatomic,weak) UIViewController *photosViewController;
+@property (nonatomic,weak) UIViewController *formViewController;
+@property (nonatomic,weak) UIViewController *repsViewController;
+@property (nonatomic,weak) UIViewController *finishedViewController;
 
 @property (nonatomic,retain) UIViewController *activeView;
 @property (nonatomic,retain) IBOutlet UIImageView *allyLogo;
@@ -44,5 +43,5 @@
 -(void)goToFinished;
 -(void)hideButtons;
 -(void)showButtons;
-
+-(void)startOver;
 @end
