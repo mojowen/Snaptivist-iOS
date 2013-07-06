@@ -30,7 +30,6 @@
                                                                       withString:@""]
                                                                     componentsSeparatedByString:@":"]
                                                                   objectAtIndex:0]];
-
     // set the blocks
     reach.unreachableBlock = ^(Reachability*reach)
     {
@@ -57,6 +56,8 @@
     
     
     self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:base_URL]];
+
+    
     RKObjectMapping *saveMapping = [RKObjectMapping mappingForClass:[Save class]];
     [saveMapping addAttributeMappingsFromDictionary:@{
      @"success" : @"success",
@@ -67,8 +68,8 @@
                                                                                         pathPattern:nil
                                                                                             keyPath:nil
                                                                                         statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    self.noPhoto = NO;
     [self.objectManager addResponseDescriptor:responseDescriptor];
-    
     [self loadSignups];
     [self setUpPicker];
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
@@ -80,6 +81,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(IBAction)noPhotoSync:(id)sender {
+    self.noPhoto = YES;
+    [self disableSync];
+    self.errors.hidden = NO;
+    self.errors.text = @"Syncing without photos - signups will be deleted from the app but still available as photos";
+    [self.syncButton sendActionsForControlEvents: UIControlEventTouchUpInside];
 }
 -(IBAction)syncNow:(id)sender {
 
@@ -102,6 +110,7 @@
     }
 }
 -(void)disableSync {
+    self.noPhotoSync.enabled = NO;
     self.syncButton.enabled = NO;
     self.syncDisabled = YES;
     [self.myPickerView setUserInteractionEnabled:NO];
@@ -110,8 +119,10 @@
 
 }
 -(void)enableSync {
+    self.noPhotoSync.enabled = YES;
     self.syncButton.enabled = YES;
     self.syncDisabled = NO;
+    self.noPhoto = NO;
     [self.myPickerView setUserInteractionEnabled:YES];
     [self.syncButton setAlpha:1.0f];
     [self.myPickerView setAlpha:1.0f];
@@ -147,6 +158,8 @@
         
         self.numberOfSignups.text = label;
         self.syncButton.hidden = NO;
+        self.noPhotoSync.hidden = NO;
+
     } else {
         self.numberOfSignups.text = @"No Singups";
     }
@@ -217,7 +230,7 @@
 
     NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:signupParams,@"signup", nil];
 
-    if( signup.photo != nil ) {
+    if( signup.photo != nil && ! self.noPhoto ) {
         UIImage *photo = [UIImage imageWithData:signup.photo ];
         request = [ [RKObjectManager sharedManager] multipartFormRequestWithObject:signup method:RKRequestMethodPOST path:@"/save" parameters:queryParams constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             [formData appendPartWithFileData:UIImagePNGRepresentation(photo)

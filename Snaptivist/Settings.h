@@ -16,13 +16,14 @@
 
 @property (nonatomic,weak) IBOutlet UILabel *numberOfSignups;
 @property (nonatomic,weak) IBOutlet UIButton *syncButton;
+@property (nonatomic,weak) IBOutlet UIButton *noPhotoSync;
 @property(nonatomic,weak) IBOutlet UILabel *errors;
 
 @property (nonatomic, weak) NSManagedObjectContext *context;
 @property (nonatomic,weak) RKObjectManager *objectManager;
 @property NSInteger outstandingSync;
 @property NSInteger nextToSync;
-
+@property BOOL noPhoto;
 @property BOOL syncDisabled;
 
 @property (nonatomic,retain) NSArray *signups;
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
 
 - (IBAction)removeSettings:(id)sender;
+- (IBAction)noPhotoSync:(id)sender;
 
 -(void)deleteSignup:(Signup *)signup;
 -(void)saveSignup:(Signup *)signup;

@@ -909,6 +909,19 @@
                                     <action selector="syncNow:" destination="O1w-wo-EnA" eventType="touchUpInside" id="ylz-aC-DWv"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0PF-8e-137">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="No Photo Sync">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="noPhotoSync:" destination="O1w-wo-EnA" eventType="touchUpInside" id="oF8-4h-s7m"/>
+                                </connections>
+                            </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgw-HD-mVm">
                                 <connections>
                                     <outlet property="dataSource" destination="O1w-wo-EnA" id="Div-ez-4oX"/>
@@ -1020,9 +1033,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0PF-8e-137" secondAttribute="bottom" constant="85" id="1Ej-7i-e8P"/>
                             <constraint firstItem="MHa-rG-czq" firstAttribute="trailing" secondItem="sxA-dT-2Z8" secondAttribute="trailing" type="default" id="1Hh-wb-EYr"/>
                             <constraint firstItem="tLH-pU-5bi" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" constant="191" id="1Jf-w1-g67"/>
                             <constraint firstAttribute="bottom" secondItem="wgw-HD-mVm" secondAttribute="bottom" constant="163" id="4VF-DH-FzM"/>
+                            <constraint firstItem="0PF-8e-137" firstAttribute="centerX" secondItem="tLH-pU-5bi" secondAttribute="centerX" type="default" id="ESg-ss-yK2"/>
+                            <constraint firstItem="0PF-8e-137" firstAttribute="centerX" secondItem="wgw-HD-mVm" secondAttribute="centerX" type="default" id="F09-S8-Smb"/>
                             <constraint firstItem="IOj-Ix-5bV" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" type="default" id="KHp-SK-Y3z"/>
                             <constraint firstItem="sxA-dT-2Z8" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="N2E-NT-ZFl"/>
                             <constraint firstItem="wgw-HD-mVm" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="OHO-ac-Zmh"/>
@@ -1033,7 +1049,6 @@
                             <constraint firstItem="pld-bB-Ebt" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dLL-0b-bhS"/>
                             <constraint firstItem="MHa-rG-czq" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" constant="113" id="eh2-Hi-fL7"/>
                             <constraint firstItem="MHa-rG-czq" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ehx-FD-Ogf"/>
-                            <constraint firstItem="tLH-pU-5bi" firstAttribute="centerX" secondItem="MHa-rG-czq" secondAttribute="centerX" type="default" id="eq3-33-1gB"/>
                             <constraint firstItem="IOj-Ix-5bV" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="370" id="nlJ-Lq-1db"/>
                             <constraint firstItem="sxA-dT-2Z8" firstAttribute="trailing" secondItem="wgw-HD-mVm" secondAttribute="trailing" type="default" id="yPP-Zi-deS"/>
                         </constraints>
@@ -1049,6 +1064,7 @@
                         <outlet property="collectionView" destination="IOj-Ix-5bV" id="JiT-LJ-5BY"/>
                         <outlet property="errors" destination="sxA-dT-2Z8" id="zFd-Qa-Nbj"/>
                         <outlet property="myPickerView" destination="wgw-HD-mVm" id="5P8-kB-xOc"/>
+                        <outlet property="noPhotoSync" destination="0PF-8e-137" id="5FW-QQ-grp"/>
                         <outlet property="numberOfSignups" destination="MHa-rG-czq" id="K3d-jc-050"/>
                         <outlet property="syncButton" destination="tLH-pU-5bi" id="Jda-ye-GEE"/>
                     </connections>
@@ -1089,6 +1105,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="8Xo-3r-2zE" firstAttribute="top" secondItem="ATv-OX-dFv" secondAttribute="top" constant="20" symbolic="YES" type="default" id="RWG-9b-PDw"/>
                             <constraint firstItem="sqN-N0-JBm" firstAttribute="top" secondItem="ATv-OX-dFv" secondAttribute="top" type="default" id="TR9-lT-JAi"/>
