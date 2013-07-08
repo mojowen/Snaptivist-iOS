@@ -31,18 +31,22 @@
     savedPhotos = [NSArray arrayWithObjects:self.pic1,self.pic2,self.pic3,self.pic4,self.pic5, nil];
     photoNumber = 0;
     self.filmStrip.hidden = YES;
-    
+    SnaptivistTabs *parent = [self tabController];
     [super viewDidLoad];
 
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
-}
--(void)viewWillAppear:(BOOL)animated {
-    SnaptivistTabs *parent = [self tabController];
     if( parent.signup.photo != nil ) {
+        [self hideSplash];
+        [self assignPhoto:[UIImage imageWithData:parent.signup.photo]];
         parent.signup.photo = nil;
-        [self.launchCamera sendActionsForControlEvents: UIControlEventTouchUpInside];
+    }
+
+}
+-(void)viewDidAppear:(BOOL)animated {
+    if( photoNumber > 0 ) {
+        [self prepForTake];
     }
 }
 -(void)unload {
@@ -66,15 +70,7 @@
     [parent goToForm];
 }
 - (IBAction)launchCamera:(id)sender {
-    self.background.hidden = YES;
-    self.allyBG.hidden = YES;
-    self.launchCamera.hidden = YES;
-    self.noPhoto.hidden = YES;
-
-    SnaptivistTabs *parent = [self tabController];
-    [parent hideButtons];
-    parent.allyLogo.hidden = YES;
-    
+    [self hideSplash];
     [self prepForTake];
 }
 - (IBAction)relaunchCamera:(id)sender {
@@ -86,7 +82,7 @@
     if ( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         [self takePicture]; // This method will assign photo asynchronously - after it's complete
     else
-        [self assignPhoto]; // No camera - just use what ever is camera's default image
+        [self assignPhoto:self.camera.image]; // No camera - just use what ever is camera's default image
 }
 -(IBAction)setPhoto:(id)sender {
 
@@ -97,7 +93,6 @@
     self.camera = nil;
     savedPhotos = nil;
     [self unload];
-    [parent showButtons];
     [parent goToForm];
 }
 - (IBAction)selectPic1:(id)sender {
@@ -119,7 +114,7 @@
 - (void)setupAVCapture
 {
 	NSError *error = nil;
-	
+
 	AVCaptureSession *session = [AVCaptureSession new];
 	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 	    [session setSessionPreset:AVCaptureSessionPreset640x480];
@@ -278,10 +273,13 @@ bail:
                      }
      ];
 }
--(void)assignPhoto {
+-(void)assignPhoto:(UIImage *)image {
     UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
-    
     [newPhoto setBackgroundImage:self.camera.image forState:UIControlStateNormal];
+
+    NSLog(@"%d",photoNumber);
+
+    [newPhoto setImage:image forState:UIControlStateNormal];
     newPhoto.hidden = NO;
     
     if( photoNumber == 4 ) {
@@ -341,8 +339,10 @@ bail:
     [self teardownAVCapture];
     
     photo = photo - 1;
-    UIImage *selectImage = ((UIButton *)[savedPhotos objectAtIndex:photo] ).currentBackgroundImage;
+    UIImage *selectImage = ((UIButton *)[savedPhotos objectAtIndex:photo] ).currentImage;
+        
     self.camera.hidden = NO;
+    self.filmStrip.hidden = NO;
     [self.camera setImage: selectImage];
     self.takePhoto.hidden = YES;
     self.switchCamera.hidden = YES;
@@ -379,6 +379,15 @@ bail:
 - (void)viewDidUnload {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
     [super viewDidUnload];
-
+}
+-(void)hideSplash {
+    self.background.hidden = YES;
+    self.allyBG.hidden = YES;
+    self.launchCamera.hidden = YES;
+    self.noPhoto.hidden = YES;
+    
+    SnaptivistTabs *parent = [self tabController];
+    [parent hideButtons];
+    parent.allyLogo.hidden = YES;
 }
 @end
