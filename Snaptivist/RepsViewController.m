@@ -40,27 +40,7 @@
 
 - (void)viewDidLoad
 {
-    parent = [self tabController];
-    context = parent.context;
-    signup = parent.signup;
-    
-    reps = [self fetchReps: signup.zip];
-    self.header.text = [NSString stringWithFormat:@"3. Sweet. Now let‘s tweet at the reps & senators for zipcode %@",signup.zip];
-    
-    if ( signup.twitter == nil || [signup.twitter length] < 1)
-        self.message.text = [NSString stringWithFormat:@"@congress %@ from your district asks you to sponsor Safe Schools #MostNights #SoundOff",signup.firstName];
-    else
-        self.message.text = [NSString stringWithFormat:@"@congress @%@ from your district asks you to sponsor Safe Schools #MostNights #SoundOff",signup.twitter];
-
-    if( reps.count < 2 ) {
-        NSString *message = [NSString stringWithFormat:@"%@ didn't work - want to enter a new one?", signup.zip];
-
-        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:@"Can't Find Reps" message:message delegate:self cancelButtonTitle:@"Skip this" otherButtonTitles:@"Try New Zip", nil];
-
-        passwordAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-
-        [passwordAlert show];
-    }
+    [self loadReps];
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -116,7 +96,34 @@
 -(SnaptivistTabs *)tabController {
     return ((SnaptivistTabs *)(self.parentViewController));
 }
+-(void)loadReps {
+    parent = [self tabController];
+    context = parent.context;
+
+    signup = parent.signup;
+
+    reps = [self fetchReps: signup.zip];
+    self.header.text = [NSString stringWithFormat:@"3. Sweet. Now let‘s tweet at the reps & senators for zipcode %@",signup.zip];
+    
+    if ( signup.twitter == nil || [signup.twitter length] < 1)
+        self.message.text = [NSString stringWithFormat:@"@congress %@ from your district asks you to sponsor Safe Schools #MostNights #SoundOff",signup.firstName];
+    else
+        self.message.text = [NSString stringWithFormat:@"@congress @%@ from your district asks you to sponsor Safe Schools #MostNights #SoundOff",signup.twitter];
+    
+    if( reps.count < 2 ) {
+        NSString *message = [NSString stringWithFormat:@"%@ didn't work - want to enter a new one?", signup.zip];
+        
+        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:@"Can't Find Reps" message:message delegate:self cancelButtonTitle:@"Skip this" otherButtonTitles:@"Try New Zip", nil];
+        
+        passwordAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        
+        [passwordAlert show];
+    }
+}
 -(void)setReps {
+    if( [reps count] < 2 )
+        [self loadReps];
+
     if( [reps count] == 4 )
         self.scrollView.frame = CGRectMake(60.0f,436.0f,920.0f,321.0f);
     
