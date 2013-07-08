@@ -37,6 +37,7 @@
 
 @property (nonatomic,retain) UIButton *activeButton;
 
+- (IBAction)cancelButton:(id)sender;
 -(void)goToPhoto;
 -(void)goToForm;
 -(void)goToReps;

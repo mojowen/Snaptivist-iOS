@@ -67,8 +67,6 @@
     
 
 }
-
-// Commands for changing tabs - includes validation logic for moving between sections
 -(void)goToPhoto {
     [self setChildFrame:photosViewController];
     [self setButton:self.photosButton];
@@ -142,6 +140,21 @@
 }
 -(IBAction)goToFinishedAction:(id)sender {
     [self goToFinished];
+}
+- (IBAction)cancelButton:(id)sender {
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Are You Sure?"
+                                                          message:@"All your data will be lost."
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"I'm sure", nil];
+    [myAlertView show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if( buttonIndex == 0 ) {
+    } else {
+       [self startOver];
+    }
 }
 
 #pragma mark - Private methods
