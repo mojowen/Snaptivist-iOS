@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="x4U-ga-sUj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="x4U-ga-sUj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -227,6 +227,7 @@
                         <constraints>
                             <constraint firstItem="Lwu-iq-gKD" firstAttribute="bottom" secondItem="17" secondAttribute="bottom" type="default" id="0ba-mJ-hfJ"/>
                             <constraint firstItem="xmZ-lC-8pd" firstAttribute="bottom" secondItem="cQ9-yi-rih" secondAttribute="bottom" type="default" id="4bl-yd-Vpz"/>
+                            <constraint firstItem="nag-bX-yHf" firstAttribute="centerX" secondItem="a6B-0I-jrQ" secondAttribute="centerX" type="default" id="6Hn-j7-XWI"/>
                             <constraint firstItem="gWU-ut-mph" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="14" id="9jj-pw-f99"/>
                             <constraint firstItem="HPq-nP-3mK" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="38" id="ACN-kD-YXz"/>
                             <constraint firstAttribute="trailing" secondItem="xmZ-lC-8pd" secondAttribute="trailing" constant="222" id="BPe-lp-7Ah"/>
@@ -241,7 +242,6 @@
                             <constraint firstItem="a6B-0I-jrQ" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="Zau-OO-2W6"/>
                             <constraint firstItem="tt8-Gs-ThN" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="284" id="bG7-Ag-inN"/>
                             <constraint firstItem="Lwu-iq-gKD" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="bdm-Zu-O13"/>
-                            <constraint firstItem="nag-bX-yHf" firstAttribute="centerX" secondItem="a6B-0I-jrQ" secondAttribute="centerX" type="default" id="cBW-ds-VS4"/>
                             <constraint firstAttribute="bottom" secondItem="gWU-ut-mph" secondAttribute="bottom" constant="24" id="chi-Yz-mIg"/>
                             <constraint firstAttribute="bottom" secondItem="PJ0-I8-gMb" secondAttribute="bottom" constant="268" id="d4Q-Io-AlE"/>
                             <constraint firstItem="xmZ-lC-8pd" firstAttribute="top" secondItem="G9V-xw-WCe" secondAttribute="top" type="default" id="dCi-yC-Rag"/>
