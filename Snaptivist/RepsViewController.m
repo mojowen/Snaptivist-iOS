@@ -41,13 +41,11 @@
 - (void)viewDidLoad
 {
     [self loadReps];
-
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-
     [self setReps];
 }
 -(void)unload {
@@ -121,8 +119,6 @@
     }
 }
 -(void)setReps {
-    if( [reps count] < 2 )
-        [self loadReps];
 
     if( [reps count] == 4 )
         self.scrollView.frame = CGRectMake(60.0f,436.0f,920.0f,321.0f);
