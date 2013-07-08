@@ -51,17 +51,6 @@
 -(void)startOver{
     [activeButton setBackgroundImage:inactiveImage forState:UIControlStateNormal];
 
-    signup = nil;
-    
-    [photosViewController removeFromParentViewController];
-    [repsViewController removeFromParentViewController];
-    [formViewController removeFromParentViewController];
-    [finishedViewController removeFromParentViewController];
-    finishedViewController = nil;
-    formViewController = nil;
-    repsViewController = nil;
-    photosViewController = nil;
-
     [self getStarted];
     [self goToPhoto];
     
@@ -150,7 +139,8 @@
     
     if( buttonIndex == 0 ) {
     } else {
-       [self startOver];
+        [context deletedObject:signup];
+        [self startOver];
     }
 }
 
