@@ -139,7 +139,7 @@
     
     if( buttonIndex == 0 ) {
     } else {
-        [context deletedObject:signup];
+        [context deleteObject:signup];
         [self startOver];
     }
 }
