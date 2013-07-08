@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="x4U-ga-sUj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="x4U-ga-sUj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -663,7 +663,7 @@
                                     <constraint firstItem="fXh-P6-OjX" firstAttribute="baseline" secondItem="iWH-dX-kIy" secondAttribute="baseline" type="default" id="yHf-hj-qUm"/>
                                 </constraints>
                             </scrollView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="3. Sweet. Now let‘s tweet at the reps &amp; senators for zipcode 97214" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="885" translatesAutoresizingMaskIntoConstraints="NO" id="eUb-bU-yRI" customClass="UICustomLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="3. Sweet. Now let‘s tweet at your members of Congress" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="885" translatesAutoresizingMaskIntoConstraints="NO" id="eUb-bU-yRI" customClass="UICustomLabel">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="885" id="YQt-8z-D1Y"/>
                                     <constraint firstAttribute="height" constant="195" id="eWV-Mp-Zhr"/>
@@ -1088,9 +1088,6 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xo-3r-2zE">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="OTK-e0-opK"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal" image="settings.png">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
@@ -1107,7 +1104,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="8Xo-3r-2zE" firstAttribute="top" secondItem="ATv-OX-dFv" secondAttribute="top" constant="20" symbolic="YES" type="default" id="RWG-9b-PDw"/>
+                            <constraint firstItem="8Xo-3r-2zE" firstAttribute="top" secondItem="ATv-OX-dFv" secondAttribute="top" constant="18" id="AHQ-vc-PXu"/>
                             <constraint firstItem="sqN-N0-JBm" firstAttribute="top" secondItem="ATv-OX-dFv" secondAttribute="top" type="default" id="TR9-lT-JAi"/>
                             <constraint firstItem="sqN-N0-JBm" firstAttribute="trailing" secondItem="ATv-OX-dFv" secondAttribute="trailing" type="default" id="blN-c2-jpW"/>
                             <constraint firstItem="sqN-N0-JBm" firstAttribute="bottom" secondItem="ATv-OX-dFv" secondAttribute="bottom" type="default" id="dXV-b5-IMB"/>
@@ -1143,7 +1140,7 @@
                             </containerView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tac_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="XA6-el-rFH">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="5TR-9y-2UD"/>
+                                    <constraint firstAttribute="width" constant="55" id="ixs-Xs-Fye"/>
                                     <constraint firstAttribute="height" constant="81" id="ybR-Cn-Buy"/>
                                 </constraints>
                             </imageView>
@@ -1220,13 +1217,9 @@
                                     <action selector="goToPhotoAction:" destination="T7h-mP-Z3W" eventType="touchUpInside" id="G2L-Hs-eSg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWN-49-4sj">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="mFA-fz-BbQ"/>
-                                    <constraint firstAttribute="width" constant="45" id="zph-Rm-9Ol"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWN-49-4sj">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="X">
+                                <state key="normal" image="restart.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1244,19 +1237,19 @@
                             <constraint firstItem="mnN-q3-XN7" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="6jx-ov-Huh"/>
                             <constraint firstItem="mnN-q3-XN7" firstAttribute="trailing" secondItem="js6-nw-y6e" secondAttribute="trailing" type="default" id="C1S-Bk-QBt"/>
                             <constraint firstItem="QI4-bk-JiK" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="JPx-Kc-ElS"/>
-                            <constraint firstItem="XA6-el-rFH" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" constant="44" id="MTR-B0-qvC"/>
+                            <constraint firstItem="XA6-el-rFH" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" constant="42" id="U3k-Mq-yfV"/>
                             <constraint firstAttribute="bottom" secondItem="XA6-el-rFH" secondAttribute="bottom" constant="13" id="V0L-b4-gL5"/>
                             <constraint firstItem="l70-6H-P7X" firstAttribute="bottom" secondItem="js6-nw-y6e" secondAttribute="bottom" type="default" id="V3M-7z-RQf"/>
                             <constraint firstItem="hxC-fn-1iH" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="XwB-st-joO"/>
                             <constraint firstItem="mnN-q3-XN7" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" type="default" id="cn7-bW-Jpu"/>
                             <constraint firstItem="hxC-fn-1iH" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" constant="384" id="fbb-lC-ohy"/>
-                            <constraint firstAttribute="trailing" secondItem="UWN-49-4sj" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="gHX-rY-BPh"/>
                             <constraint firstItem="l70-6H-P7X" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="k2I-a8-oBg"/>
+                            <constraint firstItem="UWN-49-4sj" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" constant="91" id="mvm-Lv-0Be"/>
                             <constraint firstItem="iYj-6J-Gel" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" type="default" id="p61-YQ-F75"/>
                             <constraint firstItem="mnN-q3-XN7" firstAttribute="bottom" secondItem="js6-nw-y6e" secondAttribute="bottom" type="default" id="qtu-mZ-b94"/>
-                            <constraint firstItem="UWN-49-4sj" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" constant="20" symbolic="YES" type="default" id="r4a-lV-Jns"/>
                             <constraint firstItem="iYj-6J-Gel" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" type="default" id="r8I-hq-FqP"/>
                             <constraint firstItem="QI4-bk-JiK" firstAttribute="top" secondItem="js6-nw-y6e" secondAttribute="top" constant="192" id="vUx-kz-p35"/>
+                            <constraint firstItem="UWN-49-4sj" firstAttribute="leading" secondItem="js6-nw-y6e" secondAttribute="leading" constant="44" id="z4u-xs-kvS"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
@@ -1294,8 +1287,9 @@
         <image name="camera_retake.png" width="110" height="60"/>
         <image name="camera_shutter.png" width="55" height="59"/>
         <image name="filmstrip.png" width="996" height="244"/>
-        <image name="logos.png" width="1024" height="121"/>
+        <image name="logos.png" width="1024" height="106"/>
         <image name="rep_bg.png" width="166" height="259"/>
+        <image name="restart.png" width="55" height="59"/>
         <image name="settings.png" width="55" height="59"/>
         <image name="sidenav_active.png" width="28" height="192"/>
         <image name="sidenav_active@2x.png" width="28" height="192"/>
@@ -1412,10 +1406,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SnaptivistTabs.h"/>
             <relationships>
                 <relationship kind="action" name="cancelButton:"/>
-                <relationship kind="action" name="goToFinishedAction:"/>
-                <relationship kind="action" name="goToFormAction:"/>
-                <relationship kind="action" name="goToPhotoAction:"/>
-                <relationship kind="action" name="goToRepsAction:"/>
                 <relationship kind="outlet" name="allyLogo" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="finishedButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="formButton" candidateClass="UIButton"/>
