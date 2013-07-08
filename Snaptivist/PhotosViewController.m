@@ -32,6 +32,7 @@
     photoNumber = 0;
     self.filmStrip.hidden = YES;
     SnaptivistTabs *parent = [self tabController];
+
     [super viewDidLoad];
 
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -90,6 +91,7 @@
 
     UIImageWriteToSavedPhotosAlbum(self.camera.image, nil, nil, nil);
     parent.signup.photo = [NSData dataWithData:UIImagePNGRepresentation(self.camera.image)];
+    
     self.camera = nil;
     savedPhotos = nil;
     [self unload];
@@ -231,25 +233,11 @@ bail:
                 NSLog(@"failed");
             } else {
                 NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-                UIImage *capturedImage;
                 float scale = 0.2f;
-                
-                if( isUsingFrontFacingCamera && [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft )
-                    capturedImage = [UIImage
-                                        imageWithCGImage:[UIImage imageWithData:jpegData scale:scale].CGImage
-                                        scale:1.0f
-                                        orientation:UIImageOrientationDownMirrored];
-                else if( isUsingFrontFacingCamera  )
-                    capturedImage = [UIImage
-                                     imageWithCGImage:[UIImage imageWithData:jpegData scale:scale].CGImage
-                                     scale:1.0f
-                                     orientation:UIImageOrientationUpMirrored];
-                
-                else
-                    capturedImage = [UIImage imageWithData:jpegData scale:scale];
-                 
-                [self.camera setImage:capturedImage];
-                [self assignPhoto];
+                UIImage *capturedImage = [[UIImage imageWithData:jpegData scale:scale] fixOrientation];
+
+                NSLog(@"orientation on capture %d",capturedImage.imageOrientation);
+                [self assignPhoto:capturedImage];
             }
 
           }
@@ -275,9 +263,6 @@ bail:
 }
 -(void)assignPhoto:(UIImage *)image {
     UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
-    [newPhoto setBackgroundImage:self.camera.image forState:UIControlStateNormal];
-
-    NSLog(@"%d",photoNumber);
 
     [newPhoto setImage:image forState:UIControlStateNormal];
     newPhoto.hidden = NO;
@@ -349,6 +334,7 @@ bail:
 
     self.selectPhoto.hidden = NO;
     self.reLaunchCamera.hidden = NO;
+    [self.view bringSubviewToFront:self.camera];
     [self.view bringSubviewToFront:self.selectPhoto];
     [self.view bringSubviewToFront:self.reLaunchCamera];
 
@@ -378,6 +364,7 @@ bail:
 }
 - (void)viewDidUnload {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+    [self unload];
     [super viewDidUnload];
 }
 -(void)hideSplash {

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SnaptivistTabs.h"
 #import <AVFoundation/AVFoundation.h>
+#import "UIImage+fixOrientation.h"
 
 @interface PhotosViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate>
 
