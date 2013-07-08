@@ -300,7 +300,7 @@
     if( i < 0 )
         i = 0;
     [self.myPickerView selectRow:i inComponent:0 animated:YES];
-    self.event = [self.events objectAtIndex:0];
+    self.event = [self.events objectAtIndex:i];
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
