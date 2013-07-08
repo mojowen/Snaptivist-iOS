@@ -31,12 +31,19 @@
     savedPhotos = [NSArray arrayWithObjects:self.pic1,self.pic2,self.pic3,self.pic4,self.pic5, nil];
     photoNumber = 0;
     self.filmStrip.hidden = YES;
-
+    
     [super viewDidLoad];
 
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
+}
+-(void)viewWillAppear:(BOOL)animated {
+    SnaptivistTabs *parent = [self tabController];
+    if( parent.signup.photo != nil ) {
+        parent.signup.photo = nil;
+        [self.launchCamera sendActionsForControlEvents: UIControlEventTouchUpInside];
+    }
 }
 -(void)unload {
     self.pic1 = nil;
