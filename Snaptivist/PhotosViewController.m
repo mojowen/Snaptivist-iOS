@@ -267,7 +267,7 @@ bail:
     [newPhoto setImage:image forState:UIControlStateNormal];
     newPhoto.hidden = NO;
     
-    if( photoNumber == 4 ) {
+    if( photoNumber == 3 ) {
         photoNumber = 0;
     } else {
         photoNumber = photoNumber + 1;
@@ -374,7 +374,7 @@ bail:
     self.noPhoto.hidden = YES;
     
     SnaptivistTabs *parent = [self tabController];
-    [parent hideButtons];
+//    [parent hideButtons];
     parent.allyLogo.hidden = YES;
 }
 @end

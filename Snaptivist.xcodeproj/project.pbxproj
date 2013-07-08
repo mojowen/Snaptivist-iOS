@@ -47,6 +47,7 @@
 		4F8AC6AD178A7628006B14E9 /* camera_confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8AC6A5178A7628006B14E9 /* camera_confirm@2x.png */; };
 		4F8AC6AE178A7628006B14E9 /* camera_retake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8AC6A6178A7628006B14E9 /* camera_retake@2x.png */; };
 		4F8AC6AF178A7628006B14E9 /* restart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8AC6A7178A7628006B14E9 /* restart@2x.png */; };
+		4F8D275E178B656F00DC006C /* settings_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D275D178B656F00DC006C /* settings_bg.png */; };
 		4F8D5147177BEFA700F69E71 /* A000014.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D4E1C177BEFA100F69E71 /* A000014.jpg */; };
 		4F8D5148177BEFA700F69E71 /* A000022.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D4E1D177BEFA100F69E71 /* A000022.jpg */; };
 		4F8D5149177BEFA700F69E71 /* A000055.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F8D4E1E177BEFA100F69E71 /* A000055.jpg */; };
@@ -964,6 +965,7 @@
 		4F8AC6A5178A7628006B14E9 /* camera_confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_confirm@2x.png"; sourceTree = "<group>"; };
 		4F8AC6A6178A7628006B14E9 /* camera_retake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_retake@2x.png"; sourceTree = "<group>"; };
 		4F8AC6A7178A7628006B14E9 /* restart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restart@2x.png"; sourceTree = "<group>"; };
+		4F8D275D178B656F00DC006C /* settings_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_bg.png; sourceTree = "<group>"; };
 		4F8D4E1C177BEFA100F69E71 /* A000014.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = A000014.jpg; sourceTree = "<group>"; };
 		4F8D4E1D177BEFA100F69E71 /* A000022.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = A000022.jpg; sourceTree = "<group>"; };
 		4F8D4E1E177BEFA100F69E71 /* A000055.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = A000055.jpg; sourceTree = "<group>"; };
@@ -1876,6 +1878,7 @@
 		4F1CF67C177BF6C300D1B979 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4F8D275D178B656F00DC006C /* settings_bg.png */,
 				4F8AC6A0178A7628006B14E9 /* button_bigcamera@2x.png */,
 				4F8AC6A1178A7628006B14E9 /* camera_flip@2x.png */,
 				4F8AC6A2178A7628006B14E9 /* camera_shutter@2x.png */,
@@ -3822,6 +3825,7 @@
 				4F8AC6AD178A7628006B14E9 /* camera_confirm@2x.png in Resources */,
 				4F8AC6AE178A7628006B14E9 /* camera_retake@2x.png in Resources */,
 				4F8AC6AF178A7628006B14E9 /* restart@2x.png in Resources */,
+				4F8D275E178B656F00DC006C /* settings_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
