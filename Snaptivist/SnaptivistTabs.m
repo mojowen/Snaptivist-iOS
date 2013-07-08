@@ -130,6 +130,7 @@
 
 // Exposed actions for buttons
 -(IBAction)goToPhotoAction:(id)sender {
+    [self showButtons];
     [self goToPhoto];
 }
 -(IBAction)goToFormAction:(id)sender {
