@@ -125,13 +125,6 @@
         signup.zip = zip.text;
         signup.email = email.text;
         signup.twitter = [twitter.text stringByReplacingOccurrencesOfString:@"@" withString:@""];
-
-        NSError *error = nil;
-        if ([context save:&error]) {
-            NSLog(@"The signup save was successful!");
-        } else {
-            NSLog(@"The signup save wasn't successful: %@", [error userInfo]);
-        }
         
         [[self tabController] goToReps];
 

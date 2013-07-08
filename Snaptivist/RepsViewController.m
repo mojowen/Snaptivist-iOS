@@ -198,7 +198,6 @@
         }
         
         parent.signup.reps = [all_reps componentsJoinedByString:@","];
-        [parent.context save:nil];
     }
 }
 -(NSArray *)fetchReps:(NSString *)zip {
