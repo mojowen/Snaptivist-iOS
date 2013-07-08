@@ -70,15 +70,12 @@
 -(void)goToPhoto {
     [self setChildFrame:photosViewController];
     [self setButton:self.photosButton];
-    self.allyLogo.hidden = NO;
 }
 -(void)goToForm {
     [self setChildFrame:formViewController];
     [self setButton:self.formButton];
-    self.allyLogo.hidden = NO;
 }
 -(void)goToReps {
-    self.allyLogo.hidden = NO;
     if( [signup.zip length] > 4 ) {
         if( [signup.zip length ] != 5 && [signup.email length ] > 1 )
         {
@@ -130,7 +127,6 @@
 
 // Exposed actions for buttons
 -(IBAction)goToPhotoAction:(id)sender {
-    [self showButtons];
     [self goToPhoto];
 }
 -(IBAction)goToFormAction:(id)sender {
@@ -167,7 +163,9 @@
     if( [self.view.subviews count] > 0 ) {
         [[self.view.subviews objectAtIndex:0] removeFromSuperview];
     }
-    
+
+    [self showButtons];
+    self.allyLogo.hidden = NO;
     [self.view addSubview:viewController.view];
     [self.view sendSubviewToBack:viewController.view];
     viewController.view.frame = self.view.frame;
