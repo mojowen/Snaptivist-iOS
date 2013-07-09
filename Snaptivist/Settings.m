@@ -151,7 +151,8 @@
 
     [request setEntity:entityDescription];
 
-    [request setFetchLimit:15];
+    [request setFetchLimit:150];
+
     NSError *error;
     NSArray *array = [self.context executeFetchRequest:request error:&error];
     NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"email.length > 0"];
