@@ -38,7 +38,7 @@
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
-    if( parent.signup.photo != nil ) {
+    if( parent.signup.photo_path != nil ) {
         [self hideSplash];
         [self assignPhoto:[parent.signup loadPhoto]];
     }
