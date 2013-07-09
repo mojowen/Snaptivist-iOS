@@ -242,13 +242,14 @@
         signup.friends = @"srduncombe+friend1@gmail.com,srduncombe+friend2@gmail.com";
 
         signup.photo = [NSData dataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"no_camera.jpg"])];
-        NSError *error = nil;
-        if ([context save:&error]) {
-            NSLog(@"Saved dummy #%d",i);
-        } else {
-            NSLog(@"Didn't save dummy #%d",i);
-        }
     }
+    NSError *error = nil;
+    if ([context save:&error]) {
+        NSLog(@"Saved dummy ");
+    } else {
+        NSLog(@"Didn't save dummy ");
+    }
+
 }
 
 @end
