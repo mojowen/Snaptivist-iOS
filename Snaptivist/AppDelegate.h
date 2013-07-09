@@ -10,6 +10,7 @@
 #import "Signup.h"
 #import "Zip.h"
 #import "Rep.h"
+#import "Constants.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
