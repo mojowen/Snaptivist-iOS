@@ -888,7 +888,6 @@
 		D23B94091787666D00346D11 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D23B94071787666C00346D11 /* app_icon.png */; };
 		D23B940A1787666D00346D11 /* app_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = D23B94081787666C00346D11 /* app_icon@1x.png */; };
 		D2534B4717861E98006917E9 /* SignupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2534B4617861E98006917E9 /* SignupCell.m */; };
-		D2534B4A17861F68006917E9 /* Save.m in Sources */ = {isa = PBXBuildFile; fileRef = D2534B4917861F68006917E9 /* Save.m */; };
 		D255D00E178AAE7600D983A2 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = D255D00D178AAE7600D983A2 /* UIImage+fixOrientation.m */; };
 		D26EDE551763E40700A67306 /* SnaptivistTabs.m in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE541763E40700A67306 /* SnaptivistTabs.m */; };
 		D26EDE5B17640BAE00A67306 /* Snaptivist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D26EDE5917640BAE00A67306 /* Snaptivist.xcdatamodeld */; };
@@ -904,6 +903,7 @@
 		D2AA676217790626004D2385 /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA676117790626004D2385 /* RepsViewController.m */; };
 		D2AA6DC217791E06004D2385 /* Zip.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC117791E06004D2385 /* Zip.m */; };
 		D2AA6DC817792426004D2385 /* Rep.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC717792426004D2385 /* Rep.m */; };
+		D2B4074E178B6100009B4332 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4074D178B6100009B4332 /* Constants.m */; };
 		D2F5F6341763CEB4006E586C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6331763CEB4006E586C /* UIKit.framework */; };
 		D2F5F6361763CEB4006E586C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6351763CEB4006E586C /* Foundation.framework */; };
 		D2F5F6381763CEB4006E586C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6371763CEB4006E586C /* CoreGraphics.framework */; };
@@ -1808,8 +1808,6 @@
 		D23B94081787666C00346D11 /* app_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@1x.png"; sourceTree = "<group>"; };
 		D2534B4517861E98006917E9 /* SignupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupCell.h; sourceTree = "<group>"; };
 		D2534B4617861E98006917E9 /* SignupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupCell.m; sourceTree = "<group>"; };
-		D2534B4817861F68006917E9 /* Save.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Save.h; sourceTree = "<group>"; };
-		D2534B4917861F68006917E9 /* Save.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Save.m; sourceTree = "<group>"; };
 		D255D00C178AAE7600D983A2 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
 		D255D00D178AAE7600D983A2 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		D26EDE531763E40700A67306 /* SnaptivistTabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnaptivistTabs.h; sourceTree = "<group>"; };
@@ -1831,6 +1829,8 @@
 		D2AA6DC117791E06004D2385 /* Zip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zip.m; sourceTree = "<group>"; };
 		D2AA6DC617792426004D2385 /* Rep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rep.h; sourceTree = "<group>"; };
 		D2AA6DC717792426004D2385 /* Rep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rep.m; sourceTree = "<group>"; };
+		D2B4074C178B6100009B4332 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D2B4074D178B6100009B4332 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		D2F5F6301763CEB4006E586C /* Snaptivist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snaptivist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F5F6331763CEB4006E586C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D2F5F6351763CEB4006E586C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2789,8 +2789,6 @@
 				D2AA6DC717792426004D2385 /* Rep.m */,
 				D2AA6DC017791E06004D2385 /* Zip.h */,
 				D2AA6DC117791E06004D2385 /* Zip.m */,
-				D2534B4817861F68006917E9 /* Save.h */,
-				D2534B4917861F68006917E9 /* Save.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2858,6 +2856,8 @@
 		D2F5F6391763CEB4006E586C /* Snaptivist */ = {
 			isa = PBXGroup;
 			children = (
+				D2B4074C178B6100009B4332 /* Constants.h */,
+				D2B4074D178B6100009B4332 /* Constants.m */,
 				4FA5CCBE177A514300578BA9 /* ViewSubclasses */,
 				D2F5F6421763CEB4006E586C /* AppDelegate.h */,
 				D2F5F6431763CEB4006E586C /* AppDelegate.m */,
@@ -3879,8 +3879,8 @@
 				4F7669321781F66E00CEA2C6 /* Settings.m in Sources */,
 				4F2C3CC9178229B90094C622 /* WilmaButton.m in Sources */,
 				D2534B4717861E98006917E9 /* SignupCell.m in Sources */,
-				D2534B4A17861F68006917E9 /* Save.m in Sources */,
 				D255D00E178AAE7600D983A2 /* UIImage+fixOrientation.m in Sources */,
+				D2B4074E178B6100009B4332 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
