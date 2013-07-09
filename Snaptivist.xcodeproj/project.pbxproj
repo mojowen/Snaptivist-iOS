@@ -1803,6 +1803,7 @@
 		D22637751784FE3E00FEB8E4 /* B001278.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = B001278.jpg; sourceTree = "<group>"; };
 		D22637761784FE3F00FEB8E4 /* C001098.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = C001098.jpg; sourceTree = "<group>"; };
 		D22637771784FE3F00FEB8E4 /* K000384.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = K000384.jpg; sourceTree = "<group>"; };
+		D239F040178B97E100C745CD /* Constants_off.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants_off.h; sourceTree = "<group>"; };
 		D23B94051786C71000346D11 /* K000385.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = K000385.jpg; sourceTree = "<group>"; };
 		D23B94071787666C00346D11 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
 		D23B94081787666C00346D11 /* app_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@1x.png"; sourceTree = "<group>"; };
@@ -2856,8 +2857,6 @@
 		D2F5F6391763CEB4006E586C /* Snaptivist */ = {
 			isa = PBXGroup;
 			children = (
-				D2B4074C178B6100009B4332 /* Constants.h */,
-				D2B4074D178B6100009B4332 /* Constants.m */,
 				4FA5CCBE177A514300578BA9 /* ViewSubclasses */,
 				D2F5F6421763CEB4006E586C /* AppDelegate.h */,
 				D2F5F6431763CEB4006E586C /* AppDelegate.m */,
@@ -2872,6 +2871,9 @@
 		D2F5F63A1763CEB4006E586C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2B4074C178B6100009B4332 /* Constants.h */,
+				D2B4074D178B6100009B4332 /* Constants.m */,
+				D239F040178B97E100C745CD /* Constants_off.h */,
 				D202A31B177FC220004D547B /* reps.txt */,
 				D27673171784D6540037C0FD /* tour_dates.txt */,
 				D202A31C177FC220004D547B /* zipDistrict.txt */,
