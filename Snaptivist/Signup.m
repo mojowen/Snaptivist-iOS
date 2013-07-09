@@ -22,4 +22,6 @@
 @dynamic sendTweet;
 @dynamic photo;
 
+@synthesize photo_path;
+
 @end

@@ -23,4 +23,6 @@
 @property (nonatomic,retain) NSData * photo;
 @property (nonatomic) NSNumber *sendTweet;
 
+@property (nonatomic,retain) NSString *photo_path;
+
 @end
