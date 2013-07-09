@@ -18,7 +18,15 @@
 - (void)viewDidLoad
 {
     SnaptivistTabs *parent = [self tabController];
-    [parent.context save:nil];
+    NSError *error;
+    if (![parent.context save:&error])
+    {
+        // Update to handle the
+        NSLog(@"Unresolved error %@", error);
+        exit(-1);  // Fail
+    } else {
+        NSLog(@"saved it");
+    }
 
     
     self.finishMessage.text = @"Thank for signing up, keep an eye out for an email from us soon";
