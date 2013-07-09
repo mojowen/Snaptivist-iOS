@@ -27,4 +27,5 @@
 - (NSManagedObjectContext *)managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+-(void)clearZipRepStore;
 @end

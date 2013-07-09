@@ -18,7 +18,7 @@
 {
     [self loadZips];
     [self loadReps];
-//    [self loadTestSaves:30];
+//    [self loadTestSaves:50];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
@@ -138,8 +138,52 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+#pragma mark - Clear Zip methods
+-(void)clearZipRepStore{
+    [self deleteZips];
+    [self deleteReps];
+    [self loadZips];
+    [self loadReps];
+}
 #pragma mark - Private methods
-
+-(void)deleteReps {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    // Construct a fetch request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Rep"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (Rep* rep in fetchedObjects) {
+        [context deleteObject:rep];
+    }
+    if ([context save:&error]) {
+        NSLog(@"The reps were deleted");
+    } else {
+        NSLog(@"The reps were not deleted: %@", [error userInfo]);
+    }
+}
+-(void)deleteZips {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    // Construct a fetch request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Zip"
+                                    inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (Zip* zip in fetchedObjects) {
+        [context deleteObject:zip];
+    }
+    if ([context save:&error]) {
+        NSLog(@"The zips were deleted");
+    } else {
+        NSLog(@"The zips were not deleted: %@", [error userInfo]);
+    }
+}
 -(void)loadZips
 {
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -237,6 +281,7 @@
         signup.firstName = [NSString stringWithFormat:@"fake first name %u",i];
         signup.lastName = [NSString stringWithFormat:@"fake last name %u",i];
         signup.email = [NSString stringWithFormat:@"sduncombe+%u@gmail.com",i];
+        signup.photo_date = [NSDate date];
 
         signup.zip = @"97227";
         signup.friends = @"srduncombe+friend1@gmail.com,srduncombe+friend2@gmail.com";
