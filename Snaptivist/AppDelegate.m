@@ -18,7 +18,7 @@
 {
     [self loadZips];
     [self loadReps];
-//    [self loadTestSaves:1];
+//    [self loadTestSaves:30];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
@@ -239,13 +239,16 @@
         signup.email = [NSString stringWithFormat:@"sduncombe+%u@gmail.com",i];
 
         signup.zip = @"97227";
-        if( i > 15 )
-            signup.friends = @"srduncombe+friend1@gmail.com,srduncombe+friend2@gmail.com";
+        signup.friends = @"srduncombe+friend1@gmail.com,srduncombe+friend2@gmail.com";
 
-        if( i > 15 )
-            signup.photo = [[NSData dataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"no_camera.jpg"])] copy];
+        signup.photo = [NSData dataWithData:UIImagePNGRepresentation([UIImage imageNamed:@"no_camera.jpg"])];
+        NSError *error = nil;
+        if ([context save:&error]) {
+            NSLog(@"Saved dummy #%d",i);
+        } else {
+            NSLog(@"Didn't save dummy #%d",i);
+        }
     }
-    [context save:nil];
 }
 
 @end
