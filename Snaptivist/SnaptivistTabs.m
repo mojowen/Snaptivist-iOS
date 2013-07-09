@@ -50,7 +50,6 @@
 }
 -(void)startOver{
     [activeButton setBackgroundImage:inactiveImage forState:UIControlStateNormal];
-
     [self getStarted];
     [self goToPhoto];
     
@@ -139,6 +138,7 @@
     
     if( buttonIndex == 0 ) {
     } else {
+        [signup deletePhoto];
         [context deleteObject:signup];
         [self startOver];
     }

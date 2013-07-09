@@ -20,12 +20,14 @@
 @property (nonatomic, retain) NSString * reps;
 @property (nonatomic, retain) NSString * friends;
 @property (nonatomic, retain) NSDate * photo_date;
-@property (nonatomic, retain) NSDate * photo_path;
+@property (nonatomic, retain) NSString * photo_path;
 @property (nonatomic,retain) NSData * photo;
 @property (nonatomic) NSNumber *sendTweet;
 
 -(NSString *)fileName;
 -(UIImage *)loadPhoto;
 -(void)savePhoto:(UIImage *)image;
+-(void)resavePhoto;
+-(void)deletePhoto;
 
 @end

@@ -175,6 +175,7 @@
 }
 -(void)deleteSignup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
+    [signup deletePhoto];
     [context deleteObject:signup];
     [context save:nil];
     [cell removeFromSuperview];
@@ -216,7 +217,9 @@
         s3 = [[AmazonS3Client alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_KEY];
     
     NSString *photoName = [signup fileName];
-    NSData *imageData = signup.photo;
+    NSLog(@"%@",signup.photo_path);
+
+    NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:signup.photo_path];
     
     s3.endpoint = [AmazonEndpoints s3Endpoint:US_EAST_1];
     
@@ -258,8 +261,7 @@
 }
 -(void)saveSignup:(Signup *)signup {
     [self startSavingSingup:signup];
-    NSLog(@"starting to save a signup");
-    if( signup.photo == nil )
+    if( signup.photo_path == nil )
         [self postSignup:signup];
     else
         [self s3Upload:signup];
@@ -283,7 +285,7 @@
     if( signup.reps != nil )
         [signupParams setObject:signup.reps forKey:@"reps"];
 
-    if( signup.reps != nil )
+    if( signup.photo_path != nil )
         [signupParams setObject:signup.photo_path forKey:@"photo_path"];
     
     NSLog(@"Posting signup %@",signup.photo_path);

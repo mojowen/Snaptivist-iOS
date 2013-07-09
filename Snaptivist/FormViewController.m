@@ -131,7 +131,8 @@
         signup.zip = zip.text;
         signup.email = email.text;
         signup.twitter = [twitter.text stringByReplacingOccurrencesOfString:@"@" withString:@""];
-        
+        [signup resavePhoto];
+
         [[self tabController] goToReps];
 
     } else {

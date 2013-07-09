@@ -92,7 +92,8 @@
 -(void)clearState {
     self.state.text = nil;
     self.state.hidden = YES;
-    [self removeSelectedState];
+    if( [self.action isEqualToString:@"selected"] )
+        [self removeSelectedState];
 }
 -(void)setSyncState {
     self.state.text = @"sync";
