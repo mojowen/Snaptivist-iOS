@@ -134,7 +134,8 @@
     [request setSortDescriptors:@[sortDescriptor]];
 
     [request setEntity:entityDescription];
-                
+
+    [request setFetchLimit:15];
     NSError *error;
     NSArray *array = [self.context executeFetchRequest:request error:&error];
     NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"email.length > 0"];
@@ -377,35 +378,18 @@
     cell.parent = self;
     cell.signup = [signups objectAtIndex:indexPath.row];
 
-    [cell.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
-    // [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
+    if( cell.signup.photo == nil )
+        [cell.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
+    else
+        [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
+
     [cell setBackgroundColor:[UIColor redColor]];
     
     cell.label.text = [NSString stringWithFormat:@"%@",cell.signup.firstName];
 
     return cell;
 }
-- (void)loadImagesForOnscreenRows
-{
-    if ([self.signups count] > 0)
-    {
-        NSArray *visiblePaths = [self.collectionView indexPathsForVisibleItems];
-        for (NSIndexPath *indexPath in visiblePaths)
-        {
-            Signup *signup = [self.signups objectAtIndex:indexPath.row];
-            SignupCell *cell = [self getSignupCell:signup];
-            [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
-        }
-    }
-}
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (!decelerate)
-	{
-        [self loadImagesForOnscreenRows];
-    }
-}
 
 
 
