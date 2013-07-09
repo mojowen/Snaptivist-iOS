@@ -335,8 +335,9 @@
     [self.syncButton setTitle:[NSString stringWithFormat:@"Sync %lu",(unsigned long)[readyToSync count]] forState:UIControlStateNormal];
     return [readyToSync count] -1;
 }
- -(void)removeFromSet:(int)signup {
-     [readyToSync removeObjectAtIndex:signup];
+ -(void)removeFromSet:(Signup *)signup {
+     NSUInteger index = _.indexOf( readyToSync, signup);
+     [readyToSync removeObjectAtIndex:index];
      
      if( [readyToSync count] == 0 )
          [self.syncButton setTitle:@"Sync All" forState:UIControlStateNormal];

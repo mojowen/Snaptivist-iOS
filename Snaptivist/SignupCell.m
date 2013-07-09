@@ -52,11 +52,10 @@
         UIAlertView *myAlertView;
         
         if( parent.outstandingSync < 1 ) {
-            if( [self.action isEqualToString:@"selected"] ) {
+            if( [self.action isEqualToString:@"selected"] )
                 [self removeSelectedState];
-            } else {
+            else
                 [self setSelectedState];
-            }
         } else {
             myAlertView = [[UIAlertView alloc] initWithTitle:@"Cool Your Jets"
                                                      message:@"Things are saving - wait till that's done"
@@ -101,12 +100,12 @@
 }
 -(void)setSelectedState {
     [self setAlpha:0.5f];
-    readyPosition = [parent addToSet:signup];
+    [parent addToSet:self.signup];
     self.action = @"selected";
 }
 -(void)removeSelectedState {
     [self setAlpha:1.0f];
-    [parent removeFromSet:readyPosition];
+    [parent removeFromSet:self.signup];
     self.action = @"";
 }
 

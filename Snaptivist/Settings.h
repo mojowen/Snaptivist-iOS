@@ -40,11 +40,12 @@
 
 - (IBAction)removeSettings:(id)sender;
 - (IBAction)noPhotoSync:(id)sender;
+- (IBAction)removeRepsZips:(id)sender;
 
 -(void)deleteSignup:(Signup *)signup;
 -(void)saveSignup:(Signup *)signup;
 -(int)addToSet:(Signup *)signup;
--(void)removeFromSet:(int)signup;
+-(void)removeFromSet:(Signup *)signup;;
 
 -(void)disableSync;
 -(void)enableSync;
