@@ -163,10 +163,7 @@
 
 }
 -(void)viewDidAppear:(BOOL)animated {
-    if( signup.photo != nil )
-        [self.photo setImage: [UIImage imageWithData:signup.photo scale: 0.1f] ];
-    else
-        [self.photo setImage: [UIImage imageNamed:@"user-placeholder.png"] ];
+    [self.photo setImage: [signup loadPhoto] ];
 
     self.scrollView.frame = CGRectMake(0.0f,0.0f,1024.0f,764.0f);
     self.scrollView.contentSize = CGSizeMake(1024.0f, 900.0f);

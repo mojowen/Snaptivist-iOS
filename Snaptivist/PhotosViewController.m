@@ -40,8 +40,7 @@
 
     if( parent.signup.photo != nil ) {
         [self hideSplash];
-        [self assignPhoto:[UIImage imageWithData:parent.signup.photo]];
-        parent.signup.photo = nil;
+        [self assignPhoto:[parent.signup loadPhoto]];
     }
     
     // styling the photos
@@ -103,7 +102,7 @@
     SnaptivistTabs *parent = [self tabController];
 
     UIImageWriteToSavedPhotosAlbum(self.camera.image, nil, nil, nil);
-    parent.signup.photo = [NSData dataWithData:UIImagePNGRepresentation(self.camera.image)];
+    [parent.signup savePhoto:self.camera.image];
     
     self.camera = nil;
     savedPhotos = nil;
