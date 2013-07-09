@@ -7,7 +7,6 @@
 //
 #import "Settings.h"
 #import "SignupCell.h"
-#import "Save.h"
 
 @interface Settings ()
 
@@ -16,63 +15,20 @@
 
 @implementation Settings
 
-@synthesize context,signups,outstandingSync,nextToSync;
+@synthesize s3,context,signups,outstandingSync,nextToSync;
 
 - (void)viewDidLoad
 {
     context = [[self appDelegate] managedObjectContext];
-    NSString *base_URL = @"http://snaptivist.herokuapp.com";
-//    NSString *base_URL = @"http://192.168.2.5:5050";
-    
-    
-    Reachability *reach = [Reachability reachabilityWithHostname:[ [ [base_URL
-                                                                      stringByReplacingOccurrencesOfString:@"http://"
-                                                                      withString:@""]
-                                                                    componentsSeparatedByString:@":"]
-                                                                  objectAtIndex:0]];
-    // set the blocks
-    reach.unreachableBlock = ^(Reachability*reach)
-    {
-        NSLog(@" unreachable");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self disableSync];
-            self.errors.text = @"No connection detected";
-            self.errors.hidden = NO;
-        });
-    };
-    
-    reach.reachableBlock = ^(Reachability*reach)
-    {
-        NSLog(@" reachable");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self enableSync];
-            self.errors.hidden = YES;
-            self.errors.text = nil;
-        });
-    };
-    
-    // start the notifier which will cause the reachability object to retain itself!
-    [reach startNotifier];
-    
-    
-    self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:base_URL]];
 
-    
-    RKObjectMapping *saveMapping = [RKObjectMapping mappingForClass:[Save class]];
-    [saveMapping addAttributeMappingsFromDictionary:@{
-     @"success" : @"success",
-     @"signup" : @"signup"
-     }];
-    
-    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:saveMapping
-                                                                                        pathPattern:nil
-                                                                                            keyPath:nil
-                                                                                        statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     self.noPhoto = NO;
-    [self.objectManager addResponseDescriptor:responseDescriptor];
+
     [self loadSignups];
     [self setUpPicker];
+
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
+
+    [self launchReachability];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -112,6 +68,8 @@
 -(void)disableSync {
     self.noPhotoSync.enabled = NO;
     self.syncButton.enabled = NO;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     self.syncDisabled = YES;
     [self.myPickerView setUserInteractionEnabled:NO];
     [self.syncButton setAlpha:0.3f];
@@ -121,12 +79,47 @@
 -(void)enableSync {
     self.noPhotoSync.enabled = YES;
     self.syncButton.enabled = YES;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
     self.syncDisabled = NO;
     self.noPhoto = NO;
     [self.myPickerView setUserInteractionEnabled:YES];
     [self.syncButton setAlpha:1.0f];
     [self.myPickerView setAlpha:1.0f];
 }
+-(void)launchReachability {
+    
+    Reachability *reach = [Reachability reachabilityWithHostname:[ [ [BASE_URL
+                                                                      stringByReplacingOccurrencesOfString:@"http://"
+                                                                      withString:@""]
+                                                                    componentsSeparatedByString:@":"]
+                                                                  objectAtIndex:0]];
+    // set the blocks
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        NSLog(@" unreachable");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self disableSync];
+            self.errors.text = @"No connection detected";
+            self.errors.hidden = NO;
+        });
+    };
+    
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        NSLog(@" reachable");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self enableSync];
+            self.errors.hidden = YES;
+            self.errors.text = nil;
+        });
+    };
+    
+    // start the notifier which will cause the reachability object to retain itself!
+    [reach startNotifier];
+
+}
+
 #pragma mark - Private methods
 - (AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -141,7 +134,7 @@
     [request setSortDescriptors:@[sortDescriptor]];
 
     [request setEntity:entityDescription];
-            
+                
     NSError *error;
     NSArray *array = [self.context executeFetchRequest:request error:&error];
     NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"email.length > 0"];
@@ -173,7 +166,6 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 -(void)deleteSignup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
     [context deleteObject:signup];
@@ -206,12 +198,67 @@
 }
 -(void)startSavingSingup:(Signup *)signup {
     SignupCell *cell = [self getSignupCell:signup];
-    [cell setSyncState ];
+    NSLog(@"syn starting");
+    [cell setSyncState];
+}
+-(void)s3Upload:(Signup *)signup {
+    NSLog(@"Amazon uploading");
+    
+    if( s3 == nil)
+        s3 = [[AmazonS3Client alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_KEY];
+    
+    NSString *photoName = [NSString stringWithFormat:@"%@_%@_%@.png",signup.firstName,signup.lastName,signup.photo_date];
+    NSData *imageData = signup.photo;
+    
+    s3.endpoint = [AmazonEndpoints s3Endpoint:US_EAST_1];
+    
+    // Upload image data.  Remember to set the content type.
+    S3PutObjectRequest *por = [[S3PutObjectRequest alloc] initWithKey: photoName
+                                                             inBucket:PICTURE_BUCKET];
+    por.contentType = @"image/png";
+    
+
+    // Convert the image to JPEG data.
+
+    por.data = imageData;
+    
+    // Put the image data into the specified s3 bucket and object.
+    S3PutObjectResponse *response  = [s3 putObject:por];
+    if ([response isFinishedLoading]) {
+        
+        S3GetPreSignedURLRequest *gpsur = [[S3GetPreSignedURLRequest alloc] init];
+        gpsur.key                     = photoName;
+        gpsur.bucket                  = PICTURE_BUCKET;
+        gpsur.expires                 = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) 3600 * 24 ];
+        
+        NSError *error;
+        signup.photo_path = [NSString stringWithFormat:@"%@",[self.s3 getPreSignedURL:gpsur error:&error] ];
+
+        if( signup.photo_path == nil || error != nil) {
+            [self errorSignup:signup];
+            self.errors.text = @"Some errors on the last sync";
+            self.errors.hidden = NO;
+        } else {
+         [self postSignup:signup];
+        }
+    } else {
+        [self errorSignup:signup];
+        self.errors.text = @"Some errors on the last sync";
+        self.errors.hidden = NO;
+    }
+    
 }
 -(void)saveSignup:(Signup *)signup {
     [self startSavingSingup:signup];
+    NSLog(@"starting to save a signup");
+    if( signup.photo == nil )
+        [self postSignup:signup];
+    else
+        [self s3Upload:signup];
+}
+-(void)postSignup:(Signup*)signup {
+    NSLog(@"Posting signup");
 
-    NSMutableURLRequest *request;
     NSMutableDictionary *signupParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                              signup.firstName,@"firstName",
                                              signup.lastName, @"lastName",
@@ -228,47 +275,34 @@
     if( signup.reps != nil )
         [signupParams setObject:signup.reps forKey:@"reps"];
 
+    if( signup.reps != nil )
+        [signupParams setObject:signup.photo_path forKey:@"photo_path"];
+    
+    NSLog(@"Posting signup %@",signup.photo_path);
+
     NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:signupParams,@"signup", nil];
 
-    if( signup.photo != nil && ! self.noPhoto ) {
-        UIImage *photo = [UIImage imageWithData:signup.photo ];
-        request = [ [RKObjectManager sharedManager] multipartFormRequestWithObject:signup method:RKRequestMethodPOST path:@"/save" parameters:queryParams constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:UIImagePNGRepresentation(photo)
-                                        name:@"signup[photo]"
-                                    fileName:@"photo.png"
-                                    mimeType:@"image/png"];
-        }];
-    } else {
-        request = [ [RKObjectManager sharedManager] requestWithObject:signup method:RKRequestMethodPOST path:@"/save" parameters:queryParams];
-    }
-
-    RKObjectRequestOperation *operation = [[RKObjectManager sharedManager]
-                                           objectRequestOperationWithRequest:request
-                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-
-                                               Save *latest = [result firstObject];
-                                               if( [latest.success isEqualToString:@"true"] ) {
-                                                   [self deleteSignup:signup];
-                                               } else {
-                                                   [self errorSignup:signup];
-                                                   self.errors.text = @"Some errors on the last sync";
-                                                   self.errors.hidden = NO;
-                                               }
-                                              [self finishedSync];
-                                               //NSLog(@"%@", latest.success);
-             //                                  NSLog(@"%@", latest.signup);
-               
-                                           }
-                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                               [self errorSignup:signup];
-                                               [self finishedSync];
-
-                                               self.errors.text = @"Some errors on the last sync";
-                                               self.errors.hidden = NO;
-                                             //  NSLog(@"%@", error);
-                                           }];
-
-    [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation];
+    
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:BASE_URL]];
+    
+    [objectManager.HTTPClient setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    NSLog(@"%@",queryParams);
+    [objectManager.HTTPClient
+         postPath:@"/save"
+        parameters:queryParams
+        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [self deleteSignup:signup];
+        }
+        failure:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self errorSignup:signup];
+            [self finishedSync];
+            
+            self.errors.text = @"Some errors on the last sync";
+            self.errors.hidden = NO;
+        }
+     ];
     
 }
 
@@ -343,18 +377,34 @@
     cell.parent = self;
     cell.signup = [signups objectAtIndex:indexPath.row];
 
-    
-    if( cell.signup.photo != nil ) {
-        [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
-    } else {
-        [cell.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
-    }
-    
+    [cell.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
+    // [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
     [cell setBackgroundColor:[UIColor redColor]];
     
     cell.label.text = [NSString stringWithFormat:@"%@",cell.signup.firstName];
 
     return cell;
+}
+- (void)loadImagesForOnscreenRows
+{
+    if ([self.signups count] > 0)
+    {
+        NSArray *visiblePaths = [self.collectionView indexPathsForVisibleItems];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            Signup *signup = [self.signups objectAtIndex:indexPath.row];
+            SignupCell *cell = [self getSignupCell:signup];
+            [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
 }
 
 

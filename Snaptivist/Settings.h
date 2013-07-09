@@ -11,6 +11,10 @@
 #import <RestKit/RestKit.h>
 #import "Signup.h"
 #import <Reachability.h>
+#import <AmazonS3Client.h>
+#import <AWSS3.h>
+#import <AmazonEndpoints.h>
+
 
 @interface Settings : UIViewController
 
@@ -20,7 +24,6 @@
 @property(nonatomic,weak) IBOutlet UILabel *errors;
 
 @property (nonatomic, weak) NSManagedObjectContext *context;
-@property (nonatomic,weak) RKObjectManager *objectManager;
 @property NSInteger outstandingSync;
 @property NSInteger nextToSync;
 @property BOOL noPhoto;
@@ -41,5 +44,8 @@
 -(void)disableSync;
 -(void)enableSync;
 -(void)loadSignups;
+
+
+@property (nonatomic, retain) AmazonS3Client *s3;
 
 @end
