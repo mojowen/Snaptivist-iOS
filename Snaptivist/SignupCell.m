@@ -93,7 +93,6 @@
     self.state.text = nil;
     self.state.hidden = YES;
     [self removeSelectedState];
-    [parent removeFromSet:readyPosition];
 }
 -(void)setSyncState {
     self.state.text = @"sync";
