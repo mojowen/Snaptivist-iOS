@@ -101,7 +101,7 @@
     signup = parent.signup;
 
     reps = [self fetchReps: signup.zip];
-    self.header.text = [NSString stringWithFormat:@"3. Sweet. Now let‘s tweet at the reps & senators for zipcode %@",signup.zip];
+    self.header.text = [NSString stringWithFormat:@"3. Now let‘s tweet at the reps & senators for zipcode %@",signup.zip];
     
     if ( signup.twitter == nil || [signup.twitter length] < 1)
         self.message.text = [NSString stringWithFormat:@"@congress %@ from your district asks you to sponsor Safe Schools #MostNights #SoundOff",signup.firstName];
