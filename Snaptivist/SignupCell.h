@@ -18,7 +18,7 @@
 @property (nonatomic) int readyPosition;
 @property (retain,nonatomic) Signup *signup;
 @property (retain,nonatomic) NSString *action;
-@property (retain,nonatomic) Settings *parent;
+@property (weak,nonatomic) Settings *parent;
 
 -(void)setSyncState;
 -(void)setErrorState;
