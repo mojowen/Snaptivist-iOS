@@ -21,7 +21,6 @@
 @property (nonatomic, retain) NSString * friends;
 @property (nonatomic, retain) NSDate * photo_date;
 @property (nonatomic, retain) NSString * photo_path;
-@property (nonatomic,retain) NSData * photo;
 @property (nonatomic) NSNumber *sendTweet;
 
 -(NSString *)fileName;

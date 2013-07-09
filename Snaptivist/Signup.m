@@ -20,7 +20,6 @@
 @dynamic reps;
 @dynamic photo_date;
 @dynamic sendTweet;
-@dynamic photo;
 @dynamic photo_path;
 
 
