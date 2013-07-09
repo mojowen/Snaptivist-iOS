@@ -46,6 +46,16 @@
     self.errors.text = @"Syncing without photos - signups will be deleted from the app but still available as photos";
     [self.syncButton sendActionsForControlEvents: UIControlEventTouchUpInside];
 }
+
+- (IBAction)removeRepsZips:(id)sender {
+    [[self appDelegate] clearZipRepStore];
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Success!"
+                                                          message:@"We've reloaded all of the reps and zips"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles: nil];
+    [myAlertView show];
+}
 -(IBAction)syncNow:(id)sender {
 
     [self disableSync];

@@ -858,6 +858,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="settings_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="3QF-cj-9fk"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gef-d0-1hS" customClass="WilmaButton">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="M14-nC-BQ4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reload Zips &amp; Reps" backgroundImage="button_red.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeRepsZips:" destination="O1w-wo-EnA" eventType="touchUpInside" id="TGX-RE-Hbk"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pld-bB-Ebt" customClass="WilmaButton">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="hXK-1p-QpV"/>
@@ -878,7 +894,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHa-rG-czq" customClass="UICustomLabel">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="eKf-IM-8bp"/>
-                                    <constraint firstAttribute="width" constant="360" id="lrm-jv-7Yq"/>
+                                    <constraint firstAttribute="width" constant="361" id="uDh-C6-U0E"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -886,7 +902,6 @@
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLH-pU-5bi" customClass="WilmaButton">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="146" id="mKI-pf-nCO"/>
                                     <constraint firstAttribute="height" constant="44" id="y76-Yq-nUG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1040,10 +1055,12 @@
                             <constraint firstItem="sxA-dT-2Z8" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" constant="319" id="4l8-V2-Sk4"/>
                             <constraint firstItem="MHa-rG-czq" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" type="default" id="8Zh-Ue-chW"/>
                             <constraint firstItem="IOj-Ix-5bV" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" constant="370" id="Eyc-LP-sN1"/>
-                            <constraint firstItem="0PF-8e-137" firstAttribute="centerX" secondItem="wgw-HD-mVm" secondAttribute="centerX" type="default" id="Fzy-aT-hUN"/>
+                            <constraint firstAttribute="bottom" secondItem="Gef-d0-1hS" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Ihf-Ce-cF7"/>
                             <constraint firstItem="pld-bB-Ebt" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" constant="20" symbolic="YES" type="default" id="TUm-zO-mEG"/>
                             <constraint firstItem="3QF-cj-9fk" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" type="default" id="UDd-Cm-PpE"/>
                             <constraint firstItem="IOj-Ix-5bV" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" constant="20" symbolic="YES" type="default" id="X8T-1D-PLp"/>
+                            <constraint firstItem="Gef-d0-1hS" firstAttribute="leading" secondItem="tLH-pU-5bi" secondAttribute="leading" type="default" id="XAa-za-biT"/>
+                            <constraint firstItem="Gef-d0-1hS" firstAttribute="centerX" secondItem="0PF-8e-137" secondAttribute="centerX" type="default" id="ZBe-Wd-hUM"/>
                             <constraint firstItem="MHa-rG-czq" firstAttribute="top" secondItem="YO8-96-jLY" secondAttribute="top" constant="113" id="apB-KF-iFe"/>
                             <constraint firstItem="3QF-cj-9fk" firstAttribute="leading" secondItem="YO8-96-jLY" secondAttribute="leading" type="default" id="cE4-Pm-Grg"/>
                             <constraint firstItem="wgw-HD-mVm" firstAttribute="trailing" secondItem="sxA-dT-2Z8" secondAttribute="trailing" type="default" id="eht-KZ-MBa"/>

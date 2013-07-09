@@ -12,6 +12,9 @@
 #import "Rep.h"
 #import "Constants.h"
 
+#import "Underscore.h"
+#define _ Underscore
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -24,4 +27,5 @@
 - (NSManagedObjectContext *)managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+-(void)clearZipRepStore;
 @end
