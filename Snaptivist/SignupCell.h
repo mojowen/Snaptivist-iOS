@@ -15,6 +15,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *label;
 @property (retain, nonatomic) IBOutlet UILabel *state;
 @property (retain, nonatomic) IBOutlet UIButton *photo;
+@property (nonatomic) int readyPosition;
 @property (retain,nonatomic) Signup *signup;
 @property (retain,nonatomic) NSString *action;
 @property (retain,nonatomic) Settings *parent;

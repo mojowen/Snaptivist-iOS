@@ -15,7 +15,7 @@
 
 @implementation Settings
 
-@synthesize s3,context,signups,outstandingSync,nextToSync;
+@synthesize s3,context,signups,outstandingSync,nextToSync,readyToSync;
 
 - (void)viewDidLoad
 {
@@ -25,6 +25,7 @@
 
     [self loadSignups];
     [self setUpPicker];
+    readyToSync = [[NSMutableArray alloc] init];
 
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
 
@@ -48,16 +49,21 @@
 -(IBAction)syncNow:(id)sender {
 
     [self disableSync];
-    outstandingSync = [signups count];
+
+    if( [readyToSync count] == 0 )
+        readyToSync = [self.signups mutableCopy];
+
+    outstandingSync = [readyToSync count];
     self.errors.text = nil;
     NSArray *batchOfSignups;
     int batch_size = 5;
     
     if( outstandingSync > batch_size ) {
-        batchOfSignups  = [signups subarrayWithRange:NSMakeRange(0,batch_size)];
+        outstandingSync = [readyToSync count];
+        batchOfSignups  = [readyToSync subarrayWithRange:NSMakeRange(0,batch_size)];
         nextToSync = batch_size;
     } else{
-        batchOfSignups = [signups copy];
+        batchOfSignups = [readyToSync copy];
         nextToSync = -1;
     }
 
@@ -191,6 +197,7 @@
     if( outstandingSync < 1 ) {
         [self enableSync];
         [self loadSignups];
+        [self.syncButton setTitle:@"Sync All" forState:UIControlStateNormal];
     }
 }
 -(void)errorSignup:(Signup *)signup {
@@ -306,7 +313,20 @@
      ];
     
 }
+-(int)addToSet:(Signup *)signup {
+    [readyToSync addObject:signup];
+    [self.syncButton setTitle:[NSString stringWithFormat:@"Sync %lu",(unsigned long)[readyToSync count]] forState:UIControlStateNormal];
+    return [readyToSync count] -1;
+}
+ -(void)removeFromSet:(int)signup {
+     [readyToSync removeObjectAtIndex:signup];
+     
+     if( [readyToSync count] == 0 )
+         [self.syncButton setTitle:@"Sync All" forState:UIControlStateNormal];
+     else
+         [self.syncButton setTitle:[NSString stringWithFormat:@"Sync %lu",(unsigned long)[readyToSync count]] forState:UIControlStateNormal];
 
+ }
 
 // Picker stuff
 #pragma mark -

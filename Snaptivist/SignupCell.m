@@ -11,7 +11,7 @@
 
 @implementation SignupCell
 
-@synthesize parent,signup,action;
+@synthesize parent,signup,action,readyPosition;
 
 -(void)viewDidLoad {
     parent = ((Settings *)[self superview]);
@@ -52,22 +52,11 @@
         UIAlertView *myAlertView;
         
         if( parent.outstandingSync < 1 ) {
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-            [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-            NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-            [dateFormatter setLocale:usLocale];
-            
-            NSString *title = [NSString stringWithFormat:@"Sync %@",signup.firstName];
-            NSString *message = [NSString stringWithFormat:@"Are you sure you want to sync %@ - from %@ - to %@?",signup.firstName,[dateFormatter stringFromDate:signup.photo_date],parent.event];
-            
-            action = @"Sync";
-            
-            myAlertView = [[UIAlertView alloc] initWithTitle:title
-                                                     message: message
-                                                    delegate:self
-                                           cancelButtonTitle:@"Cancel"
-                                           otherButtonTitles:@"Sync", nil];
+            if( [self.action isEqualToString:@"selected"] ) {
+                [self removeSelectedState];
+            } else {
+                [self setSelectedState];
+            }
         } else {
             myAlertView = [[UIAlertView alloc] initWithTitle:@"Cool Your Jets"
                                                      message:@"Things are saving - wait till that's done"
@@ -103,11 +92,23 @@
 -(void)clearState {
     self.state.text = nil;
     self.state.hidden = YES;
+    [self removeSelectedState];
+    [parent removeFromSet:readyPosition];
 }
 -(void)setSyncState {
     self.state.text = @"sync";
     [self.state setTextColor:[UIColor whiteColor]];
     self.state.hidden = NO;
+}
+-(void)setSelectedState {
+    [self setAlpha:0.5f];
+    readyPosition = [parent addToSet:signup];
+    self.action = @"selected";
+}
+-(void)removeSelectedState {
+    [self setAlpha:1.0f];
+    [parent removeFromSet:readyPosition];
+    self.action = @"";
 }
 
 @end

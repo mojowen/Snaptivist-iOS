@@ -23,7 +23,8 @@
 @property (nonatomic,weak) IBOutlet UIButton *noPhotoSync;
 @property(nonatomic,weak) IBOutlet UILabel *errors;
 
-@property (nonatomic, weak) NSManagedObjectContext *context;
+@property (nonatomic, retain) NSManagedObjectContext *context;
+@property (nonatomic, retain) NSMutableArray *readyToSync;
 @property NSInteger outstandingSync;
 @property NSInteger nextToSync;
 @property BOOL noPhoto;
@@ -41,6 +42,9 @@
 
 -(void)deleteSignup:(Signup *)signup;
 -(void)saveSignup:(Signup *)signup;
+-(int)addToSet:(Signup *)signup;
+-(void)removeFromSet:(int)signup;
+
 -(void)disableSync;
 -(void)enableSync;
 -(void)loadSignups;
