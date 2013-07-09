@@ -43,6 +43,19 @@
         [self assignPhoto:[UIImage imageWithData:parent.signup.photo]];
         parent.signup.photo = nil;
     }
+    
+    // styling the photos
+    self.pic1.layer.borderColor = [UIColor colorWithRed:132/255.0f green:131/255.0f blue:131/255.0f alpha:1.0f].CGColor;
+    self.pic1.layer.borderWidth = 1.0;
+    
+    self.pic2.layer.borderColor = [UIColor colorWithRed:132/255.0f green:131/255.0f blue:131/255.0f alpha:1.0f].CGColor;
+    self.pic2.layer.borderWidth = 1.0;
+    
+    self.pic3.layer.borderColor = [UIColor colorWithRed:132/255.0f green:131/255.0f blue:131/255.0f alpha:1.0f].CGColor;
+    self.pic3.layer.borderWidth = 1.0;
+    
+    self.pic4.layer.borderColor = [UIColor colorWithRed:132/255.0f green:131/255.0f blue:131/255.0f alpha:1.0f].CGColor;
+    self.pic4.layer.borderWidth = 1.0;
 
 }
 -(void)viewDidAppear:(BOOL)animated {

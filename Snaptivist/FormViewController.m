@@ -7,6 +7,7 @@
 //
 
 #import "FormViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface FormViewController ()
 
@@ -25,6 +26,11 @@
     SnaptivistTabs *parent = [self tabController];
     context = parent.context;
     signup = parent.signup;
+    
+    // styling the photo
+    self.photo.layer.cornerRadius = 5.0;
+    self.photo.layer.borderColor = [UIColor colorWithRed:132/255.0f green:131/255.0f blue:131/255.0f alpha:1.0f].CGColor;
+    self.photo.layer.borderWidth = 1.0;
 
     [self.first_name becomeFirstResponder];
 }
