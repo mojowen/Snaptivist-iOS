@@ -23,7 +23,13 @@
 
     self.noPhoto = NO;
 
-    [self loadSignups];
+    self.numberOfSignups.text = @"Loading...";
+    self.activity.hidden = NO;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+        [self loadSignups];
+    });
+
     [self setUpPicker];
     readyToSync = [[NSMutableArray alloc] init];
 
@@ -50,30 +56,34 @@
 
     [self disableSync];
 
-    if( [readyToSync count] == 0 )
-        readyToSync = [self.signups mutableCopy];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+        if( [readyToSync count] == 0 )
+            readyToSync = [self.signups mutableCopy];
 
-    outstandingSync = [readyToSync count];
-    self.errors.text = nil;
-    NSArray *batchOfSignups;
-    int batch_size = 5;
-    
-    if( outstandingSync > batch_size ) {
         outstandingSync = [readyToSync count];
-        batchOfSignups  = [readyToSync subarrayWithRange:NSMakeRange(0,batch_size)];
-        nextToSync = batch_size;
-    } else{
-        batchOfSignups = [readyToSync copy];
-        nextToSync = -1;
-    }
+        self.errors.text = nil;
+        NSArray *batchOfSignups;
+        int batch_size = 5;
+        
+        if( outstandingSync > batch_size ) {
+            outstandingSync = [readyToSync count];
+            batchOfSignups  = [readyToSync subarrayWithRange:NSMakeRange(0,batch_size)];
+            nextToSync = batch_size;
+        } else{
+            batchOfSignups = [readyToSync copy];
+            nextToSync = -1;
+        }
 
-    for (Signup *signup in batchOfSignups) {
-        [self saveSignup:signup];
-    }
+        for (Signup *signup in batchOfSignups) {
+            [self saveSignup:signup];
+        }
+    });
 }
 -(void)disableSync {
     self.noPhotoSync.enabled = NO;
     self.syncButton.enabled = NO;
+    self.activity.hidden = NO;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     self.syncDisabled = YES;
@@ -85,6 +95,7 @@
 -(void)enableSync {
     self.noPhotoSync.enabled = YES;
     self.syncButton.enabled = YES;
+    self.activity.hidden = YES;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
     self.syncDisabled = NO;
@@ -259,11 +270,17 @@
 -(void)saveSignup:(Signup *)signup {
     [self startSavingSingup:signup];
     NSLog(@"starting to save a signup");
-    if( signup.photo == nil )
-        [self postSignup:signup];
-    else
-        [self s3Upload:signup];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+        NSLog(@"Saving Asynchronously");
+        if( signup.photo == nil )
+            [self postSignup:signup];
+        else
+            [self s3Upload:signup];
+    });
 }
+
 -(void)postSignup:(Signup*)signup {
     NSLog(@"Posting signup");
 
