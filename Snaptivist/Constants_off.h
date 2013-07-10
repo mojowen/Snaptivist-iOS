@@ -21,9 +21,9 @@
 #define CREDENTIALS_ERROR_MESSAGE  @"AWS Credentials not configured correctly.  Please review the README file."
 
 #ifdef DEBUG
-#define BASE_URL    @"http://localhost.com:5050"
+    #define BASE_URL    @"http://local-endpoint"
 #else
-#define BASE_URL    @"http://snaptivist.herokuapp.com"
+    #define BASE_URL    @"http://production-endpoint"
 #endif
 
 
