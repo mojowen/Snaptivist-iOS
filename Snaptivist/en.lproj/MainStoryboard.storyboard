@@ -891,7 +891,7 @@
                                     <action selector="removeSettings:" destination="O1w-wo-EnA" eventType="touchUpInside" id="jwG-eK-e1y"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHa-rG-czq" customClass="UICustomLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MHa-rG-czq" customClass="UICustomLabel">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="eKf-IM-8bp"/>
                                     <constraint firstAttribute="width" constant="361" id="uDh-C6-U0E"/>
@@ -1009,7 +1009,9 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="av3-7a-Zx4"/>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="av3-7a-Zx4">
+                                                    <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -1031,6 +1033,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="activity" destination="av3-7a-Zx4" id="x43-ub-CoW"/>
+                                            <outlet property="deleteButton" destination="EWK-Be-Nlc" id="nLi-6O-UY2"/>
                                             <outlet property="label" destination="xEa-Md-8nA" id="UJi-mh-7GW"/>
                                             <outlet property="photo" destination="IYK-Hg-Xdv" id="239-av-dGM"/>
                                             <outlet property="state" destination="buh-yG-mam" id="44G-SJ-0qK"/>
@@ -1042,6 +1045,9 @@
                                     <outlet property="delegate" destination="O1w-wo-EnA" id="NZN-vU-sf5"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="crK-sf-ItT">
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxA-dT-2Z8" customClass="UICustomLabel">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="340" id="MSt-mw-7mj"/>
@@ -1050,7 +1056,6 @@
                                 <color key="textColor" red="0.7254902124" green="0.0" blue="0.050980392839999999" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="crK-sf-ItT"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -1368,7 +1373,6 @@
                 <relationship kind="action" name="selectPic2:"/>
                 <relationship kind="action" name="selectPic3:"/>
                 <relationship kind="action" name="selectPic4:"/>
-                <relationship kind="action" name="selectPic5:"/>
                 <relationship kind="action" name="setPhoto:"/>
                 <relationship kind="action" name="takePhotos:"/>
                 <relationship kind="outlet" name="allyBG" candidateClass="UIImageView"/>
@@ -1381,7 +1385,6 @@
                 <relationship kind="outlet" name="pic2" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="pic3" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="pic4" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pic5" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="previewView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="reLaunchCamera" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="selectPhoto" candidateClass="UIButton"/>
@@ -1430,6 +1433,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignupCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="photo" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="state" candidateClass="UILabel"/>

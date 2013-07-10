@@ -25,5 +25,6 @@
 
 @property (nonatomic,retain) NSString *photo_path;
 @property (nonatomic) BOOL didError;
+@property (nonatomic) BOOL isSyncing;
 
 @end

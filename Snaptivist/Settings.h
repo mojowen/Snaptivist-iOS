@@ -27,9 +27,14 @@
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *readyToSync;
 @property NSInteger outstandingSync;
-@property NSInteger nextToSync;
+@property int limit;
+@property int totalSignups;
+@property int loadedSignups;
+
+@property (nonatomic,weak) Signup *nextToSync;
 @property BOOL noPhoto;
 @property BOOL syncDisabled;
+@property BOOL keepSyncing;
 
 @property (nonatomic,retain) NSMutableArray *signups;
 @property (nonatomic,retain) NSArray *events;

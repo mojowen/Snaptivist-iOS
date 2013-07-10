@@ -22,6 +22,14 @@
 @dynamic sendTweet;
 @dynamic photo;
 
-@synthesize photo_path, didError;
+@synthesize photo_path, didError,isSyncing;
+
+-(id)init{
+    self = [super init];
+    self.isSyncing = NO;
+    self.didError = NO;
+    
+    return self;
+}
 
 @end

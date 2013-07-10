@@ -15,23 +15,19 @@
 
 @implementation Settings
 
-@synthesize s3,context,signups,outstandingSync,nextToSync,readyToSync;
+@synthesize s3,context,signups,outstandingSync,readyToSync,keepSyncing,limit,loadedSignups,totalSignups;
 
 - (void)viewDidLoad
 {
     context = [[self appDelegate] managedObjectContext];
 
     self.noPhoto = NO;
+    limit = 30;
 
     self.numberOfSignups.text = @"Loading...";
     signups = [[NSMutableArray alloc] init];
     readyToSync = [[NSMutableArray alloc] init];
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
-        [self loadSignups];
-    });
-
+    
     [self setUpPicker];
 
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
@@ -39,6 +35,16 @@
     [self launchReachability];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+-(void)viewDidAppear:(BOOL)animated {
+    [self.activity startAnimating];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+        [self loadSignups];
+        [self.activity stopAnimating];
+    });
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,38 +70,37 @@
     [myAlertView show];
 }
 -(IBAction)syncNow:(id)sender {
-
     [self disableSync];
+    [self beginSync];
+}
+-(void)beginSync {
+    if( [readyToSync count] == 0 ) {
+        readyToSync = [self.signups mutableCopy];
+//        keepSyncing = YES;
+    }
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
-        if( [readyToSync count] == 0 )
-            readyToSync = [self.signups mutableCopy];
+    outstandingSync = [readyToSync count];
+    self.errors.text = nil;
+    NSArray *batchOfSignups;
+    int batch_size = 5;
+    
 
+    if( outstandingSync > batch_size ) {
         outstandingSync = [readyToSync count];
-        self.errors.text = nil;
-        NSArray *batchOfSignups;
-        int batch_size = 5;
-        
-        if( outstandingSync > batch_size ) {
-            outstandingSync = [readyToSync count];
-            batchOfSignups  = [readyToSync subarrayWithRange:NSMakeRange(0,batch_size)];
-            nextToSync = batch_size;
-        } else{
-            batchOfSignups = [readyToSync copy];
-            nextToSync = -1;
-        }
+        batchOfSignups  = [readyToSync subarrayWithRange:NSMakeRange(0,batch_size)];
+    } else{
+        batchOfSignups = [readyToSync copy];
+    }
+    
+    for (Signup *signup in batchOfSignups) {
+        [self saveSignup:signup];
+    }
 
-        for (Signup *signup in batchOfSignups) {
-            [self saveSignup:signup];
-        }
-    });
 }
 -(void)disableSync {
     self.noPhotoSync.enabled = NO;
     self.syncButton.enabled = NO;
-    self.activity.hidden = NO;
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self.activity startAnimating];
     
     self.syncDisabled = YES;
     [self.myPickerView setUserInteractionEnabled:NO];
@@ -106,8 +111,7 @@
 -(void)enableSync {
     self.noPhotoSync.enabled = YES;
     self.syncButton.enabled = YES;
-    self.activity.hidden = YES;
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.activity stopAnimating];
 
     self.syncDisabled = NO;
     self.noPhoto = NO;
@@ -118,66 +122,26 @@
     [self.syncButton setAlpha:1.0f];
     [self.myPickerView setAlpha:1.0f];
 }
--(void)launchReachability {
-    
-    Reachability *reach = [Reachability reachabilityWithHostname:[ [ [BASE_URL
-                                                                      stringByReplacingOccurrencesOfString:@"http://"
-                                                                      withString:@""]
-                                                                    componentsSeparatedByString:@":"]
-                                                                  objectAtIndex:0]];
-    // set the blocks
-    reach.unreachableBlock = ^(Reachability*reach)
-    {
-        NSLog(@" unreachable");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self disableSync];
-            self.errors.text = @"No connection detected";
-            self.errors.hidden = NO;
-        });
-    };
-    
-    reach.reachableBlock = ^(Reachability*reach)
-    {
-        NSLog(@" reachable");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self enableSync];
-            self.errors.hidden = YES;
-            self.errors.text = nil;
-        });
-    };
-    
-    // start the notifier which will cause the reachability object to retain itself!
-    [reach startNotifier];
 
-}
 
 #pragma mark - Private methods
 - (AppDelegate *)appDelegate {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 -(void)loadSignups {
-    if( [signups count] < 15 ) {
-        self.activity.hidden = NO;
+    if( [signups count] <  limit ) {
+        [self.activity startAnimating];
         
-        NSEntityDescription *entityDescription = [NSEntityDescription
-                                                  entityForName:@"Signup" inManagedObjectContext:self.context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        
+        NSFetchRequest *request = [self createSigupRequest];
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
                                             initWithKey:@"photo_date" ascending:NO];
         [request setSortDescriptors:@[sortDescriptor]];
         
-        [request setEntity:entityDescription];
-        
-        NSPredicate *predicate = [NSPredicate
-                                  predicateWithFormat:@" email.length > 0 "];
-        
-        [request setPredicate:predicate];
-        
-        [request setFetchLimit:15 - [signups count] ];
+                
+        [request setFetchLimit:limit - [signups count] ];
         [request setFetchOffset: [signups count]];
         
-        NSLog(@"Loading %d ",15 - [signups count]);
+        NSLog(@"Loading %d ",limit - [signups count]);
         
         NSError *error;
         NSArray *array = [self.context executeFetchRequest:request error:&error];
@@ -186,65 +150,118 @@
             [signups addObjectsFromArray:array];
             [self.collectionView reloadData];
             
-            NSString *label;
-            if( array.count == 1 )
-                label = [NSString stringWithFormat: @"%lu Sign Up", (unsigned long)[signups count]];
-            else
-                label = [NSString stringWithFormat: @"%lu Sign Ups", (unsigned long)[signups count]];
-            
-            self.numberOfSignups.text = label;
+            [self updateLabelFromDB];
             self.syncButton.hidden = NO;
             self.noPhotoSync.hidden = NO;
             
         } else {
             self.numberOfSignups.text = @"No Singups";
         }
-        self.activity.hidden = YES;
+        [self.activity stopAnimating];
     }
 }
--(SignupCell *)getSignupCell:(Signup *)signup {
-    NSIndexPath *index = [NSIndexPath indexPathForRow:[signups indexOfObject:signup] inSection:0];
+-(NSFetchRequest *)createSigupRequest {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:@"Signup" inManagedObjectContext:self.context];
+    [request setEntity:entityDescription];
+    
+    NSPredicate *predicate = [NSPredicate
+                              predicateWithFormat:@" email.length > 0 "];
+    [request setPredicate:predicate];
+    return request;
+}
+-(void)updateLabelFromDB {
+    totalSignups = [self countSignups];
+    loadedSignups = [signups count];
+    [self updateLabel:loadedSignups withTotal:totalSignups];
+}
+-(void)decreaseLabel {
+    totalSignups += -1;
+    loadedSignups += -1;
+    [self updateLabel:loadedSignups withTotal:totalSignups];
+}
+-(void) updateLabel:(int)theLoadedSignups withTotal: (int)theTotalSignups  {
+    NSString *label;
+    if( theLoadedSignups == 1 )
+        label = [NSString stringWithFormat: @"%d Sign Up", theLoadedSignups];
+    else if ( totalSignups < limit )
+        label = [NSString stringWithFormat: @"%d Sign Ups", theLoadedSignups];
+    else
+        label = [NSString stringWithFormat: @"%d/%d Sign Ups",theLoadedSignups,theTotalSignups];
+    
+    self.numberOfSignups.text = label;
+
+}
+-(int)countSignups {
+    return [self.context countForFetchRequest:[self createSigupRequest] error:nil];
+
+}
+-(SignupCell *)getSignupCell:(int)pos {
+    NSIndexPath *index = [NSIndexPath indexPathForRow:pos inSection:0];
     return (SignupCell *)[self.collectionView cellForItemAtIndexPath:index];
 }
 - (IBAction)removeSettings:(id)sender {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(Signup *)getNextSignup {
+    return _.find(readyToSync, ^BOOL (Signup *signup) { return ! signup.isSyncing; } );
 }
 -(void)deleteSignup:(Signup *)signup {
     NSUInteger index = _.indexOf( signups, signup);
-
+    NSUInteger ready_index = _.indexOf( readyToSync, signup);
+    [[self getSignupCell:index] hideFromView];
+    
     [context deleteObject:signup];
     [context save:nil];
     
-    [signups removeObjectAtIndex:index];
+    NSLog(@"delete being called on %@",signup.firstName);
+    if( signup.isSyncing )
+        [readyToSync removeObjectAtIndex:ready_index];
+    else
+        [signups removeObjectAtIndex:index];
+
+    [self decreaseLabel];
 }
 -(void)finishedSync {
-    
-    if( nextToSync != -1 && nextToSync < [signups count ] ) {
-        [self saveSignup:(Signup *)[signups objectAtIndex: nextToSync]];
-        NSLog(@"Syncing %u named %@",nextToSync, ((Signup *)[signups objectAtIndex: nextToSync]).firstName);
-        nextToSync++;
-    }
-    else {
-        nextToSync = -1;
+    Signup *nextToSync = [self getNextSignup];
+
+    if( nextToSync != nil ) {
+        [self saveSignup:nextToSync];
     }
 
     outstandingSync--;
+
+
     NSLog(@"outstanding sync %u",outstandingSync);
     
-    if( outstandingSync < 1 ) {
+    if( outstandingSync < 1 && keepSyncing ) {
+        [self loadSignups];
+        if( [signups count] == 0 ) {
+            keepSyncing = NO;
+            [self enableSync];
+        } else {
+            [self beginSync];
+        }
+    } else if ( outstandingSync < 1 ) {
+        signups = [_.filter( signups, ^BOOL (Signup *signup) { return ! signup.isSyncing && signup.firstName != nil; } ) mutableCopy];
         [self enableSync];
         [self loadSignups];
     }
 }
 -(void)errorSignup:(Signup *)signup {
-    SignupCell *cell = [self getSignupCell:signup];
+
+    signup.isSyncing = NO;
+    signup.didError = YES;
+    NSUInteger index = _.indexOf( signups, signup);
+    SignupCell *cell = [self getSignupCell:index];
     [cell setErrorState];
-}
--(void)startSavingSingup:(Signup *)signup {
-    SignupCell *cell = [self getSignupCell:signup];
-    NSLog(@"syn starting");
-    [cell setSyncState];
+
+    NSLog(@"error signup calld on %@",signup);
+    
+    NSUInteger ready_index = _.indexOf( readyToSync, signup);
+    [readyToSync removeObjectAtIndex:ready_index];
 }
 -(void)s3Upload:(Signup *)signup {
     NSLog(@"Amazon uploading");
@@ -294,9 +311,11 @@
     
 }
 -(void)saveSignup:(Signup *)signup {
-    [self startSavingSingup:signup];
-    NSLog(@"starting to save a signup");
-    
+    signup.isSyncing = YES;
+
+    NSUInteger index = _.indexOf( signups, signup);
+    [[self getSignupCell:index] setSyncState];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
                                              (unsigned long)NULL), ^(void) {
         NSLog(@"Saving Asynchronously");
@@ -337,7 +356,6 @@
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:BASE_URL]];
     
     [objectManager.HTTPClient setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
-    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     NSLog(@"%@",queryParams);
     [objectManager.HTTPClient
@@ -348,6 +366,7 @@
                 [self finishedSync];
         }
         failure:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"post errors %@",signup.firstName);
             [self errorSignup:signup];
             [self finishedSync];
             
@@ -443,32 +462,49 @@
     static NSString *identifier = @"cell";
 
     SignupCell *cell = [cv dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    [cell.activity stopAnimating];
-    [cell clearState];
-
-    cell.parent = self;
-    cell.signup = [signups objectAtIndex:indexPath.row];
-
-    if( cell.signup.photo == nil )
-        [cell.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
-    else
-        [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
-
-    if( cell.signup.didError )
-       [cell setErrorState];
-
-    [cell setBackgroundColor:[UIColor redColor]];
-    
-    cell.label.text = [NSString stringWithFormat:@"%@",cell.signup.firstName];
-
-    return cell;
+    // If you want to add additional styles to cell states - do it in cell clearState method
+    return [cell initializeCellwithParent:self andSignup: [signups objectAtIndex:indexPath.row]];
 }
 
-
+-(void)launchReachability {
+    
+    Reachability *reach = [Reachability reachabilityWithHostname:[ [ [BASE_URL
+                                                                      stringByReplacingOccurrencesOfString:@"http://"
+                                                                      withString:@""]
+                                                                    componentsSeparatedByString:@":"]
+                                                                  objectAtIndex:0]];
+    // set the blocks
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        NSLog(@" unreachable");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self disableSync];
+            self.errors.text = @"No connection detected";
+            self.errors.hidden = NO;
+        });
+    };
+    
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        NSLog(@" reachable");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self enableSync];
+            self.errors.hidden = YES;
+            self.errors.text = nil;
+        });
+    };
+    
+    // start the notifier which will cause the reachability object to retain itself!
+    [reach startNotifier];
+    
+}
 
 
 - (void)viewDidUnload {
     [self setActivity:nil];
+    [self setSignups:nil];
+    [self setEvents:nil];
+    [self setReadyToSync:nil];
     [super viewDidUnload];
 }
 @end
