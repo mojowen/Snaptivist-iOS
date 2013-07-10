@@ -19,7 +19,8 @@
     [self loadZips];
     [self loadReps];
 //    [self loadTestSaves:50];
-    
+    [TestFlight takeOff: TEST_FLIGHT];
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
 }

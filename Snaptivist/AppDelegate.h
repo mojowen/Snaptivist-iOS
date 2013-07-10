@@ -11,6 +11,7 @@
 #import "Zip.h"
 #import "Rep.h"
 #import "Constants.h"
+#import "TestFlight.h"
 
 #import "Underscore.h"
 #define _ Underscore

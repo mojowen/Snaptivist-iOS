@@ -872,6 +872,8 @@
 		D2080B791786620400BEA52A /* sidenav_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2080B771786620100BEA52A /* sidenav_inactive@2x.png */; };
 		D2080B7A1786620400BEA52A /* sidenav_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2080B781786620200BEA52A /* sidenav_active@2x.png */; };
 		D2080B7C17866DFB00BEA52A /* bg_view2.png in Resources */ = {isa = PBXBuildFile; fileRef = D2080B7B17866DFA00BEA52A /* bg_view2.png */; };
+		D2208872178E173B004ACA9E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2208870178E173B004ACA9E /* libTestFlight.a */; };
+		D2208874178E18C2004ACA9E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2208873178E18C2004ACA9E /* libz.dylib */; };
 		D22637781784FE3F00FEB8E4 /* C001099.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D22637691784FE3E00FEB8E4 /* C001099.jpg */; };
 		D22637791784FE3F00FEB8E4 /* S001194.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D226376A1784FE3E00FEB8E4 /* S001194.jpg */; };
 		D226377A1784FE3F00FEB8E4 /* H001063.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D226376B1784FE3E00FEB8E4 /* H001063.jpg */; };
@@ -1793,6 +1795,9 @@
 		D2080B771786620100BEA52A /* sidenav_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidenav_inactive@2x.png"; sourceTree = "<group>"; };
 		D2080B781786620200BEA52A /* sidenav_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidenav_active@2x.png"; sourceTree = "<group>"; };
 		D2080B7B17866DFA00BEA52A /* bg_view2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_view2.png; sourceTree = "<group>"; };
+		D2208870178E173B004ACA9E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		D2208871178E173B004ACA9E /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		D2208873178E18C2004ACA9E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D22637691784FE3E00FEB8E4 /* C001099.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = C001099.jpg; sourceTree = "<group>"; };
 		D226376A1784FE3E00FEB8E4 /* S001194.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S001194.jpg; sourceTree = "<group>"; };
 		D226376B1784FE3E00FEB8E4 /* H001063.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = H001063.jpg; sourceTree = "<group>"; };
@@ -1861,6 +1866,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2208874178E18C2004ACA9E /* libz.dylib in Frameworks */,
 				D27255A617811F1400DE4850 /* CoreVideo.framework in Frameworks */,
 				D27255A417811F0800DE4850 /* AVFoundation.framework in Frameworks */,
 				D27255A217811F0000DE4850 /* AssetsLibrary.framework in Frameworks */,
@@ -1872,6 +1878,7 @@
 				D2F5F6341763CEB4006E586C /* UIKit.framework in Frameworks */,
 				D2F5F6361763CEB4006E586C /* Foundation.framework in Frameworks */,
 				A0A332A75F5146DC860D3BAB /* libPods.a in Frameworks */,
+				D2208872178E173B004ACA9E /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2822,6 +2829,7 @@
 		D2F5F6271763CEB4006E586C = {
 			isa = PBXGroup;
 			children = (
+				D2208873178E18C2004ACA9E /* libz.dylib */,
 				4F1CF67A177BF6A100D1B979 /* Default-Portrait~ipad.png */,
 				4F1CF678177BF68E00D1B979 /* Default-Landscape@2x~ipad.png */,
 				4F1CF676177BF68800D1B979 /* Default-Landscape~ipad.png */,
@@ -2877,6 +2885,8 @@
 		D2F5F63A1763CEB4006E586C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2208870178E173B004ACA9E /* libTestFlight.a */,
+				D2208871178E173B004ACA9E /* TestFlight.h */,
 				D2B4074C178B6100009B4332 /* Constants.h */,
 				D2B4074D178B6100009B4332 /* Constants.m */,
 				D239F040178B97E100C745CD /* Constants_off.h */,
@@ -3986,6 +3996,10 @@
 				GCC_PREFIX_HEADER = "Snaptivist/Snaptivist-Prefix.pch";
 				INFOPLIST_FILE = "Snaptivist/Snaptivist-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Snaptivist\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4003,6 +4017,10 @@
 				GCC_PREFIX_HEADER = "Snaptivist/Snaptivist-Prefix.pch";
 				INFOPLIST_FILE = "Snaptivist/Snaptivist-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Snaptivist\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
