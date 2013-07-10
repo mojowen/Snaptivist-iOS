@@ -270,7 +270,7 @@
         s3 = [[AmazonS3Client alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_KEY];
     
     NSString *photoName = [NSString stringWithFormat:@"%@_%@_%@.png",signup.firstName,signup.lastName,signup.photo_date];
-    NSData *imageData = signup.photo;
+    NSData *imageData = UIImagePNGRepresentation([[[UIImage imageWithData:signup.photo] fixOrientation] downsize]);
     
     s3.endpoint = [AmazonEndpoints s3Endpoint:US_EAST_1];
     

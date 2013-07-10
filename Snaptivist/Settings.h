@@ -14,7 +14,7 @@
 #import <AmazonS3Client.h>
 #import <AWSS3.h>
 #import <AmazonEndpoints.h>
-
+#import "UIImage+fixOrientation.h"
 
 @interface Settings : UIViewController
 
