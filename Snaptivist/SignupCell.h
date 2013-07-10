@@ -19,6 +19,7 @@
 @property (retain,nonatomic) Signup *signup;
 @property (retain,nonatomic) NSString *action;
 @property (retain,nonatomic) Settings *parent;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 -(void)setSyncState;
 -(void)setErrorState;

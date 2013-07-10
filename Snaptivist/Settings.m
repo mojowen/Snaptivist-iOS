@@ -24,14 +24,15 @@
     self.noPhoto = NO;
 
     self.numberOfSignups.text = @"Loading...";
-    self.activity.hidden = NO;
+    signups = [[NSMutableArray alloc] init];
+    readyToSync = [[NSMutableArray alloc] init];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
                                              (unsigned long)NULL), ^(void) {
         [self loadSignups];
     });
 
     [self setUpPicker];
-    readyToSync = [[NSMutableArray alloc] init];
 
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
 
@@ -100,6 +101,9 @@
 
     self.syncDisabled = NO;
     self.noPhoto = NO;
+    
+    [self.syncButton setTitle:@"Sync All" forState:UIControlStateNormal];
+    [readyToSync removeAllObjects];
     [self.myPickerView setUserInteractionEnabled:YES];
     [self.syncButton setAlpha:1.0f];
     [self.myPickerView setAlpha:1.0f];
@@ -142,39 +146,51 @@
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 -(void)loadSignups {
-    NSEntityDescription *entityDescription = [NSEntityDescription
-                                              entityForName:@"Signup" inManagedObjectContext:self.context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-                                        initWithKey:@"photo_date" ascending:NO];
-    [request setSortDescriptors:@[sortDescriptor]];
-
-    [request setEntity:entityDescription];
-
-    [request setFetchLimit:30];
-    NSError *error;
-    NSArray *array = [self.context executeFetchRequest:request error:&error];
-    NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"email.length > 0"];
-    array = [array filteredArrayUsingPredicate:bPredicate];
-    if (array != nil ) {
-        signups = array;
-        [self.collectionView reloadData];
-
-        NSString *label;
-        if( array.count == 1 )
-            label = [NSString stringWithFormat: @"%lu Sign Up", (unsigned long)[signups count]];
-        else
-            label = [NSString stringWithFormat: @"%lu Sign Ups", (unsigned long)[signups count]];
+    if( [signups count] < 15 ) {
+        self.activity.hidden = NO;
         
-        self.numberOfSignups.text = label;
-        self.syncButton.hidden = NO;
-        self.noPhotoSync.hidden = NO;
-
-    } else {
-        self.numberOfSignups.text = @"No Singups";
+        NSEntityDescription *entityDescription = [NSEntityDescription
+                                                  entityForName:@"Signup" inManagedObjectContext:self.context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                            initWithKey:@"photo_date" ascending:NO];
+        [request setSortDescriptors:@[sortDescriptor]];
+        
+        [request setEntity:entityDescription];
+        
+        NSPredicate *predicate = [NSPredicate
+                                  predicateWithFormat:@" email.length > 0 "];
+        
+        [request setPredicate:predicate];
+        
+        [request setFetchLimit:15 - [signups count] ];
+        [request setFetchOffset: [signups count]];
+        
+        NSLog(@"Loading %d ",15 - [signups count]);
+        
+        NSError *error;
+        NSArray *array = [self.context executeFetchRequest:request error:&error];
+        
+        if (array != nil ) {
+            [signups addObjectsFromArray:array];
+            [self.collectionView reloadData];
+            
+            NSString *label;
+            if( array.count == 1 )
+                label = [NSString stringWithFormat: @"%lu Sign Up", (unsigned long)[signups count]];
+            else
+                label = [NSString stringWithFormat: @"%lu Sign Ups", (unsigned long)[signups count]];
+            
+            self.numberOfSignups.text = label;
+            self.syncButton.hidden = NO;
+            self.noPhotoSync.hidden = NO;
+            
+        } else {
+            self.numberOfSignups.text = @"No Singups";
+        }
+        self.activity.hidden = YES;
     }
-    self.activity.hidden = YES;
 }
 -(SignupCell *)getSignupCell:(Signup *)signup {
     NSIndexPath *index = [NSIndexPath indexPathForRow:[signups indexOfObject:signup] inSection:0];
@@ -185,11 +201,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)deleteSignup:(Signup *)signup {
-    SignupCell *cell = [self getSignupCell:signup];
+    NSUInteger index = _.indexOf( signups, signup);
+
     [context deleteObject:signup];
     [context save:nil];
-    [cell removeFromSuperview];
-    [cell clearState];
+    
+    [signups removeObjectAtIndex:index];
 }
 -(void)finishedSync {
     
@@ -208,7 +225,6 @@
     if( outstandingSync < 1 ) {
         [self enableSync];
         [self loadSignups];
-        [self.syncButton setTitle:@"Sync All" forState:UIControlStateNormal];
     }
 }
 -(void)errorSignup:(Signup *)signup {
@@ -319,6 +335,7 @@
         parameters:queryParams
         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [self deleteSignup:signup];
+                [self finishedSync];
         }
         failure:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self errorSignup:signup];
@@ -336,13 +353,17 @@
     return [readyToSync count] -1;
 }
  -(void)removeFromSet:(Signup *)signup {
-     NSUInteger index = _.indexOf( readyToSync, signup);
-     [readyToSync removeObjectAtIndex:index];
-     
-     if( [readyToSync count] == 0 )
-         [self.syncButton setTitle:@"Sync All" forState:UIControlStateNormal];
-     else
-         [self.syncButton setTitle:[NSString stringWithFormat:@"Sync %lu",(unsigned long)[readyToSync count]] forState:UIControlStateNormal];
+     if( [readyToSync count] != 0 ) {
+
+         NSUInteger index = _.indexOf( readyToSync, signup);
+
+         [readyToSync removeObjectAtIndex:index];
+         
+         if( [readyToSync count] == 0 )
+             [self.syncButton setTitle:@"Sync All" forState:UIControlStateNormal];
+         else
+             [self.syncButton setTitle:[NSString stringWithFormat:@"Sync %lu",(unsigned long)[readyToSync count]] forState:UIControlStateNormal];
+     }
 
  }
 
@@ -412,7 +433,9 @@
     static NSString *identifier = @"cell";
 
     SignupCell *cell = [cv dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    
+    [cell.activity stopAnimating];
+    [cell clearState];
+
     cell.parent = self;
     cell.signup = [signups objectAtIndex:indexPath.row];
 
@@ -420,6 +443,9 @@
         [cell.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
     else
         [cell.photo setImage:[UIImage imageWithData:cell.signup.photo scale:0.05f] forState:UIControlStateNormal];
+
+    if( cell.signup.didError )
+       [cell setErrorState];
 
     [cell setBackgroundColor:[UIColor redColor]];
     

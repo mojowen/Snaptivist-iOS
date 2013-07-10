@@ -31,7 +31,7 @@
 @property BOOL noPhoto;
 @property BOOL syncDisabled;
 
-@property (nonatomic,retain) NSArray *signups;
+@property (nonatomic,retain) NSMutableArray *signups;
 @property (nonatomic,retain) NSArray *events;
 @property (nonatomic,weak) NSString *event;
 

@@ -22,6 +22,6 @@
 @dynamic sendTweet;
 @dynamic photo;
 
-@synthesize photo_path;
+@synthesize photo_path, didError;
 
 @end

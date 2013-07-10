@@ -24,5 +24,6 @@
 @property (nonatomic) NSNumber *sendTweet;
 
 @property (nonatomic,retain) NSString *photo_path;
+@property (nonatomic) BOOL didError;
 
 @end
