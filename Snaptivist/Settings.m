@@ -163,7 +163,7 @@
     } else {
         self.numberOfSignups.text = @"No Singups";
     }
-    
+    self.activity.hidden = YES;
 }
 -(SignupCell *)getSignupCell:(Signup *)signup {
     NSIndexPath *index = [NSIndexPath indexPathForRow:[signups indexOfObject:signup] inSection:0];
@@ -413,5 +413,9 @@
 
 
 
+- (void)viewDidUnload {
+    [self setActivity:nil];
+    [super viewDidUnload];
+}
 @end
 

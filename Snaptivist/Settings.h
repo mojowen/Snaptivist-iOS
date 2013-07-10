@@ -22,6 +22,7 @@
 @property (nonatomic,weak) IBOutlet UIButton *syncButton;
 @property (nonatomic,weak) IBOutlet UIButton *noPhotoSync;
 @property(nonatomic,weak) IBOutlet UILabel *errors;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *readyToSync;
