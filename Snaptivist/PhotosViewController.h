@@ -40,7 +40,6 @@
 @property (nonatomic,weak) IBOutlet UIButton *pic2;
 @property (nonatomic,weak) IBOutlet UIButton *pic3;
 @property (nonatomic,weak) IBOutlet UIButton *pic4;
-@property (nonatomic,weak) IBOutlet UIButton *pic5;
 
 @property (nonatomic,retain) NSArray *savedPhotos;
 @property (nonatomic) int photoNumber;
@@ -56,7 +55,6 @@
 - (IBAction)selectPic2:(id)sender;
 - (IBAction)selectPic3:(id)sender;
 - (IBAction)selectPic4:(id)sender;
-- (IBAction)selectPic5:(id)sender;
 
 @end
 
