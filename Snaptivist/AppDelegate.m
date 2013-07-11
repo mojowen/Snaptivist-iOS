@@ -19,7 +19,8 @@
     [self loadZips];
     [self loadReps];
 //    [self loadTestSaves:50];
-    
+    [TestFlight takeOff: TEST_FLIGHT];
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
     return YES;
 }
@@ -295,6 +296,13 @@
             NSLog(@"Didn't save dummy #%d",i);
         }
     }
+    NSError *error = nil;
+    if ([context save:&error]) {
+        NSLog(@"Saved dummy ");
+    } else {
+        NSLog(@"Didn't save dummy ");
+    }
+
 }
 
 @end

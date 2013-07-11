@@ -22,6 +22,15 @@
 @dynamic sendTweet;
 @dynamic photo_path;
 
+@synthesize didError,isSyncing;
+
+-(id)init{
+    self = [super init];
+    self.isSyncing = NO;
+    self.didError = NO;
+    
+    return self;
+}
 
 -(NSString *)fileName {
     NSLog(@"%@ %@",self.firstName,self.lastName);

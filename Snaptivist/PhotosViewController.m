@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad
 {
-    savedPhotos = [NSArray arrayWithObjects:self.pic1,self.pic2,self.pic3,self.pic4,self.pic5, nil];
+    savedPhotos = [NSArray arrayWithObjects:self.pic1,self.pic2,self.pic3,self.pic4,nil];
     photoNumber = 0;
     self.filmStrip.hidden = YES;
     SnaptivistTabs *parent = [self tabController];
@@ -67,7 +67,6 @@
     self.pic2 = nil;
     self.pic3 = nil;
     self.pic4 = nil;
-    self.pic5 = nil;
     savedPhotos = nil;
     self.camera = nil;
     self.filmStrip = nil;
@@ -120,9 +119,6 @@
 }
 - (IBAction)selectPic4:(id)sender {
     [self selectPhoto:4];
-}
-- (IBAction)selectPic5:(id)sender {
-    [self selectPhoto:5];
 }
 
 - (void)setupAVCapture

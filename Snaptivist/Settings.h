@@ -14,7 +14,7 @@
 #import <AmazonS3Client.h>
 #import <AWSS3.h>
 #import <AmazonEndpoints.h>
-
+#import "UIImage+fixOrientation.h"
 
 @interface Settings : UIViewController
 
@@ -22,15 +22,21 @@
 @property (nonatomic,weak) IBOutlet UIButton *syncButton;
 @property (nonatomic,weak) IBOutlet UIButton *noPhotoSync;
 @property(nonatomic,weak) IBOutlet UILabel *errors;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *readyToSync;
 @property NSInteger outstandingSync;
-@property NSInteger nextToSync;
+@property int limit;
+@property int totalSignups;
+@property int loadedSignups;
+
+@property (nonatomic,weak) Signup *nextToSync;
 @property BOOL noPhoto;
 @property BOOL syncDisabled;
+@property BOOL keepSyncing;
 
-@property (nonatomic,retain) NSArray *signups;
+@property (nonatomic,retain) NSMutableArray *signups;
 @property (nonatomic,retain) NSArray *events;
 @property (nonatomic,weak) NSString *event;
 

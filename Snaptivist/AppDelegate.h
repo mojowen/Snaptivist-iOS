@@ -11,6 +11,10 @@
 #import "Zip.h"
 #import "Rep.h"
 #import "Constants.h"
+#import "TestFlight.h"
+
+#import "Underscore.h"
+#define _ Underscore
 
 #import "Underscore.h"
 #define _ Underscore
@@ -27,5 +31,6 @@
 - (NSManagedObjectContext *)managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
--(void)clearZipRepStore;
+- (void)clearZipRepStore;
+
 @end

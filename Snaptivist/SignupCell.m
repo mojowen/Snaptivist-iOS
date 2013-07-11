@@ -13,10 +13,33 @@
 
 @synthesize parent,signup,action,readyPosition;
 
--(void)viewDidLoad {
-    parent = ((Settings *)[self superview]);
-}
+-(SignupCell *)initializeCellwithParent:(Settings *)addedParent andSignup:(Signup *)addedSignup{
+    // These objects are reused with different signups - every time they are loaded into the colection view
+    // they're given this method. They should reset the check the newly added signup to see what
+    // their state should be
+    
+    [self clearState];
+    
+    parent = addedParent;
+    signup = addedSignup;
+    action = @"";
 
+    [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
+    if( signup.didError )
+        [self setErrorState];
+    
+    
+    self.label.text = [NSString stringWithFormat:@"%@",signup.firstName];
+
+    if( signup.didError )
+        [self setErrorState];
+    if( signup.isSyncing )
+        [self.activity startAnimating];
+    if( self.signup.firstName == nil  )
+        [self hideFromView];
+
+    return self;
+}
 -(IBAction)delete:(id)sender {
     UIAlertView *myAlertView;
     
@@ -52,7 +75,7 @@
         UIAlertView *myAlertView;
         
         if( parent.outstandingSync < 1 ) {
-            if( [self.action isEqualToString:@"selected"] )
+            if( [action isEqualToString:@"selected"] )
                 [self removeSelectedState];
             else
                 [self setSelectedState];
@@ -72,13 +95,11 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if( buttonIndex == 1 ) {
         if( [action isEqualToString:@"Delete"]) {
-            [parent deleteSignup:signup];
-            [parent loadSignups];
-        } else if ( [action isEqualToString:@"Sync"] ) {
-            parent.outstandingSync = 1;
-            parent.nextToSync = -1;
-            [parent disableSync];
-            [parent saveSignup:signup];
+            [self hideFromView];
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [parent deleteSignup:signup];
+                [parent loadSignups];
+            });
         }
     }
     action = nil;
@@ -87,17 +108,31 @@
     self.state.text = @"!!";
     [self.state setTextColor:[UIColor redColor]];
     self.state.hidden = NO;
+    self.signup.didError = YES;
+    [self.activity stopAnimating];
+    [self setAlpha:1.0f];
 }
 -(void)clearState {
+    [self setBackgroundColor:[UIColor redColor]];
+    self.photo.hidden = NO;
+    self.label.hidden = NO;
+    self.deleteButton.hidden = NO;
     self.state.text = nil;
     self.state.hidden = YES;
+    [self setAlpha:1.0f];
+
+    if( [self.action isEqualToString:@""] )
+        [self.activity stopAnimating];
+
     if( [self.action isEqualToString:@"selected"] )
         [self removeSelectedState];
+
+
 }
 -(void)setSyncState {
-    self.state.text = @"sync";
-    [self.state setTextColor:[UIColor whiteColor]];
-    self.state.hidden = NO;
+    NSLog(@"sync state set");
+    [self.activity startAnimating];
+    self.action = @"syncing";
 }
 -(void)setSelectedState {
     [self setAlpha:0.5f];
@@ -105,9 +140,17 @@
     self.action = @"selected";
 }
 -(void)removeSelectedState {
+    [self.activity stopAnimating];
     [self setAlpha:1.0f];
     [parent removeFromSet:self.signup];
     self.action = @"";
+}
+-(void)hideFromView {
+    self.photo.hidden = YES;
+    [self setBackgroundColor:[UIColor clearColor]];
+    self.label.hidden = YES;
+    self.deleteButton.hidden = YES;
+    self.action = @"hidden";
 }
 
 @end

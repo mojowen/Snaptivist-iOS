@@ -23,10 +23,15 @@
 @property (nonatomic, retain) NSString * photo_path;
 @property (nonatomic) NSNumber *sendTweet;
 
+
 -(NSString *)fileName;
 -(UIImage *)loadPhoto;
 -(void)savePhoto:(UIImage *)image;
 -(void)resavePhoto;
 -(void)deletePhoto;
+
+@property (nonatomic) BOOL didError;
+@property (nonatomic) BOOL isSyncing;
+
 
 @end
