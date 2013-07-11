@@ -345,7 +345,7 @@
     if( signup.reps != nil )
         [signupParams setObject:signup.reps forKey:@"reps"];
 
-    if( signup.reps != nil )
+    if( signup.photo_path != nil )
         [signupParams setObject:signup.photo_path forKey:@"photo_path"];
     
     NSLog(@"Posting signup %@",signup.photo_path);
