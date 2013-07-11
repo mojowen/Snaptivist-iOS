@@ -22,7 +22,7 @@
     context = [[self appDelegate] managedObjectContext];
 
     self.noPhoto = NO;
-    limit = 30;
+    limit = 100;
 
     self.numberOfSignups.text = @"Loading...";
     signups = [[NSMutableArray alloc] init];
@@ -44,7 +44,6 @@
         [self loadSignups];
         [self.activity stopAnimating];
     });
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,7 +148,16 @@
             [signups addObjectsFromArray:array];
             [self.collectionView reloadData];
             
-            [self updateLabelFromDB];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                                     (unsigned long)NULL), ^(void) {
+                [self.collectionView reloadData];
+            });
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                                     (unsigned long)NULL), ^(void) {
+                [self updateLabelFromDB];
+            });
+
             self.syncButton.hidden = NO;
             self.noPhotoSync.hidden = NO;
             

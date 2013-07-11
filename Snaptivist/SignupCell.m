@@ -20,23 +20,27 @@
     
     [self clearState];
     
-    parent = addedParent;
-    signup = addedSignup;
     action = @"";
-
-    [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
-    if( signup.didError )
-        [self setErrorState];
     
-    
-    self.label.text = [NSString stringWithFormat:@"%@",signup.firstName];
+    if( ! self.isHidden ) {
+        parent = addedParent;
+        signup = addedSignup;
 
-    if( signup.didError )
-        [self setErrorState];
-    if( signup.isSyncing )
-        [self.activity startAnimating];
-    if( self.signup.firstName == nil  )
-        [self hideFromView];
+        [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
+        
+        if( signup.didError )
+            [self setErrorState];
+        
+        
+        self.label.text = [NSString stringWithFormat:@"%@",signup.firstName];
+        
+        if( signup.didError )
+            [self setErrorState];
+        if( signup.isSyncing )
+            [self.activity startAnimating];
+        if( self.signup.firstName == nil  )
+            [self hideFromView];
+    }
 
     return self;
 }
