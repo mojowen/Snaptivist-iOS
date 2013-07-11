@@ -5,7 +5,7 @@
 
 - (UIImage *)downsize {
     // from http://stackoverflow.com/questions/5251327/getting-dimensions-of-an-uitextview
-    CGSize newSize = CGSizeMake(800.0f, 564.52f);
+    CGSize newSize = CGSizeMake(800.0f, 600.0f);
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
