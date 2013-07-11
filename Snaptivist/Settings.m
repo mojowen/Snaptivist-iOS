@@ -318,7 +318,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
                                              (unsigned long)NULL), ^(void) {
         NSLog(@"Saving Asynchronously");
-        if( signup.photo == nil )
+        if( signup.photo_path == nil )
             [self postSignup:signup];
         else
             [self s3Upload:signup];

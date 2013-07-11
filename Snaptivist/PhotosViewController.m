@@ -242,7 +242,7 @@ bail:
             } else {
                 NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 float scale = 0.2f;
-                UIImage *capturedImage = [[UIImage imageWithData:jpegData scale:scale] fixOrientation];
+                UIImage *capturedImage = [[UIImage imageWithData:jpegData scale:scale] applyFixes];
 
                 NSLog(@"orientation on capture %d",capturedImage.imageOrientation);
                 [self assignPhoto:capturedImage];

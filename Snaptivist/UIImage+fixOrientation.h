@@ -7,4 +7,5 @@
 
 - (UIImage *)fixOrientation;
 - (UIImage *)downsize;
+- (UIImage *)applyFixes;
 @end

@@ -3,6 +3,10 @@
 
 @implementation UIImage (fixOrientation)
 
+-(UIImage *)applyFixes {
+    return [[self fixOrientation] downsize];
+}
+
 - (UIImage *)downsize {
     // from http://stackoverflow.com/questions/5251327/getting-dimensions-of-an-uitextview
     CGSize newSize = CGSizeMake(800.0f, 600.0f);
