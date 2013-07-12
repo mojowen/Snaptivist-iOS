@@ -66,6 +66,12 @@
         self.photo_path = [self filePath];
     }
 }
+-(UIImage *)loadThumbnail {
+    if( self.photo_path != nil)
+        return [UIImage imageWithContentsOfFile:[self filePath]];
+    else
+        return [UIImage imageNamed:@"user-placeholder.png"];
+}
 -(UIImage *)loadPhoto {
     if( self.photo_path != nil)
         return [UIImage imageWithContentsOfFile:[self filePath]];
@@ -96,7 +102,7 @@
     if ( ! [fileManager fileExistsAtPath:logFile]){
         NSString *firstLine = [NSString stringWithFormat:@"First Name\tLastName\tEmail\tZip\tReps\tFriends\tPhoto Date\n%@",signupString];
 
-        [signupString writeToFile:firstLine atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        [firstLine writeToFile:logFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
     } else {
 
         NSFileHandle *aFileHandle;
