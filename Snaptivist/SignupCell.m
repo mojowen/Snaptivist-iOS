@@ -100,10 +100,8 @@
     if( buttonIndex == 1 ) {
         if( [action isEqualToString:@"Delete"]) {
             [self hideFromView];
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [parent deleteSignup:signup];
-                [parent loadSignups];
-            });
+            [parent deleteSignup:signup];
+            [parent loadSignups];
         }
     }
     action = nil;

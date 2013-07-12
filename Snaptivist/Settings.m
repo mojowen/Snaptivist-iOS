@@ -39,11 +39,8 @@
 -(void)viewDidAppear:(BOOL)animated {
     [self.activity startAnimating];
 
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-//                                             (unsigned long)NULL), ^(void) {
-        [self loadSignups];
-        [self.activity stopAnimating];
-//    });
+    [self loadSignups];
+    [self.activity stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning
@@ -151,15 +148,8 @@
             [signups addObjectsFromArray:array];
             [self.collectionView reloadData];
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                                     (unsigned long)NULL), ^(void) {
-                [self.collectionView reloadData];
-            });
 
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                                     (unsigned long)NULL), ^(void) {
-                [self updateLabelFromDB];
-            });
+            [self updateLabelFromDB];
 
             self.syncButton.hidden = NO;
             self.noPhotoSync.hidden = NO;
@@ -326,14 +316,11 @@
     NSUInteger index = _.indexOf( signups, signup);
     [[self getSignupCell:index] setSyncState];
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
-        NSLog(@"Saving Asynchronously");
-        if( signup.photo_path == nil )
-            [self postSignup:signup];
-        else
-            [self s3Upload:signup];
-    });
+    if( signup.photo_path == nil || self.noPhoto )
+        [self postSignup:signup];
+    else
+        [self s3Upload:signup];
+
 }
 
 -(void)postSignup:(Signup*)signup {
