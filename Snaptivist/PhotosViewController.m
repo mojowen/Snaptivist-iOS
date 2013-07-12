@@ -329,7 +329,8 @@ bail:
 
 #pragma mark - Private methods
 -(void)selectPhoto:(NSUInteger)photo {
-    [self teardownAVCapture];
+    if( ! self.takePhoto.hidden )
+            [self teardownAVCapture];
     
     photo = photo - 1;
     UIImage *selectImage = ((UIButton *)[savedPhotos objectAtIndex:photo] ).currentImage;
