@@ -31,11 +31,9 @@
     if( signup.isSyncing )
         [self.activity startAnimating];
 
-    if( ! self.isHidden ) {
-        [self setBackgroundColor:[UIColor redColor]];
-        [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
-        
-    }
+
+    [self setBackgroundColor:[UIColor redColor]];
+    [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
 
     return self;
 }
