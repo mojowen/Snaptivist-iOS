@@ -908,6 +908,7 @@
 		D2AA6DC217791E06004D2385 /* Zip.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC117791E06004D2385 /* Zip.m */; };
 		D2AA6DC817792426004D2385 /* Rep.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA6DC717792426004D2385 /* Rep.m */; };
 		D2B4074E178B6100009B4332 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4074D178B6100009B4332 /* Constants.m */; };
+		D2F5EEFD17906B240076AC5E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5EEFC17906B240076AC5E /* MessageUI.framework */; };
 		D2F5F6341763CEB4006E586C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6331763CEB4006E586C /* UIKit.framework */; };
 		D2F5F6361763CEB4006E586C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6351763CEB4006E586C /* Foundation.framework */; };
 		D2F5F6381763CEB4006E586C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F5F6371763CEB4006E586C /* CoreGraphics.framework */; };
@@ -1841,6 +1842,7 @@
 		D2AA6DC717792426004D2385 /* Rep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rep.m; sourceTree = "<group>"; };
 		D2B4074C178B6100009B4332 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		D2B4074D178B6100009B4332 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		D2F5EEFC17906B240076AC5E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D2F5F6301763CEB4006E586C /* Snaptivist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snaptivist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F5F6331763CEB4006E586C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D2F5F6351763CEB4006E586C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1866,6 +1868,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2F5EEFD17906B240076AC5E /* MessageUI.framework in Frameworks */,
 				D2208874178E18C2004ACA9E /* libz.dylib in Frameworks */,
 				D27255A617811F1400DE4850 /* CoreVideo.framework in Frameworks */,
 				D27255A417811F0800DE4850 /* AVFoundation.framework in Frameworks */,
@@ -2829,6 +2832,7 @@
 		D2F5F6271763CEB4006E586C = {
 			isa = PBXGroup;
 			children = (
+				D2F5EEFC17906B240076AC5E /* MessageUI.framework */,
 				D2208873178E18C2004ACA9E /* libz.dylib */,
 				4F1CF67A177BF6A100D1B979 /* Default-Portrait~ipad.png */,
 				4F1CF678177BF68E00D1B979 /* Default-Landscape@2x~ipad.png */,

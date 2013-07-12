@@ -15,14 +15,19 @@
 #import <AWSS3.h>
 #import <AmazonEndpoints.h>
 #import "UIImage+fixOrientation.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface Settings : UIViewController
+@interface Settings : UIViewController <MFMailComposeViewControllerDelegate,
+MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic,weak) IBOutlet UILabel *numberOfSignups;
 @property (nonatomic,weak) IBOutlet UIButton *syncButton;
 @property (nonatomic,weak) IBOutlet UIButton *noPhotoSync;
 @property(nonatomic,weak) IBOutlet UILabel *errors;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property  (weak,nonatomic) IBOutlet UIButton *sendEmail;
+
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *readyToSync;
@@ -46,6 +51,7 @@
 - (IBAction)removeSettings:(id)sender;
 - (IBAction)noPhotoSync:(id)sender;
 - (IBAction)removeRepsZips:(id)sender;
+- (IBAction)sendEmail:(id)sender;
 
 -(void)deleteSignup:(Signup *)signup;
 -(void)saveSignup:(Signup *)signup;

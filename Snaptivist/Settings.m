@@ -51,6 +51,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)sendEmail:(id)sender {
+    [self displayComposerSheet];
+}
 -(IBAction)noPhotoSync:(id)sender {
     self.noPhoto = YES;
     [self disableSync];
@@ -505,7 +508,59 @@
     [reach startNotifier];
     
 }
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    // Notifies users about errors associated with the interface
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Result: canceled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Result: saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Result: sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Result: failed");
+            break;
+        default:
+            NSLog(@"Result: not sent");
+            break;
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
+-(void)displayComposerSheet
+{
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    picker.mailComposeDelegate = self;
+    [picker setSubject:@"Backup of Signups"];
+    
+    // Set up recipients
+    // NSArray *toRecipients = [NSArray arrayWithObject:@"first@example.com"];
+    // NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
+    // NSArray *bccRecipients = [NSArray arrayWithObject:@"fourth@example.com"];
+    
+    // [picker setToRecipients:toRecipients];
+    // [picker setCcRecipients:ccRecipients];
+    // [picker setBccRecipients:bccRecipients];
+    
+    // Attach an image to the email
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *logFile = [NSString stringWithFormat:@"%@/all_signups.txt",documentsDirectory];
 
+    NSData *myData = [NSData dataWithContentsOfFile:logFile];
+    [picker addAttachmentData:myData mimeType:@"text/plain" fileName:@"all_signups.txt"];
+    
+    // Fill out the email body text
+    NSString *emailBody = @"All Signups on This iPad, tab separated";
+    [picker setMessageBody:emailBody isHTML:NO];
+    [self presentModalViewController:picker animated:YES];
+}
 
 - (void)viewDidUnload {
     [self setActivity:nil];
