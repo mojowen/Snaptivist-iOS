@@ -19,27 +19,26 @@
     // their state should be
     
     [self clearState];
-    
-    action = @"";
-    
-    if( ! self.isHidden ) {
-        parent = addedParent;
-        signup = addedSignup;
 
+    if( !self.isHidden )
+
+
+    action = @"";
+    parent = addedParent;
+    signup = addedSignup;
+
+    self.label.text = [NSString stringWithFormat:@"%@",signup.firstName];
+    [self.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
+    
+    if( signup.didError )
+        [self setErrorState];
+    if( signup.isSyncing )
+        [self.activity startAnimating];
+
+    if( ! self.isHidden && self.signup.firstName != nil ) {
+        [self setBackgroundColor:[UIColor redColor]];
         [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
         
-        if( signup.didError )
-            [self setErrorState];
-        
-        
-        self.label.text = [NSString stringWithFormat:@"%@",signup.firstName];
-        
-        if( signup.didError )
-            [self setErrorState];
-        if( signup.isSyncing )
-            [self.activity startAnimating];
-        if( self.signup.firstName == nil  )
-            [self hideFromView];
     }
 
     return self;
@@ -115,7 +114,6 @@
     [self setAlpha:1.0f];
 }
 -(void)clearState {
-    [self setBackgroundColor:[UIColor redColor]];
     self.photo.hidden = NO;
     self.label.hidden = NO;
     self.deleteButton.hidden = NO;

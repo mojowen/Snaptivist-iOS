@@ -140,17 +140,26 @@
         
                 
         [request setFetchLimit:limit - [signups count] ];
-        [request setFetchOffset: [signups count]];
+        [request setFetchOffset: [signups count] ];
         
-        NSLog(@"Loading %d ",limit - [signups count]);
+        NSLog(@"Loading %d at %d",limit - [signups count],[signups count]);
         
         NSError *error;
         NSArray *array = [self.context executeFetchRequest:request error:&error];
         
         if (array != nil ) {
             [signups addObjectsFromArray:array];
+
+            signups = [_.uniq( signups) mutableCopy];
+
+            [signups sortUsingComparator:^NSComparisonResult(id a, id b) {
+                NSDate *first = [(Signup*)a photo_date];
+                NSDate *second = [(Signup*)b photo_date];
+                return [first compare:second];
+            }];
+
+
             [self.collectionView reloadData];
-            
 
             [self updateLabelFromDB];
 
@@ -214,12 +223,12 @@
 
     [context deleteObject:signup];
     [context save:nil];
-    
+
     NSLog(@"delete being called on %@",signup.firstName);
     if( signup.isSyncing )
         [readyToSync removeObjectAtIndex:ready_index];
-    else
-        [signups removeObjectAtIndex:index];
+
+    [signups removeObjectAtIndex:index];
 
     [self decreaseLabel];
 }
@@ -235,16 +244,8 @@
 
     NSLog(@"outstanding sync %u",outstandingSync);
     
-    if( outstandingSync < 1 && keepSyncing ) {
-        [self loadSignups];
-        if( [signups count] == 0 ) {
-            keepSyncing = NO;
-            [self enableSync];
-        } else {
-            [self beginSync];
-        }
-    } else if ( outstandingSync < 1 ) {
-        signups = [_.filter( signups, ^BOOL (Signup *signup) { return ! signup.isSyncing && signup.firstName != nil; } ) mutableCopy];
+    if ( outstandingSync < 1 ) {
+        signups = [ _.filter( signups, ^BOOL (Signup *signup) { return ! signup.isSyncing && signup.firstName != nil; } ) mutableCopy];
         [self enableSync];
         [self loadSignups];
     }
