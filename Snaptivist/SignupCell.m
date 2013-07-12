@@ -20,22 +20,18 @@
     
     [self clearState];
 
-    if( !self.isHidden )
-
-
     action = @"";
     parent = addedParent;
     signup = addedSignup;
 
     self.label.text = [NSString stringWithFormat:@"%@",signup.firstName];
-    [self.photo setImage:[UIImage imageNamed:@"user-placeholder.png"] forState:UIControlStateNormal];
     
     if( signup.didError )
         [self setErrorState];
     if( signup.isSyncing )
         [self.activity startAnimating];
 
-    if( ! self.isHidden && self.signup.firstName != nil ) {
+    if( ! self.isHidden ) {
         [self setBackgroundColor:[UIColor redColor]];
         [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
         
