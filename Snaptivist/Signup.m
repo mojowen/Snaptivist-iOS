@@ -78,4 +78,33 @@
         [manager removeItemAtPath:[self filePath] error:nil];        
     }
 }
+-(NSString *)toString{
+    return [[NSArray arrayWithObjects:self.firstName,self.lastName,self.email,self.zip,self.reps,self.friends,self.photo_date,nil] componentsJoinedByString:@
+            "\t"];
+}
+-(void)logSignup {
+    // http://stackoverflow.com/questions/5075416/objective-c-checking-file-exist-at-path
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *logFile = [NSString stringWithFormat:@"%@/all_signups.txt",documentsDirectory];
+    NSString *signupString = [NSString stringWithFormat:@"%@\n",[self toString]];
+    
+    if ( ! [fileManager fileExistsAtPath:logFile]){
+        [signupString writeToFile:logFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    } else {
+
+        NSFileHandle *aFileHandle;
+        
+        aFileHandle = [NSFileHandle fileHandleForWritingAtPath:logFile];
+        
+        [aFileHandle truncateFileAtOffset:[aFileHandle seekToEndOfFile]];
+        
+        [aFileHandle writeData:[[self toString] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+}
 @end

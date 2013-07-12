@@ -39,11 +39,11 @@
 -(void)viewDidAppear:(BOOL)animated {
     [self.activity startAnimating];
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+//                                             (unsigned long)NULL), ^(void) {
         [self loadSignups];
         [self.activity stopAnimating];
-    });
+//    });
 }
 
 - (void)didReceiveMemoryWarning

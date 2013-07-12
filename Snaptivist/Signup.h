@@ -29,6 +29,7 @@
 -(void)savePhoto:(UIImage *)image;
 -(void)resavePhoto;
 -(void)deletePhoto;
+-(void)logSignup;
 
 @property (nonatomic) BOOL didError;
 @property (nonatomic) BOOL isSyncing;

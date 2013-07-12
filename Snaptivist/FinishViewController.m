@@ -19,6 +19,7 @@
 {
     SnaptivistTabs *parent = [self tabController];
     NSError *error;
+    [parent.signup logSignup];
     if (![parent.context save:&error])
     {
         // Update to handle the
