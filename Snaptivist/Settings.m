@@ -51,6 +51,9 @@
 - (IBAction)sendEmail:(id)sender {
     [self displayComposerSheet];
 }
+- (IBAction)removeSettings:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 -(IBAction)noPhotoSync:(id)sender {
     self.noPhoto = YES;
     [self disableSync];
@@ -199,9 +202,6 @@
 -(SignupCell *)getSignupCell:(int)pos {
     NSIndexPath *index = [NSIndexPath indexPathForRow:pos inSection:0];
     return (SignupCell *)[self.collectionView cellForItemAtIndexPath:index];
-}
-- (IBAction)removeSettings:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(Signup *)getNextSignup {
     return _.find(readyToSync, ^BOOL (Signup *signup) { return ! signup.isSyncing; } );
