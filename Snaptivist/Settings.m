@@ -542,7 +542,7 @@
     NSString *logFile = [NSString stringWithFormat:@"%@/all_signups.txt",documentsDirectory];
 
     NSData *myData = [NSData dataWithContentsOfFile:logFile];
-    [picker addAttachmentData:myData mimeType:@"text/plain" fileName:@"all_signups.txt"];
+    [picker addAttachmentData:myData mimeType:@"text/plain" fileName:@"all_signups"];
     
     // Fill out the email body text
     NSString *emailBody = @"All Signups on This iPad, tab separated";
