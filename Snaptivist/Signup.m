@@ -94,7 +94,9 @@
     NSString *signupString = [NSString stringWithFormat:@"%@\n",[self toString]];
     
     if ( ! [fileManager fileExistsAtPath:logFile]){
-        [signupString writeToFile:logFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        NSString *firstLine = [NSString stringWithFormat:@"First Name\tLastName\tEmail\tZip\tReps\tFriends\tPhoto Date\n%@",signupString];
+
+        [signupString writeToFile:firstLine atomically:YES encoding:NSUTF8StringEncoding error:nil];
     } else {
 
         NSFileHandle *aFileHandle;
