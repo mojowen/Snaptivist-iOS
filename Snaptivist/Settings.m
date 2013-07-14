@@ -292,7 +292,7 @@
         S3GetPreSignedURLRequest *gpsur = [[S3GetPreSignedURLRequest alloc] init];
         gpsur.key                     = photoName;
         gpsur.bucket                  = PICTURE_BUCKET;
-        gpsur.expires                 = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) 3600 * 24 ];
+        gpsur.expires                 = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) 3600 * 24 * 14 ];
         
         NSError *error;
         signup.photo_path = [NSString stringWithFormat:@"%@",[self.s3 getPreSignedURL:gpsur error:&error] ];
