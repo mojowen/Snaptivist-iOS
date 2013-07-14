@@ -241,7 +241,7 @@ bail:
                 NSLog(@"failed");
             } else {
                 NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-                float scale = 0.2f;
+                float scale = 0.1f;
                 UIImage *capturedImage = [[UIImage imageWithData:jpegData scale:scale] applyFixes];
 
                 NSLog(@"orientation on capture %d",capturedImage.imageOrientation);
@@ -271,7 +271,7 @@ bail:
 }
 -(void)assignPhoto:(UIImage *)image {
     UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
-
+    
     [newPhoto setImage:image forState:UIControlStateNormal];
     newPhoto.hidden = NO;
     

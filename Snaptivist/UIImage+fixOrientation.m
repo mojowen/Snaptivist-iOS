@@ -4,14 +4,44 @@
 @implementation UIImage (fixOrientation)
 
 -(UIImage *)applyFixes {
-    return [[self fixOrientation] downsize];
+    return [[self downsize] fixOrientation];
 }
 
 - (UIImage *)downsize {
     // from http://stackoverflow.com/questions/5251327/getting-dimensions-of-an-uitextview
-    CGSize newSize = CGSizeMake(800.0f, 600.0f);
+    
+    CGSize newSize;
+
+    switch (self.imageOrientation) {
+        case UIImageOrientationDown:
+            newSize = CGSizeMake(800.0f, 600.0f);
+            break;
+        case UIImageOrientationDownMirrored:
+            newSize = CGSizeMake(600.0f, 800.0f);
+            break;
+        case UIImageOrientationLeft:
+            newSize = CGSizeMake(600.0f, 800.0f);
+            break;
+        case UIImageOrientationLeftMirrored:
+            newSize = CGSizeMake(600.0f, 800.0f);
+            break;
+        case UIImageOrientationRight:
+            newSize = CGSizeMake(600.0f, 800.0f);
+            break;
+        case UIImageOrientationRightMirrored:
+            newSize = CGSizeMake(600.0f, 800.0f);
+            break;
+        case UIImageOrientationUp:
+            newSize = CGSizeMake(800.0f, 600.0f);
+            break;
+        case UIImageOrientationUpMirrored:
+            newSize = CGSizeMake(800.0f, 600.0f);
+            break;
+    }
+
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
