@@ -287,7 +287,7 @@
         signup.zip = @"97227";
         signup.friends = @"srduncombe+friend1@gmail.com,srduncombe+friend2@gmail.com";
 
-        [signup savePhoto:[UIImage imageNamed:@"no_camera.jpg"] ];
+        [signup savePhoto:[UIImage imageNamed:@"actual_photo.png"] ];
         
         NSError *error = nil;
         if ([context save:&error]) {
