@@ -335,6 +335,9 @@
     if( signup.twitter != nil )
         [signupParams setObject:signup.twitter forKey:@"twitter"];
     
+    if( ! self.toggleFacebook.on )
+        [signupParams setObject:@"off" forKey:@"no_signup"];
+
     [signupParams setObject:AUTH_KEY forKey:@"auth_key"];
     
     NSLog(@"Posting signup %@",signup.photo_path);
