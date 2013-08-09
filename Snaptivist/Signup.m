@@ -22,7 +22,7 @@
 @dynamic sendTweet;
 @dynamic photo_path;
 
-@synthesize didError,isSyncing;
+@synthesize didError,isSyncing,amazon_path;
 
 -(id)init{
     self = [super init];

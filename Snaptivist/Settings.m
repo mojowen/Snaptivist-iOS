@@ -284,7 +284,7 @@
         gpsur.expires                 = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) 3600 * 24 * 14 ];
         
         NSError *error;
-        signup.photo_path = [NSString stringWithFormat:@"%@",[self.s3 getPreSignedURL:gpsur error:&error] ];
+        signup.amazon_path = [NSString stringWithFormat:@"%@",[self.s3 getPreSignedURL:gpsur error:&error] ];
 
         if( signup.photo_path == nil || error != nil) {
             [self errorSignup:signup];
@@ -332,8 +332,8 @@
     if( signup.reps != nil )
         [signupParams setObject:signup.reps forKey:@"reps"];
 
-    if( signup.photo_path != nil )
-        [signupParams setObject:signup.photo_path forKey:@"photo_path"];
+    if( signup.amazon_path != nil )
+        [signupParams setObject:signup.amazon_path forKey:@"photo_path"];
 
     [signupParams setObject:AUTH_KEY forKey:@"auth_key"];
     

@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * friends;
 @property (nonatomic, retain) NSDate * photo_date;
 @property (nonatomic, retain) NSString * photo_path;
+@property (nonatomic, retain) NSString * amazon_path;
 @property (nonatomic) NSNumber *sendTweet;
 
 
