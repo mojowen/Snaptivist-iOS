@@ -314,13 +314,10 @@
 }
 
 -(void)postSignup:(Signup*)signup {
-    NSLog(@"Posting signup");
-
     NSMutableDictionary *signupParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                              signup.firstName,@"firstName",
                                              signup.lastName, @"lastName",
                                              signup.email,@"email",
-                                             signup.twitter, @"twitter",
                                              signup.zip, @"zip",
                                              signup.photo_date, @"photo_date",
                                              signup.sendTweet, @"sendTweet",
@@ -335,6 +332,9 @@
     if( signup.amazon_path != nil )
         [signupParams setObject:signup.amazon_path forKey:@"photo_path"];
 
+    if( signup.twitter != nil )
+        [signupParams setObject:signup.twitter forKey:@"twitter"];
+    
     [signupParams setObject:AUTH_KEY forKey:@"auth_key"];
     
     NSLog(@"Posting signup %@",signup.photo_path);
