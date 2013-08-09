@@ -334,6 +334,8 @@
 
     if( signup.photo_path != nil )
         [signupParams setObject:signup.photo_path forKey:@"photo_path"];
+
+    [signupParams setObject:AUTH_KEY forKey:@"auth_key"];
     
     NSLog(@"Posting signup %@",signup.photo_path);
 

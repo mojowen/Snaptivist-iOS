@@ -15,6 +15,10 @@
 #define ACCESS_KEY_ID          @"YOUR ID"
 #define SECRET_KEY             @"YOUR SECRET"
 
+// Key for syncing with server
+#define AUTH_KEY          @"KEY GOES HERE"
+
+
 #define PICTURE_BUCKET         @"YOUR BUCKET"
 
 #define CREDENTIALS_ERROR_TITLE    @"Missing Credentials"
