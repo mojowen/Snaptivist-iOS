@@ -242,7 +242,7 @@ bail:
             } else {
                 NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 float scale = 0.1f;
-                UIImage *capturedImage = [[UIImage imageWithData:jpegData scale:scale] applyFixes];
+                UIImage *capturedImage = [UIImage imageWithData:jpegData scale:scale];
 
                 NSLog(@"orientation on capture %d",capturedImage.imageOrientation);
                 [self assignPhoto:capturedImage];
@@ -270,16 +270,20 @@ bail:
      ];
 }
 -(void)assignPhoto:(UIImage *)image {
-    UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
+	dispatch_async(dispatch_get_main_queue(), ^(void) {
     
-    [newPhoto setImage:image forState:UIControlStateNormal];
-    newPhoto.hidden = NO;
-    
-    if( photoNumber == 3 ) {
-        photoNumber = 0;
-    } else {
-        photoNumber = photoNumber + 1;
-    }
+        UIButton *newPhoto = [savedPhotos objectAtIndex:photoNumber];
+        
+        [newPhoto setImage:[image applyFixes] forState:UIControlStateNormal];
+        newPhoto.hidden = NO;
+        [self.view bringSubviewToFront:newPhoto];
+        
+        if( photoNumber == 3 ) {
+            photoNumber = 0;
+        } else {
+            photoNumber = photoNumber + 1;
+        }
+    });
 }
 
 // utility routing used during image capture to set up capture orientation
