@@ -21,7 +21,6 @@
 {
     context = [[self appDelegate] managedObjectContext];
 
-    self.noPhoto = NO;
     limit = 100;
 
     self.numberOfSignups.text = @"Loading...";
@@ -54,13 +53,7 @@
 - (IBAction)removeSettings:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
--(IBAction)noPhotoSync:(id)sender {
-    self.noPhoto = YES;
-    [self disableSync];
-    self.errors.hidden = NO;
-    self.errors.text = @"Syncing without photos - signups will be deleted from the app but still available as photos";
-    [self.syncButton sendActionsForControlEvents: UIControlEventTouchUpInside];
-}
+
 - (IBAction)removeRepsZips:(id)sender {
     [[self appDelegate] clearZipRepStore];
     UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Success!"
@@ -99,7 +92,6 @@
 
 }
 -(void)disableSync {
-    self.noPhotoSync.enabled = NO;
     self.syncButton.enabled = NO;
     [self.activity startAnimating];
     
@@ -110,12 +102,10 @@
 
 }
 -(void)enableSync {
-    self.noPhotoSync.enabled = YES;
     self.syncButton.enabled = YES;
     [self.activity stopAnimating];
 
     self.syncDisabled = NO;
-    self.noPhoto = NO;
     
     [self.syncButton setTitle:@"Sync All" forState:UIControlStateNormal];
     [readyToSync removeAllObjects];
@@ -164,7 +154,6 @@
             [self updateLabelFromDB];
 
             self.syncButton.hidden = NO;
-            self.noPhotoSync.hidden = NO;
             
         } else {
             self.numberOfSignups.text = @"No Singups";
@@ -317,7 +306,7 @@
     NSUInteger index = _.indexOf( signups, signup);
     [[self getSignupCell:index] setSyncState];
 
-    if( signup.photo_path == nil || self.noPhoto )
+    if( signup.photo_path == nil )
         [self postSignup:signup];
     else
         [self s3Upload:signup];

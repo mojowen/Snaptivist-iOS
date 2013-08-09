@@ -23,7 +23,7 @@ MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic,weak) IBOutlet UILabel *numberOfSignups;
 @property (nonatomic,weak) IBOutlet UIButton *syncButton;
-@property (nonatomic,weak) IBOutlet UIButton *noPhotoSync;
+@property (nonatomic,weak) IBOutlet UISwitch *toggleFacebook;
 @property(nonatomic,weak) IBOutlet UILabel *errors;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property  (weak,nonatomic) IBOutlet UIButton *sendEmail;
@@ -37,7 +37,6 @@ MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 @property int loadedSignups;
 
 @property (nonatomic,weak) Signup *nextToSync;
-@property BOOL noPhoto;
 @property BOOL syncDisabled;
 @property BOOL keepSyncing;
 
@@ -49,7 +48,6 @@ MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
 
 - (IBAction)removeSettings:(id)sender;
-- (IBAction)noPhotoSync:(id)sender;
 - (IBAction)removeRepsZips:(id)sender;
 - (IBAction)sendEmail:(id)sender;
 
