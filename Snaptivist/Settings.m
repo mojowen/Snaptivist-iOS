@@ -213,7 +213,6 @@
     [context deleteObject:signup];
     [context save:nil];
 
-    NSLog(@"delete being called on %@",signup.firstName);
     if( signup.isSyncing )
         [readyToSync removeObjectAtIndex:ready_index];
 
@@ -254,8 +253,7 @@
     [readyToSync removeObjectAtIndex:ready_index];
 }
 -(void)s3Upload:(Signup *)signup {
-    NSLog(@"Amazon uploading");
-    
+
     if( s3 == nil)
         s3 = [[AmazonS3Client alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_KEY];
     
@@ -343,8 +341,6 @@
 
     [signupParams setObject:AUTH_KEY forKey:@"auth_key"];
     
-    NSLog(@"Posting signup %@",signupParams);
-
     NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:signupParams,@"signup", nil];
 
     
@@ -401,27 +397,9 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tour_dates" ofType:@"txt"];
     NSString *fh = [NSString stringWithContentsOfFile:filePath encoding:NSUnicodeStringEncoding error:NULL];
     self.events = [fh componentsSeparatedByString:@"\n"];
-    self.myPickerView.showsSelectionIndicator = YES;
-    int i = -1;
 
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    [format setDateFormat:@"MM/dd/yyyy"];
-    [format setLocale:usLocale];
-    NSDate *today =[NSDate date];
-
-    for (NSString *event in self.events) {
-        NSArray *eventSplit = [event componentsSeparatedByString:@"\t"];
-        NSDate *date = [format dateFromString: [eventSplit objectAtIndex:0]];
-
-        if( [date compare:today] == NSOrderedDescending )
-            break;
-        i++;
-    }
-    if( i < 0 )
-        i = 0;
-    [self.myPickerView selectRow:i inComponent:0 animated:YES];
-    self.event = [self.events objectAtIndex:i];
+    [self.myPickerView selectRow:0 inComponent:0 animated:YES];
+    self.event = [self.events objectAtIndex:0];
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
