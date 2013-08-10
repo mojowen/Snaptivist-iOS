@@ -1113,6 +1113,7 @@
                         <outlet property="numberOfSignups" destination="MHa-rG-czq" id="K3d-jc-050"/>
                         <outlet property="sendEmail" destination="0Iz-Yg-wMD" id="6S4-ED-r9H"/>
                         <outlet property="syncButton" destination="tLH-pU-5bi" id="Jda-ye-GEE"/>
+                        <outlet property="toggleFacebook" destination="UZb-MK-Vpj" id="L0g-3l-mSG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1i5-DL-cLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1435,6 +1436,7 @@
                 <relationship kind="action" name="removeRepsZips:"/>
                 <relationship kind="action" name="removeSettings:"/>
                 <relationship kind="action" name="sendEmail:"/>
+                <relationship kind="action" name="syncNow:"/>
                 <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="errors" candidateClass="UILabel"/>
@@ -1448,6 +1450,8 @@
         <class className="SignupCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignupCell.h"/>
             <relationships>
+                <relationship kind="action" name="delete:"/>
+                <relationship kind="action" name="save:"/>
                 <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="deleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="label" candidateClass="UILabel"/>
