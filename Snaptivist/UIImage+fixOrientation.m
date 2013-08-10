@@ -4,7 +4,7 @@
 @implementation UIImage (fixOrientation)
 
 -(UIImage *)applyFixes {
-    return [[self downsize] fixOrientation];
+    return [self downsize];
 }
 
 - (UIImage *)downsize {

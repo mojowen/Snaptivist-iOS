@@ -244,7 +244,6 @@ bail:
                 float scale = 0.1f;
                 UIImage *capturedImage = [UIImage imageWithData:jpegData scale:scale];
 
-                NSLog(@"orientation on capture %d",capturedImage.imageOrientation);
                 [self assignPhoto:capturedImage];
             }
 
