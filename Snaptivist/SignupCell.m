@@ -104,6 +104,7 @@
     [self.state setTextColor:[UIColor redColor]];
     self.state.hidden = NO;
     self.signup.didError = YES;
+    self.signup.isSyncing = NO;
     [self.activity stopAnimating];
     [self setAlpha:1.0f];
 }
@@ -115,7 +116,7 @@
     self.state.hidden = YES;
     [self setAlpha:1.0f];
 
-    if( [self.action isEqualToString:@""] )
+    if( ! self.signup.isSyncing )
         [self.activity stopAnimating];
 
     if( [self.action isEqualToString:@"selected"] )
@@ -124,9 +125,8 @@
 
 }
 -(void)setSyncState {
-    NSLog(@"sync state set");
     [self.activity startAnimating];
-    self.action = @"syncing";
+    self.signup.isSyncing = YES;
 }
 -(void)setSelectedState {
     [self setAlpha:0.5f];
@@ -143,6 +143,7 @@
     self.photo.hidden = YES;
     [self setBackgroundColor:[UIColor clearColor]];
     self.label.hidden = YES;
+    [self.activity stopAnimating];
     self.deleteButton.hidden = YES;
     self.action = @"hidden";
 }

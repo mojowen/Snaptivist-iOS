@@ -76,7 +76,7 @@
     outstandingSync = [readyToSync count];
     self.errors.text = nil;
     NSArray *batchOfSignups;
-    int batch_size = 5;
+    int batch_size = 1;
     
 
     if( outstandingSync > batch_size ) {
@@ -220,6 +220,7 @@
     [signups removeObjectAtIndex:index];
 
     [self decreaseLabel];
+    [self.collectionView reloadData];
 }
 -(void)finishedSync {
     Signup *nextToSync = [self getNextSignup];
@@ -306,10 +307,12 @@
     NSUInteger index = _.indexOf( signups, signup);
     [[self getSignupCell:index] setSyncState];
 
-    if( signup.photo_path == nil )
-        [self postSignup:signup];
-    else
-        [self s3Upload:signup];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if( signup.photo_path == nil )
+            [self postSignup:signup];
+        else
+            [self s3Upload:signup];
+    });
 
 }
 
@@ -340,7 +343,7 @@
 
     [signupParams setObject:AUTH_KEY forKey:@"auth_key"];
     
-    NSLog(@"Posting signup %@",signup.photo_path);
+    NSLog(@"Posting signup %@",signupParams);
 
     NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:signupParams,@"signup", nil];
 
@@ -354,16 +357,19 @@
          postPath:@"/save"
         parameters:queryParams
         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [self deleteSignup:signup];
                 [self finishedSync];
+             });
         }
         failure:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"post errors %@",signup.firstName);
-            [self errorSignup:signup];
-            [self finishedSync];
-            
-            self.errors.text = @"Some errors on the last sync";
-            self.errors.hidden = NO;
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [self errorSignup:signup];
+                [self finishedSync];
+                
+                self.errors.text = @"Some errors on the last sync";
+                self.errors.hidden = NO;
+            });
         }
      ];
     
