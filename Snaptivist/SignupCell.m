@@ -18,11 +18,13 @@
     // they're given this method. They should reset the check the newly added signup to see what
     // their state should be
     
-    [self clearState];
 
     action = @"";
     parent = addedParent;
     signup = addedSignup;
+
+    [self clearState];
+    [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
 
     self.label.text = [NSString stringWithFormat:@"%@",signup.firstName];
     
@@ -30,10 +32,8 @@
         [self setErrorState];
     if( signup.isSyncing )
         [self.activity startAnimating];
-
-
-    [self setBackgroundColor:[UIColor redColor]];
-    [self.photo setImage:[signup loadPhoto] forState:UIControlStateNormal];
+    if( signup.isSelected )
+        [self select];
 
     return self;
 }
@@ -72,7 +72,7 @@
         UIAlertView *myAlertView;
         
         if( parent.outstandingSync < 1 ) {
-            if( [action isEqualToString:@"selected"] )
+            if( self.signup.isSelected )
                 [self removeSelectedState];
             else
                 [self setSelectedState];
@@ -99,6 +99,17 @@
     }
     action = nil;
 }
+-(void)select{
+    [self.photo setAlpha:0.6f];
+    [self.label setAlpha:0.6f];
+    [self setBackgroundColor:[UIColor redColor]];
+}
+-(void)unselect{
+    [self.photo setAlpha:1.0f];
+    [self.label setAlpha:1.0f];
+    [self setBackgroundColor:[UIColor clearColor]];
+
+}
 -(void)setErrorState {
     self.state.text = @"!!";
     [self.state setTextColor:[UIColor redColor]];
@@ -106,7 +117,7 @@
     self.signup.didError = YES;
     self.signup.isSyncing = NO;
     [self.activity stopAnimating];
-    [self setAlpha:1.0f];
+    [self unselect];
 }
 -(void)clearState {
     self.photo.hidden = NO;
@@ -114,30 +125,29 @@
     self.deleteButton.hidden = NO;
     self.state.text = nil;
     self.state.hidden = YES;
-    [self setAlpha:1.0f];
 
+    if( ! self.signup.isSelected )
+        [self unselect];
     if( ! self.signup.isSyncing )
         [self.activity stopAnimating];
-
-    if( [self.action isEqualToString:@"selected"] )
-        [self removeSelectedState];
-
 
 }
 -(void)setSyncState {
     [self.activity startAnimating];
     self.signup.isSyncing = YES;
+    if( signup.isSelected )
+        [self select];
 }
 -(void)setSelectedState {
-    [self setAlpha:0.5f];
+    [self select];
     [parent addToSet:self.signup];
-    self.action = @"selected";
+    self.signup.isSelected = YES;
 }
 -(void)removeSelectedState {
     [self.activity stopAnimating];
-    [self setAlpha:1.0f];
+    [self unselect];
     [parent removeFromSet:self.signup];
-    self.action = @"";
+    self.signup.isSelected = NO;
 }
 -(void)hideFromView {
     self.photo.hidden = YES;

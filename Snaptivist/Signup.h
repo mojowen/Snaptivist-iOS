@@ -34,6 +34,7 @@
 
 @property (nonatomic) BOOL didError;
 @property (nonatomic) BOOL isSyncing;
+@property (nonatomic) BOOL isSelected;
 
 
 @end

@@ -22,13 +22,14 @@
 @dynamic sendTweet;
 @dynamic photo_path;
 
-@synthesize didError,isSyncing,amazon_path;
+@synthesize didError,isSyncing,amazon_path,isSelected;
 
 -(id)init{
     self = [super init];
     self.isSyncing = NO;
     self.didError = NO;
-    
+    self.isSelected = NO;
+
     return self;
 }
 
