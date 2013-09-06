@@ -1797,7 +1797,6 @@
 		D2080B781786620200BEA52A /* sidenav_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidenav_active@2x.png"; sourceTree = "<group>"; };
 		D2080B7B17866DFA00BEA52A /* bg_view2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_view2.png; sourceTree = "<group>"; };
 		D2208870178E173B004ACA9E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Snaptivist/libTestFlight.a; sourceTree = "<group>"; };
-		D2208871178E173B004ACA9E /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		D2208873178E18C2004ACA9E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D22637691784FE3E00FEB8E4 /* C001099.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = C001099.jpg; sourceTree = "<group>"; };
 		D226376A1784FE3E00FEB8E4 /* S001194.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = S001194.jpg; sourceTree = "<group>"; };
@@ -1842,6 +1841,9 @@
 		D2AA6DC617792426004D2385 /* Rep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rep.h; sourceTree = "<group>"; };
 		D2AA6DC717792426004D2385 /* Rep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rep.m; sourceTree = "<group>"; };
 		D2B4074C178B6100009B4332 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D2BFA00D17D9536700F4895B /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		D2BFA00E17D9537200F4895B /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		D2BFA00F17D9537200F4895B /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		D2F5EEFC17906B240076AC5E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D2F5F6301763CEB4006E586C /* Snaptivist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snaptivist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F5F6331763CEB4006E586C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -2891,7 +2893,9 @@
 		D2F5F63A1763CEB4006E586C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D2208871178E173B004ACA9E /* TestFlight.h */,
+				D2BFA00D17D9536700F4895B /* TestFlight.h */,
+				D2BFA00E17D9537200F4895B /* TestFlight+AsyncLogging.h */,
+				D2BFA00F17D9537200F4895B /* TestFlight+ManualSessions.h */,
 				D2B4074C178B6100009B4332 /* Constants.h */,
 				D239F040178B97E100C745CD /* Constants_off.h */,
 				D202A31B177FC220004D547B /* reps.txt */,
