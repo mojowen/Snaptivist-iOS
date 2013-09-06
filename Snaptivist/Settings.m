@@ -72,7 +72,8 @@
         readyToSync = [self.signups mutableCopy];
 //        keepSyncing = YES;
     }
-
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    
     outstandingSync = [readyToSync count];
     self.errors.text = nil;
     NSArray *batchOfSignups;
@@ -237,6 +238,7 @@
         signups = [ _.filter( signups, ^BOOL (Signup *signup) { return ! signup.isSyncing && signup.firstName != nil; } ) mutableCopy];
         [self enableSync];
         [self loadSignups];
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
     }
 }
 -(void)errorSignup:(Signup *)signup {
@@ -254,50 +256,80 @@
 }
 -(void)s3Upload:(Signup *)signup {
 
-    if( s3 == nil)
-        s3 = [[AmazonS3Client alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_KEY];
-    
-    NSString *photoName = [signup fileName];
+    @try {
+        if( s3 == nil)
+            s3 = [[AmazonS3Client alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_KEY];
 
-    NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:signup.photo_path];
-    
-    s3.endpoint = [AmazonEndpoints s3Endpoint:US_EAST_1];
-    
-    // Upload image data.  Remember to set the content type.
-    S3PutObjectRequest *por = [[S3PutObjectRequest alloc] initWithKey: photoName
-                                                             inBucket:PICTURE_BUCKET];
-    por.contentType = @"image/png";
-    
+        NSString *photoName = [signup fileName];
 
-    // Convert the image to JPEG data.
-
-    por.data = imageData;
-    
-    // Put the image data into the specified s3 bucket and object.
-    S3PutObjectResponse *response  = [s3 putObject:por];
-    if ([response isFinishedLoading]) {
+        NSData *imageData = [[NSFileManager defaultManager] contentsAtPath:signup.photo_path];
         
-        S3GetPreSignedURLRequest *gpsur = [[S3GetPreSignedURLRequest alloc] init];
-        gpsur.key                     = photoName;
-        gpsur.bucket                  = PICTURE_BUCKET;
-        gpsur.expires                 = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) 3600 * 24 * 14 ];
+        s3.endpoint = [AmazonEndpoints s3Endpoint:US_EAST_1];
         
-        NSError *error;
-        signup.amazon_path = [NSString stringWithFormat:@"%@",[self.s3 getPreSignedURL:gpsur error:&error] ];
+        // Upload image data.  Remember to set the content type.
+        S3PutObjectRequest *por = [[S3PutObjectRequest alloc] initWithKey: photoName
+                                                                 inBucket:PICTURE_BUCKET];
+        por.contentType = @"image/png";
+        
 
-        if( signup.photo_path == nil || error != nil) {
+        // Convert the image to JPEG data.
+
+        por.data = imageData;
+        
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        NSLog(@"Beginning to Sync");
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+        // Put the image data into the specified s3 bucket and object.
+        S3PutObjectResponse *response  = [s3 putObject:por];
+        if ([response isFinishedLoading]) {
+
+            NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            NSLog(@"Finished Loading");
+            NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+            S3GetPreSignedURLRequest *gpsur = [[S3GetPreSignedURLRequest alloc] init];
+            gpsur.key                     = photoName;
+            gpsur.bucket                  = PICTURE_BUCKET;
+            gpsur.expires                 = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) 3600 * 24 * 14 ];
+            
+            NSError *error;
+            signup.amazon_path = [NSString stringWithFormat:@"%@",[self.s3 getPreSignedURL:gpsur error:&error] ];
+
+            if( signup.amazon_path == nil || error != nil) {
+                NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                NSLog(@"Problems with Amazon");
+                NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+                [self errorSignup:signup];
+                self.errors.text = @"Some errors on the last sync";
+                self.errors.hidden = NO;
+            } else {
+                NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                NSLog(@"ALL GOOD - save to Heroku");
+                NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+             [self postSignup:signup];
+            }
+        } else {
+            NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            NSLog(@"Did not hit isFinishedLoading");
+            NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
             [self errorSignup:signup];
             self.errors.text = @"Some errors on the last sync";
             self.errors.hidden = NO;
-        } else {
-         [self postSignup:signup];
         }
-    } else {
+    }
+    @catch ( NSException *e ) {
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        NSLog(@"Caught Exception for signup sync");
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
         [self errorSignup:signup];
-        self.errors.text = @"Some errors on the last sync";
+        self.errors.text = @"Could not sync last photo";
         self.errors.hidden = NO;
     }
-    
 }
 -(void)saveSignup:(Signup *)signup {
     signup.isSyncing = YES;
@@ -305,12 +337,19 @@
     NSUInteger index = _.indexOf( signups, signup);
     [[self getSignupCell:index] setSyncState];
 
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    if( self.unreachable ) {
+        self.errors.text = @"No Connection Detected";
+        self.errors.hidden = NO;
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        NSLog(@"Not Reachable");
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+    } else {
         if( signup.photo_path == nil )
             [self postSignup:signup];
         else
             [self s3Upload:signup];
-    });
+    }
 
 }
 
@@ -343,31 +382,45 @@
     
     NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:signupParams,@"signup", nil];
 
-    
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:BASE_URL]];
-    
-    [objectManager.HTTPClient setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
-    
-    NSLog(@"%@",queryParams);
-    [objectManager.HTTPClient
-         postPath:@"/save"
-        parameters:queryParams
-        success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             dispatch_async(dispatch_get_main_queue(), ^(void){
-                [self deleteSignup:signup];
-                [self finishedSync];
-             });
-        }
-        failure:^(AFHTTPRequestOperation *operation, id responseObject) {
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                [self errorSignup:signup];
-                [self finishedSync];
-                
-                self.errors.text = @"Some errors on the last sync";
-                self.errors.hidden = NO;
-            });
-        }
-     ];
+    @try {
+        RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:BASE_URL]];
+        
+        [objectManager.HTTPClient setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+
+        [objectManager.HTTPClient
+             postPath:@"/save"
+             parameters:queryParams
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 dispatch_async(dispatch_get_main_queue(), ^(void){
+                     [self deleteSignup:signup];
+                     [self finishedSync];
+                 });
+             }
+             failure:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 dispatch_async(dispatch_get_main_queue(), ^(void){
+                     NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                     NSLog(@"Failed to Post");
+                     NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                     
+                     [self errorSignup:signup];
+                     [self finishedSync];
+                     
+                     self.errors.text = @"Some errors on the last sync";
+                     self.errors.hidden = NO;
+                 });
+             }
+         ];
+    }
+    @catch( NSException *e ) {
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        NSLog(@"Caught exception on that last signup post");
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        
+        [self errorSignup:signup];
+        self.errors.text = @"Could not sync last signup";
+        self.errors.hidden = NO;
+    }
+
     
 }
 -(int)addToSet:(Signup *)signup {
@@ -389,6 +442,12 @@
      }
 
  }
+
+
+
+
+
+
 
 // Picker stuff
 #pragma mark -
@@ -455,6 +514,7 @@
         NSLog(@" unreachable");
         dispatch_async(dispatch_get_main_queue(), ^{
             [self disableSync];
+            self.unreachable = YES;
             self.errors.text = @"No connection detected";
             self.errors.hidden = NO;
         });
@@ -465,6 +525,7 @@
         NSLog(@" reachable");
         dispatch_async(dispatch_get_main_queue(), ^{
             [self enableSync];
+            self.unreachable = NO;
             self.errors.hidden = YES;
             self.errors.text = nil;
         });

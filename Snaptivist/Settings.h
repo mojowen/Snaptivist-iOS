@@ -39,6 +39,7 @@ MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic,weak) Signup *nextToSync;
 @property BOOL syncDisabled;
 @property BOOL keepSyncing;
+@property BOOL unreachable;
 
 @property (nonatomic,retain) NSMutableArray *signups;
 @property (nonatomic,retain) NSArray *events;
@@ -61,6 +62,6 @@ MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 -(void)loadSignups;
 
 
-@property (nonatomic, retain) AmazonS3Client *s3;
+@property (nonatomic, strong) AmazonS3Client *s3;
 
 @end

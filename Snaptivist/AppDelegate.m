@@ -18,7 +18,8 @@
 {
     [self loadZips];
     [self loadReps];
-//    [self loadTestSaves:50];
+//    [self loadTestSaves:300];
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] name]];
     [TestFlight takeOff: TEST_FLIGHT];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES]; 
